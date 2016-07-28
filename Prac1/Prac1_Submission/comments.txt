@@ -1,0 +1,172 @@
+Compilers Practical 1: Comments on Tasks 1 through 11
+
+Marq Botha – g14b7599
+Damon Hook – g14h0114
+Megan Kingon – g14K0129
+Kyle Wallace – g12w4298
+
+================================================================================================
+
+Task 2:
+* The sizes of the three programs are roughly the same, with empty being the smallest.  A reason why the Empty program 
+	is about 57 000 bytes, is because default libraries are included.
+* The program does not look for factors – it instead takes a number (e.g. 2) and finds all the numbers that are 
+	multiples of 2, and marks them as false (in a boolean array it makes the element at the specified number (which is 
+	the index) false).  Once all multiples of all numbers are crossed out, all indexes whose elements are still true are 
+	prime numbers. 
+* The algorithm is efficient because it does away with redundancy as it eliminates all future multiples of that number.  
+	This therefore greatly reduces the use of calculations (i.e. working out factors for every number). 
+* The computer does not need to do much arithmetic, as it is a simple and efficient algorithm.
+* Before any corrections were made: the highest prime number the program could handle was 863; and we could not reach the 
+	number of primes less than 20 000 – instead we got the highest prime number (16 411) before an error occurred.
+* We ran into runtime 201 errors (overflow problem) and we focused on correcting the problem (which worked), and we got 
+	the following numbers: highest prime number being 31 991 and the number of prime numbers less than 20 000 was 2262.
+* The max size of the array is important – as it is a determining factor on what the largest number can be, as the array 
+	cannot support a number of indexes larger than its max size.
+* The max size serves to prevent the user from entering an integer that would cause an overflow.
+
+================================================================================================
+
+Task 3:
+* Note: we had to change Main to main in fibocpp.cpp, else it would not compile.
+* For the Borland compiler C++ is almost double in size than that of the C programs – this could be because it is a more 
+	complex language and has more default libraries.
+* For the WatCom compiler the sizes of the three programs are all smaller, but the C++ programs are still bigger than the 
+	C programs.
+* Therefore, different compilers will result in different sizes of the same program – and this can be due to which 
+	libraries the compilers include, which can vary.
+* For the Borland compiler there were no overflow errors occurred, so the programs can handle the highest prime number 
+	less than 32 000 (which is 31 991) and the max number of prime numbers less than 20 000 (which is 2262).
+* For the WatCom compiler if we run the C++ program and use 32 000 as the supplied largest number, we get zero prime 
+	numbers.  If we use 39 998 as the supplied largest number, we get the correct highest prime number – 31 991.  
+	Therefore, it does not work if we give the max or one below of the array length and this could be due to the way 
+	the compilers treat array decorations differently.
+
+================================================================================================
+
+Task 4:
+* The sizes are roughly half the size of the Pascal programs.
+* An error occurred which is an out of bounds exception – at the 32 000 boundary.
+* The SieveSet2 does not display all the prime numbers, it just gives the number of prime numbers.
+
+================================================================================================
+
+Task 5:
+* Made all the corrections to both Sieve and Fibo and both compiled successfully.
+* Sieve handled the max number less than 20 000 as well as 32 000.
+
+================================================================================================
+
+Task 6:
+* The sizes are all much smaller, as the Turbo Pascal 6.0 is 16 bit.
+* TP6 ran into the overflow problem, which handled up to numbers 863 and 16 411, for both our fixed version and 
+	original version.
+* TP60 finds the highest number less than 20 000, but it skips some prime numbers (it only finds 2199 prime 
+	numbers), while the FPC compiler finds all the prime numbers using the same code.  TP60 allows for the 
+	prime number 32 001 to be found on the original and fixed code – which should not be possible. Therefore, 
+	the problem lies with the TP60 compiler.
+* The sizes are all very small on Turbo 1.0 compared to other compiled versions. 
+* All versions crash on Turbo 1.0, with the same numbers (863 and 16 411).
+* The compilers are older versions; therefore, the problems can be attributed to language differences (as the 
+	compiler may not be able to accommodate improved language elements).
+* TP60 was more than three times faster than TP6.
+
+================================================================================================
+
+Task 7: 
+* The conversion for emptyPAV and sievePAV and fiboPAV were successful.  
+* We would use the code of emptyPAVp2c.
+* SievePAVp2c and FiboPAVp2c both have lots of braces; and shorthand operations (e.g. i++ instead of i = i + 1) 
+	are not used.  Therefore it is more difficult to read and we would rather use shorthand operations when 
+	writing code ourselves.
+* Weakness for voterp2c: it does not allow a person who is of the specified voting age (18) to vote (it uses >); 
+	so it should instead have a greater than or equal to sign.  There is no way to prevent the averaging 
+	calculation, if the array of eligible voters remains empty (e.g. only under age people were entered, or no 
+	people were entered) the program would crash because it attempts to divide by zero.  This needs to be 
+	corrected with an if statement, for example.
+* It converts really fast: it takes around 0.03 seconds.  SievePAVp2c and FiboPAVp2c are both much faster than 
+	the Parva programs.
+
+================================================================================================
+
+Task 8:
+We looked at the iterative and recursive versions of the Hanoi solution.  We ran the Parva versions as well as 
+the converted versions and stated our findings below.  We decided to use 16 disks and 1 iteration each time.  
+We discuss the reasoning of the times and then answer some of the questions asked.
+
+The iterative Parva version compiles and has the time of 23.57 seconds.  The iterative version does not 
+convert and gave several errors:  
+
+D:\14B7599>parva2tocsharp HanoiIterPAV.pav
+file HanoiIterPAV.pav : (8, 31) identifier expected
+file HanoiIterPAV.pav : (11, 68) invalid WriteElement
+file HanoiIterPAV.pav : (11, 72) "," expected
+file HanoiIterPAV.pav : (12, 5) "}" expected
+4 errors detected
+Conversion to C# unsuccessful.
+
+The size of the converted iterative version is not applicable.  
+
+The recursive Parva version has the time of 24.94 seconds.
+The recursive version converted and compiled successfully and has the time of 8.83 seconds.  The conversion 
+takes 0.03 seconds.  The size of the converted recursive version is 33 792 bytes.
+
+The above timings fall within our understanding of compilers and interpreters.  Programs that are emulated 
+through an interpretive compiler will usually be slower, as the “machine code” runs through software, while 
+the C sharp version is compiled by a compiler that makes use of machine code that can directly communicate 
+with the hardware, which will usually be faster.  Therefore, it makes sense that the Parva recursive version 
+takes more than three times the amount of time than the converted version does.
+
+Parva programs do need to be acceptable by the Parva compiler because the syntax rules etc. needs to be the 
+same, else the conversion will not work properly. Parva2ToCSharp is as simple as it needs to be, if not as 
+readable as it could be (i.e. as it has braces surrounding lines that do not need to be bracketed).  
+
+================================================================================================
+
+Task 9:
+* We hard coded the below limits into the source files.  For the Turbo Pascal compiled programs, we timed 
+	using a stopwatch on our phones. The Parva programs uses its own timer function.  For all the other versions 
+	we used the timer batch file.
+* Note: not all of the comparisons are noted here, as they have already been discussed in earlier tasks.
+* To test for the timings of the Sieve programs we used 30 000 iterations and 16 000 for the largest number.  
+	The Parva version took the longest time (~24 minutes) while the CL compiled C and C++ versions were the 
+	fastest (1.98 and 1.90 seconds respectively).  
+* To test for the timings of the Fibo programs we used 42 as the upper limit.  We have noted that the CL 
+	compiler takes a long time versus the BBC compiler for the C and C++ programs.
+* To test for the timings of the Hanoi programs we used 1 iteration and 16 as the number of disks.
+
+================================================================================================
+
+Task 10:
+a. Sieve.cil comments:  It is a bunch of machine level instructions/opcodes and thus it is virtually unreadable 
+	to people (such as ourselves) who are used to coding in high-level languages.  We have noted that it decompiles 
+	the attached libraries, and every method that is used.
+b. Reassembled SieveCS comments:  It reassembles and runs with about the same amount of time recorded in Task 9.
+c. Corrupted SieveCS comments:  It reassembles successfully as it does not “think anything is wrong”, but when we 
+	try to execute it, it crashes.
+d. Net Verifier after b comments: all classes and methods were verified.
+Net Verifier after c comments: there is one error.
+
+D:\14B7599\Hardcoded>peverify sievecs.exe
+Microsoft (R) .NET Framework PE Verifier.  Version  3.5.30729.1
+Copyright (c) Microsoft Corporation.  All rights reserved. 
+[IL]: Error: [D:\14B7599\Hardcoded\sievecs.exe : Sieve::Main][offset 0x000000F7]
+ Stack underflow.
+1 Error(s) Verifying sievecs.exe
+
+================================================================================================
+
+Task 11:
+* Decompiled SieveCS.exe: It is fairly readable but it loses all the variable names.  When we recompiled it, it 
+	failed and gave the following error:  
+
+D:\14B7599\Hardcoded>sieve2.exe
+Prime numbers between 2 and 16000
+Unhandled Exception: System.Invalid
+CastException: Unable to cast object of type
+'System.Int32' to type 'System.String'.
+  at Sieve.Main(String[] args)
+
+This error would be easy to fix by hand before recompiling.
+* Decompiled FiboCS.exe: very readable and it recompiled and ran successfully.
+* We tried to decompile SievePAS.exe and in dotPeek it says “not supported”. 

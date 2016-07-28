@@ -1,0 +1,41 @@
+D:\14B7599>parva2tocsharp HanoiIterPAV.pav
+file HanoiIterPAV.pav : (8, 31) identifier expected
+file HanoiIterPAV.pav : (11, 68) invalid WriteElement
+file HanoiIterPAV.pav : (11, 72) "," expected
+file HanoiIterPAV.pav : (12, 5) "}" expected
+4 errors detected
+Conversion to C# unsuccessful
+
+============================================================
+
+D:\14B7599>csharp HanoiIterPAVp2c.cs
+
+D:\14B7599>csc @include HanoiIterPAVp2c.cs
+Microsoft (R) Visual C# Compiler version 4.6.1055.0
+for Microsoft (R) .NET Framework 4.5
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+HanoiIterPAVp2c.cs(8,47): error CS1001: Identifier expected
+
+=============================================================
+
+D:\14B7599\Hardcoded>peverify sievecs.exe
+
+Microsoft (R) .NET Framework PE Verifier.  Version  3.5.30729.1
+Copyright (c) Microsoft Corporation.  All rights reserved.
+
+[IL]: Error: [D:\14B7599\Hardcoded\sievecs.exe : Sieve::Main][offset 0x000000F7]
+ Stack underflow.
+1 Error(s) Verifying sievecs.exe
+
+==============================================================
+
+D:\14B7599\Hardcoded>sieve2.exe
+Prime numbers between 2 and 16000
+-----------------------------------
+
+Unhandled Exception: System.InvalidCastException: Unable to cast object of type
+'System.Int32' to type 'System.String'.
+   at Sieve.Main(String[] args)
+   
+==============================================================
