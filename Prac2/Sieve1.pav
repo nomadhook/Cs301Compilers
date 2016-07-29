@@ -1,0 +1,31 @@
+// Sieve of Eratosthenes for counting primes 2 <= n <= Max (Parva version)
+// P.D. Terry,  Rhodes University, 2016
+
+  void Main() {
+    const Max = 4000, Iterations = 100;          // change to suit
+
+    bool[] Uncrossed = new bool[Max + 1];        // the sieve
+    int i, k, it = 1, primes = 0;                // counters
+    while (it <= Iterations)  {
+      primes = 0;
+      i = 2;
+      while (i <= Max) {                         // clear sieve
+        Uncrossed[i] = true;
+        i = i + 1;
+      }
+      i = 2;
+      while (i <= Max) {                         // the passes over the sieve
+        if (Uncrossed[i]) {
+          primes = primes + 1;
+          k = i;                                 // now cross out multiples of i
+          while ((k <= Max) && (k > 0)) {
+            Uncrossed[k] = false;
+            k = k + i;
+          }
+        }
+        i = i + 1;
+      }
+      it = it + 1;
+    }
+    write(primes, " primes");
+  } // Main

@@ -20,3 +20,9 @@ J:\26_07_2016\Sudoku\Sudoku\obj\Debug\Sudoku.pdb
 J:\26_07_2016\Sudoku\Sudoku\bin\Debug\Sudoku.exe
 J:\26_07_2016\Sudoku\Sudoku\bin\Debug\Sudoku.pdb
 J:\26_07_2016\Sudoku\Sudoku\obj\Debug\Sudoku.csprojResolveAssemblyReference.cache
+C:\Users\Damon\Documents\Repos\Cs301Compilers\Prac1\Prac1_Submission\Sudoku\Sudoku\bin\Debug\Sudoku.exe.config
+C:\Users\Damon\Documents\Repos\Cs301Compilers\Prac1\Prac1_Submission\Sudoku\Sudoku\bin\Debug\Sudoku.exe
+C:\Users\Damon\Documents\Repos\Cs301Compilers\Prac1\Prac1_Submission\Sudoku\Sudoku\bin\Debug\Sudoku.pdb
+C:\Users\Damon\Documents\Repos\Cs301Compilers\Prac1\Prac1_Submission\Sudoku\Sudoku\obj\Debug\Sudoku.csprojResolveAssemblyReference.cache
+C:\Users\Damon\Documents\Repos\Cs301Compilers\Prac1\Prac1_Submission\Sudoku\Sudoku\obj\Debug\Sudoku.exe
+C:\Users\Damon\Documents\Repos\Cs301Compilers\Prac1\Prac1_Submission\Sudoku\Sudoku\obj\Debug\Sudoku.pdb

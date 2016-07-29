@@ -1,0 +1,21 @@
+void Main () {
+/* Tabulate a simple Boolean function
+   P.D. Terry, Rhodes University, 2016 */
+
+  bool X, Y, Z;
+
+  write("   X     Y     Z     X OR !Y AND Z\n");
+  X = false;
+  repeat
+    Y = false;
+    repeat
+      Z = false;
+      repeat
+        write(X, Y, Z, X || !Y && Z, "\n");
+        Z = ! Z;
+      until (!Z); // again
+      Y = ! Y;
+    until (!Y); // again
+    X = ! X;
+  until (!X); // again
+} // Main

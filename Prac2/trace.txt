@@ -1,0 +1,587 @@
+
+Stack dump at 0 FP:5039 SP:5039
+
+Empty Heap
+ PC:    0 FP: 5039 SP: 5039 HP:   77 TOS:    0  DSP         3
+
+Stack dump at 2 FP:5039 SP:5036
+   5038    0   5037    0   5036    0
+Empty Heap
+ PC:    2 FP: 5039 SP: 5036 HP:   77 TOS:    0  PRNS     5118
+                                                               Supply list of numbers terminated with 0 
+
+Stack dump at 4 FP:5039 SP:5036
+   5038    0   5037    0   5036    0
+Empty Heap
+ PC:    4 FP: 5039 SP: 5036 HP:   77 TOS:    0  LDA         0
+
+Stack dump at 6 FP:5039 SP:5035
+   5038    0   5037    0   5036    0   5035 5038
+Empty Heap
+ PC:    6 FP: 5039 SP: 5035 HP:   77 TOS: 5038  INPI  
+
+Stack dump at 7 FP:5039 SP:5036
+   5038   10   5037    0   5036    0
+Empty Heap
+ PC:    7 FP: 5039 SP: 5036 HP:   77 TOS:    0  LDA         2
+
+Stack dump at 9 FP:5039 SP:5035
+   5038   10   5037    0   5036    0   5035 5036
+Empty Heap
+ PC:    9 FP: 5039 SP: 5035 HP:   77 TOS: 5036  LDA         0
+
+Stack dump at 11 FP:5039 SP:5034
+   5038   10   5037    0   5036    0   5035 5036   5034 5038
+Empty Heap
+ PC:   11 FP: 5039 SP: 5034 HP:   77 TOS: 5038  LDV   
+
+Stack dump at 12 FP:5039 SP:5034
+   5038   10   5037    0   5036    0   5035 5036   5034   10
+Empty Heap
+ PC:   12 FP: 5039 SP: 5034 HP:   77 TOS:   10  STO   
+
+Stack dump at 13 FP:5039 SP:5036
+   5038   10   5037    0   5036   10
+Empty Heap
+ PC:   13 FP: 5039 SP: 5036 HP:   77 TOS:   10  LDA         1
+
+Stack dump at 15 FP:5039 SP:5035
+   5038   10   5037    0   5036   10   5035 5037
+Empty Heap
+ PC:   15 FP: 5039 SP: 5035 HP:   77 TOS: 5037  LDA         0
+
+Stack dump at 17 FP:5039 SP:5034
+   5038   10   5037    0   5036   10   5035 5037   5034 5038
+Empty Heap
+ PC:   17 FP: 5039 SP: 5034 HP:   77 TOS: 5038  LDV   
+
+Stack dump at 18 FP:5039 SP:5034
+   5038   10   5037    0   5036   10   5035 5037   5034   10
+Empty Heap
+ PC:   18 FP: 5039 SP: 5034 HP:   77 TOS:   10  STO   
+
+Stack dump at 19 FP:5039 SP:5036
+   5038   10   5037   10   5036   10
+Empty Heap
+ PC:   19 FP: 5039 SP: 5036 HP:   77 TOS:   10  LDA         0
+
+Stack dump at 21 FP:5039 SP:5035
+   5038   10   5037   10   5036   10   5035 5038
+Empty Heap
+ PC:   21 FP: 5039 SP: 5035 HP:   77 TOS: 5038  LDV   
+
+Stack dump at 22 FP:5039 SP:5035
+   5038   10   5037   10   5036   10   5035   10
+Empty Heap
+ PC:   22 FP: 5039 SP: 5035 HP:   77 TOS:   10  LDC         0
+
+Stack dump at 24 FP:5039 SP:5034
+   5038   10   5037   10   5036   10   5035   10   5034    0
+Empty Heap
+ PC:   24 FP: 5039 SP: 5034 HP:   77 TOS:    0  CNE   
+
+Stack dump at 25 FP:5039 SP:5035
+   5038   10   5037   10   5036   10   5035    1
+Empty Heap
+ PC:   25 FP: 5039 SP: 5035 HP:   77 TOS:    1  BZE        62
+
+Stack dump at 27 FP:5039 SP:5036
+   5038   10   5037   10   5036   10
+Empty Heap
+ PC:   27 FP: 5039 SP: 5036 HP:   77 TOS:   10  LDA         0
+
+Stack dump at 29 FP:5039 SP:5035
+   5038   10   5037   10   5036   10   5035 5038
+Empty Heap
+ PC:   29 FP: 5039 SP: 5035 HP:   77 TOS: 5038  LDV   
+
+Stack dump at 30 FP:5039 SP:5035
+   5038   10   5037   10   5036   10   5035   10
+Empty Heap
+ PC:   30 FP: 5039 SP: 5035 HP:   77 TOS:   10  LDA         1
+
+Stack dump at 32 FP:5039 SP:5034
+   5038   10   5037   10   5036   10   5035   10   5034 5037
+Empty Heap
+ PC:   32 FP: 5039 SP: 5034 HP:   77 TOS: 5037  LDV   
+
+Stack dump at 33 FP:5039 SP:5034
+   5038   10   5037   10   5036   10   5035   10   5034   10
+Empty Heap
+ PC:   33 FP: 5039 SP: 5034 HP:   77 TOS:   10  CGT   
+
+Stack dump at 34 FP:5039 SP:5035
+   5038   10   5037   10   5036   10   5035    0
+Empty Heap
+ PC:   34 FP: 5039 SP: 5035 HP:   77 TOS:    0  BZE        42
+
+Stack dump at 42 FP:5039 SP:5036
+   5038   10   5037   10   5036   10
+Empty Heap
+ PC:   42 FP: 5039 SP: 5036 HP:   77 TOS:   10  LDA         0
+
+Stack dump at 44 FP:5039 SP:5035
+   5038   10   5037   10   5036   10   5035 5038
+Empty Heap
+ PC:   44 FP: 5039 SP: 5035 HP:   77 TOS: 5038  LDV   
+
+Stack dump at 45 FP:5039 SP:5035
+   5038   10   5037   10   5036   10   5035   10
+Empty Heap
+ PC:   45 FP: 5039 SP: 5035 HP:   77 TOS:   10  LDA         2
+
+Stack dump at 47 FP:5039 SP:5034
+   5038   10   5037   10   5036   10   5035   10   5034 5036
+Empty Heap
+ PC:   47 FP: 5039 SP: 5034 HP:   77 TOS: 5036  LDV   
+
+Stack dump at 48 FP:5039 SP:5034
+   5038   10   5037   10   5036   10   5035   10   5034   10
+Empty Heap
+ PC:   48 FP: 5039 SP: 5034 HP:   77 TOS:   10  CLT   
+
+Stack dump at 49 FP:5039 SP:5035
+   5038   10   5037   10   5036   10   5035    0
+Empty Heap
+ PC:   49 FP: 5039 SP: 5035 HP:   77 TOS:    0  BZE        57
+
+Stack dump at 57 FP:5039 SP:5036
+   5038   10   5037   10   5036   10
+Empty Heap
+ PC:   57 FP: 5039 SP: 5036 HP:   77 TOS:   10  LDA         0
+
+Stack dump at 59 FP:5039 SP:5035
+   5038   10   5037   10   5036   10   5035 5038
+Empty Heap
+ PC:   59 FP: 5039 SP: 5035 HP:   77 TOS: 5038  INPI  
+
+Stack dump at 60 FP:5039 SP:5036
+   5038   15   5037   10   5036   10
+Empty Heap
+ PC:   60 FP: 5039 SP: 5036 HP:   77 TOS:   10  BRN        19
+
+Stack dump at 19 FP:5039 SP:5036
+   5038   15   5037   10   5036   10
+Empty Heap
+ PC:   19 FP: 5039 SP: 5036 HP:   77 TOS:   10  LDA         0
+
+Stack dump at 21 FP:5039 SP:5035
+   5038   15   5037   10   5036   10   5035 5038
+Empty Heap
+ PC:   21 FP: 5039 SP: 5035 HP:   77 TOS: 5038  LDV   
+
+Stack dump at 22 FP:5039 SP:5035
+   5038   15   5037   10   5036   10   5035   15
+Empty Heap
+ PC:   22 FP: 5039 SP: 5035 HP:   77 TOS:   15  LDC         0
+
+Stack dump at 24 FP:5039 SP:5034
+   5038   15   5037   10   5036   10   5035   15   5034    0
+Empty Heap
+ PC:   24 FP: 5039 SP: 5034 HP:   77 TOS:    0  CNE   
+
+Stack dump at 25 FP:5039 SP:5035
+   5038   15   5037   10   5036   10   5035    1
+Empty Heap
+ PC:   25 FP: 5039 SP: 5035 HP:   77 TOS:    1  BZE        62
+
+Stack dump at 27 FP:5039 SP:5036
+   5038   15   5037   10   5036   10
+Empty Heap
+ PC:   27 FP: 5039 SP: 5036 HP:   77 TOS:   10  LDA         0
+
+Stack dump at 29 FP:5039 SP:5035
+   5038   15   5037   10   5036   10   5035 5038
+Empty Heap
+ PC:   29 FP: 5039 SP: 5035 HP:   77 TOS: 5038  LDV   
+
+Stack dump at 30 FP:5039 SP:5035
+   5038   15   5037   10   5036   10   5035   15
+Empty Heap
+ PC:   30 FP: 5039 SP: 5035 HP:   77 TOS:   15  LDA         1
+
+Stack dump at 32 FP:5039 SP:5034
+   5038   15   5037   10   5036   10   5035   15   5034 5037
+Empty Heap
+ PC:   32 FP: 5039 SP: 5034 HP:   77 TOS: 5037  LDV   
+
+Stack dump at 33 FP:5039 SP:5034
+   5038   15   5037   10   5036   10   5035   15   5034   10
+Empty Heap
+ PC:   33 FP: 5039 SP: 5034 HP:   77 TOS:   10  CGT   
+
+Stack dump at 34 FP:5039 SP:5035
+   5038   15   5037   10   5036   10   5035    1
+Empty Heap
+ PC:   34 FP: 5039 SP: 5035 HP:   77 TOS:    1  BZE        42
+
+Stack dump at 36 FP:5039 SP:5036
+   5038   15   5037   10   5036   10
+Empty Heap
+ PC:   36 FP: 5039 SP: 5036 HP:   77 TOS:   10  LDA         1
+
+Stack dump at 38 FP:5039 SP:5035
+   5038   15   5037   10   5036   10   5035 5037
+Empty Heap
+ PC:   38 FP: 5039 SP: 5035 HP:   77 TOS: 5037  LDA         0
+
+Stack dump at 40 FP:5039 SP:5034
+   5038   15   5037   10   5036   10   5035 5037   5034 5038
+Empty Heap
+ PC:   40 FP: 5039 SP: 5034 HP:   77 TOS: 5038  LDV   
+
+Stack dump at 41 FP:5039 SP:5034
+   5038   15   5037   10   5036   10   5035 5037   5034   15
+Empty Heap
+ PC:   41 FP: 5039 SP: 5034 HP:   77 TOS:   15  STO   
+
+Stack dump at 42 FP:5039 SP:5036
+   5038   15   5037   15   5036   10
+Empty Heap
+ PC:   42 FP: 5039 SP: 5036 HP:   77 TOS:   10  LDA         0
+
+Stack dump at 44 FP:5039 SP:5035
+   5038   15   5037   15   5036   10   5035 5038
+Empty Heap
+ PC:   44 FP: 5039 SP: 5035 HP:   77 TOS: 5038  LDV   
+
+Stack dump at 45 FP:5039 SP:5035
+   5038   15   5037   15   5036   10   5035   15
+Empty Heap
+ PC:   45 FP: 5039 SP: 5035 HP:   77 TOS:   15  LDA         2
+
+Stack dump at 47 FP:5039 SP:5034
+   5038   15   5037   15   5036   10   5035   15   5034 5036
+Empty Heap
+ PC:   47 FP: 5039 SP: 5034 HP:   77 TOS: 5036  LDV   
+
+Stack dump at 48 FP:5039 SP:5034
+   5038   15   5037   15   5036   10   5035   15   5034   10
+Empty Heap
+ PC:   48 FP: 5039 SP: 5034 HP:   77 TOS:   10  CLT   
+
+Stack dump at 49 FP:5039 SP:5035
+   5038   15   5037   15   5036   10   5035    0
+Empty Heap
+ PC:   49 FP: 5039 SP: 5035 HP:   77 TOS:    0  BZE        57
+
+Stack dump at 57 FP:5039 SP:5036
+   5038   15   5037   15   5036   10
+Empty Heap
+ PC:   57 FP: 5039 SP: 5036 HP:   77 TOS:   10  LDA         0
+
+Stack dump at 59 FP:5039 SP:5035
+   5038   15   5037   15   5036   10   5035 5038
+Empty Heap
+ PC:   59 FP: 5039 SP: 5035 HP:   77 TOS: 5038  INPI  
+
+Stack dump at 60 FP:5039 SP:5036
+   5038   10   5037   15   5036   10
+Empty Heap
+ PC:   60 FP: 5039 SP: 5036 HP:   77 TOS:   10  BRN        19
+
+Stack dump at 19 FP:5039 SP:5036
+   5038   10   5037   15   5036   10
+Empty Heap
+ PC:   19 FP: 5039 SP: 5036 HP:   77 TOS:   10  LDA         0
+
+Stack dump at 21 FP:5039 SP:5035
+   5038   10   5037   15   5036   10   5035 5038
+Empty Heap
+ PC:   21 FP: 5039 SP: 5035 HP:   77 TOS: 5038  LDV   
+
+Stack dump at 22 FP:5039 SP:5035
+   5038   10   5037   15   5036   10   5035   10
+Empty Heap
+ PC:   22 FP: 5039 SP: 5035 HP:   77 TOS:   10  LDC         0
+
+Stack dump at 24 FP:5039 SP:5034
+   5038   10   5037   15   5036   10   5035   10   5034    0
+Empty Heap
+ PC:   24 FP: 5039 SP: 5034 HP:   77 TOS:    0  CNE   
+
+Stack dump at 25 FP:5039 SP:5035
+   5038   10   5037   15   5036   10   5035    1
+Empty Heap
+ PC:   25 FP: 5039 SP: 5035 HP:   77 TOS:    1  BZE        62
+
+Stack dump at 27 FP:5039 SP:5036
+   5038   10   5037   15   5036   10
+Empty Heap
+ PC:   27 FP: 5039 SP: 5036 HP:   77 TOS:   10  LDA         0
+
+Stack dump at 29 FP:5039 SP:5035
+   5038   10   5037   15   5036   10   5035 5038
+Empty Heap
+ PC:   29 FP: 5039 SP: 5035 HP:   77 TOS: 5038  LDV   
+
+Stack dump at 30 FP:5039 SP:5035
+   5038   10   5037   15   5036   10   5035   10
+Empty Heap
+ PC:   30 FP: 5039 SP: 5035 HP:   77 TOS:   10  LDA         1
+
+Stack dump at 32 FP:5039 SP:5034
+   5038   10   5037   15   5036   10   5035   10   5034 5037
+Empty Heap
+ PC:   32 FP: 5039 SP: 5034 HP:   77 TOS: 5037  LDV   
+
+Stack dump at 33 FP:5039 SP:5034
+   5038   10   5037   15   5036   10   5035   10   5034   15
+Empty Heap
+ PC:   33 FP: 5039 SP: 5034 HP:   77 TOS:   15  CGT   
+
+Stack dump at 34 FP:5039 SP:5035
+   5038   10   5037   15   5036   10   5035    0
+Empty Heap
+ PC:   34 FP: 5039 SP: 5035 HP:   77 TOS:    0  BZE        42
+
+Stack dump at 42 FP:5039 SP:5036
+   5038   10   5037   15   5036   10
+Empty Heap
+ PC:   42 FP: 5039 SP: 5036 HP:   77 TOS:   10  LDA         0
+
+Stack dump at 44 FP:5039 SP:5035
+   5038   10   5037   15   5036   10   5035 5038
+Empty Heap
+ PC:   44 FP: 5039 SP: 5035 HP:   77 TOS: 5038  LDV   
+
+Stack dump at 45 FP:5039 SP:5035
+   5038   10   5037   15   5036   10   5035   10
+Empty Heap
+ PC:   45 FP: 5039 SP: 5035 HP:   77 TOS:   10  LDA         2
+
+Stack dump at 47 FP:5039 SP:5034
+   5038   10   5037   15   5036   10   5035   10   5034 5036
+Empty Heap
+ PC:   47 FP: 5039 SP: 5034 HP:   77 TOS: 5036  LDV   
+
+Stack dump at 48 FP:5039 SP:5034
+   5038   10   5037   15   5036   10   5035   10   5034   10
+Empty Heap
+ PC:   48 FP: 5039 SP: 5034 HP:   77 TOS:   10  CLT   
+
+Stack dump at 49 FP:5039 SP:5035
+   5038   10   5037   15   5036   10   5035    0
+Empty Heap
+ PC:   49 FP: 5039 SP: 5035 HP:   77 TOS:    0  BZE        57
+
+Stack dump at 57 FP:5039 SP:5036
+   5038   10   5037   15   5036   10
+Empty Heap
+ PC:   57 FP: 5039 SP: 5036 HP:   77 TOS:   10  LDA         0
+
+Stack dump at 59 FP:5039 SP:5035
+   5038   10   5037   15   5036   10   5035 5038
+Empty Heap
+ PC:   59 FP: 5039 SP: 5035 HP:   77 TOS: 5038  INPI  
+
+Stack dump at 60 FP:5039 SP:5036
+   5038    5   5037   15   5036   10
+Empty Heap
+ PC:   60 FP: 5039 SP: 5036 HP:   77 TOS:   10  BRN        19
+
+Stack dump at 19 FP:5039 SP:5036
+   5038    5   5037   15   5036   10
+Empty Heap
+ PC:   19 FP: 5039 SP: 5036 HP:   77 TOS:   10  LDA         0
+
+Stack dump at 21 FP:5039 SP:5035
+   5038    5   5037   15   5036   10   5035 5038
+Empty Heap
+ PC:   21 FP: 5039 SP: 5035 HP:   77 TOS: 5038  LDV   
+
+Stack dump at 22 FP:5039 SP:5035
+   5038    5   5037   15   5036   10   5035    5
+Empty Heap
+ PC:   22 FP: 5039 SP: 5035 HP:   77 TOS:    5  LDC         0
+
+Stack dump at 24 FP:5039 SP:5034
+   5038    5   5037   15   5036   10   5035    5   5034    0
+Empty Heap
+ PC:   24 FP: 5039 SP: 5034 HP:   77 TOS:    0  CNE   
+
+Stack dump at 25 FP:5039 SP:5035
+   5038    5   5037   15   5036   10   5035    1
+Empty Heap
+ PC:   25 FP: 5039 SP: 5035 HP:   77 TOS:    1  BZE        62
+
+Stack dump at 27 FP:5039 SP:5036
+   5038    5   5037   15   5036   10
+Empty Heap
+ PC:   27 FP: 5039 SP: 5036 HP:   77 TOS:   10  LDA         0
+
+Stack dump at 29 FP:5039 SP:5035
+   5038    5   5037   15   5036   10   5035 5038
+Empty Heap
+ PC:   29 FP: 5039 SP: 5035 HP:   77 TOS: 5038  LDV   
+
+Stack dump at 30 FP:5039 SP:5035
+   5038    5   5037   15   5036   10   5035    5
+Empty Heap
+ PC:   30 FP: 5039 SP: 5035 HP:   77 TOS:    5  LDA         1
+
+Stack dump at 32 FP:5039 SP:5034
+   5038    5   5037   15   5036   10   5035    5   5034 5037
+Empty Heap
+ PC:   32 FP: 5039 SP: 5034 HP:   77 TOS: 5037  LDV   
+
+Stack dump at 33 FP:5039 SP:5034
+   5038    5   5037   15   5036   10   5035    5   5034   15
+Empty Heap
+ PC:   33 FP: 5039 SP: 5034 HP:   77 TOS:   15  CGT   
+
+Stack dump at 34 FP:5039 SP:5035
+   5038    5   5037   15   5036   10   5035    0
+Empty Heap
+ PC:   34 FP: 5039 SP: 5035 HP:   77 TOS:    0  BZE        42
+
+Stack dump at 42 FP:5039 SP:5036
+   5038    5   5037   15   5036   10
+Empty Heap
+ PC:   42 FP: 5039 SP: 5036 HP:   77 TOS:   10  LDA         0
+
+Stack dump at 44 FP:5039 SP:5035
+   5038    5   5037   15   5036   10   5035 5038
+Empty Heap
+ PC:   44 FP: 5039 SP: 5035 HP:   77 TOS: 5038  LDV   
+
+Stack dump at 45 FP:5039 SP:5035
+   5038    5   5037   15   5036   10   5035    5
+Empty Heap
+ PC:   45 FP: 5039 SP: 5035 HP:   77 TOS:    5  LDA         2
+
+Stack dump at 47 FP:5039 SP:5034
+   5038    5   5037   15   5036   10   5035    5   5034 5036
+Empty Heap
+ PC:   47 FP: 5039 SP: 5034 HP:   77 TOS: 5036  LDV   
+
+Stack dump at 48 FP:5039 SP:5034
+   5038    5   5037   15   5036   10   5035    5   5034   10
+Empty Heap
+ PC:   48 FP: 5039 SP: 5034 HP:   77 TOS:   10  CLT   
+
+Stack dump at 49 FP:5039 SP:5035
+   5038    5   5037   15   5036   10   5035    1
+Empty Heap
+ PC:   49 FP: 5039 SP: 5035 HP:   77 TOS:    1  BZE        57
+
+Stack dump at 51 FP:5039 SP:5036
+   5038    5   5037   15   5036   10
+Empty Heap
+ PC:   51 FP: 5039 SP: 5036 HP:   77 TOS:   10  LDA         2
+
+Stack dump at 53 FP:5039 SP:5035
+   5038    5   5037   15   5036   10   5035 5036
+Empty Heap
+ PC:   53 FP: 5039 SP: 5035 HP:   77 TOS: 5036  LDA         0
+
+Stack dump at 55 FP:5039 SP:5034
+   5038    5   5037   15   5036   10   5035 5036   5034 5038
+Empty Heap
+ PC:   55 FP: 5039 SP: 5034 HP:   77 TOS: 5038  LDV   
+
+Stack dump at 56 FP:5039 SP:5034
+   5038    5   5037   15   5036   10   5035 5036   5034    5
+Empty Heap
+ PC:   56 FP: 5039 SP: 5034 HP:   77 TOS:    5  STO   
+
+Stack dump at 57 FP:5039 SP:5036
+   5038    5   5037   15   5036    5
+Empty Heap
+ PC:   57 FP: 5039 SP: 5036 HP:   77 TOS:    5  LDA         0
+
+Stack dump at 59 FP:5039 SP:5035
+   5038    5   5037   15   5036    5   5035 5038
+Empty Heap
+ PC:   59 FP: 5039 SP: 5035 HP:   77 TOS: 5038  INPI  
+
+Stack dump at 60 FP:5039 SP:5036
+   5038    0   5037   15   5036    5
+Empty Heap
+ PC:   60 FP: 5039 SP: 5036 HP:   77 TOS:    5  BRN        19
+
+Stack dump at 19 FP:5039 SP:5036
+   5038    0   5037   15   5036    5
+Empty Heap
+ PC:   19 FP: 5039 SP: 5036 HP:   77 TOS:    5  LDA         0
+
+Stack dump at 21 FP:5039 SP:5035
+   5038    0   5037   15   5036    5   5035 5038
+Empty Heap
+ PC:   21 FP: 5039 SP: 5035 HP:   77 TOS: 5038  LDV   
+
+Stack dump at 22 FP:5039 SP:5035
+   5038    0   5037   15   5036    5   5035    0
+Empty Heap
+ PC:   22 FP: 5039 SP: 5035 HP:   77 TOS:    0  LDC         0
+
+Stack dump at 24 FP:5039 SP:5034
+   5038    0   5037   15   5036    5   5035    0   5034    0
+Empty Heap
+ PC:   24 FP: 5039 SP: 5034 HP:   77 TOS:    0  CNE   
+
+Stack dump at 25 FP:5039 SP:5035
+   5038    0   5037   15   5036    5   5035    0
+Empty Heap
+ PC:   25 FP: 5039 SP: 5035 HP:   77 TOS:    0  BZE        62
+
+Stack dump at 62 FP:5039 SP:5036
+   5038    0   5037   15   5036    5
+Empty Heap
+ PC:   62 FP: 5039 SP: 5036 HP:   77 TOS:    5  PRNL  
+
+
+Stack dump at 63 FP:5039 SP:5036
+   5038    0   5037   15   5036    5
+Empty Heap
+ PC:   63 FP: 5039 SP: 5036 HP:   77 TOS:    5  LDA         2
+
+Stack dump at 65 FP:5039 SP:5035
+   5038    0   5037   15   5036    5   5035 5036
+Empty Heap
+ PC:   65 FP: 5039 SP: 5035 HP:   77 TOS: 5036  LDV   
+
+Stack dump at 66 FP:5039 SP:5035
+   5038    0   5037   15   5036    5   5035    5
+Empty Heap
+ PC:   66 FP: 5039 SP: 5035 HP:   77 TOS:    5  PRNI  
+                                                                5
+
+Stack dump at 67 FP:5039 SP:5036
+   5038    0   5037   15   5036    5
+Empty Heap
+ PC:   67 FP: 5039 SP: 5036 HP:   77 TOS:    5  PRNS     5076
+                                                                is the smallest and 
+
+Stack dump at 69 FP:5039 SP:5036
+   5038    0   5037   15   5036    5
+Empty Heap
+ PC:   69 FP: 5039 SP: 5036 HP:   77 TOS:    5  LDA         1
+
+Stack dump at 71 FP:5039 SP:5035
+   5038    0   5037   15   5036    5   5035 5037
+Empty Heap
+ PC:   71 FP: 5039 SP: 5035 HP:   77 TOS: 5037  LDV   
+
+Stack dump at 72 FP:5039 SP:5035
+   5038    0   5037   15   5036    5   5035   15
+Empty Heap
+ PC:   72 FP: 5039 SP: 5035 HP:   77 TOS:   15  PRNI  
+                                                                15
+
+Stack dump at 73 FP:5039 SP:5036
+   5038    0   5037   15   5036    5
+Empty Heap
+ PC:   73 FP: 5039 SP: 5036 HP:   77 TOS:    5  PRNS     5054
+                                                                is the largest
+
+Stack dump at 75 FP:5039 SP:5036
+   5038    0   5037   15   5036    5
+Empty Heap
+ PC:   75 FP: 5039 SP: 5036 HP:   77 TOS:    5  PRNL  
+
+
+Stack dump at 76 FP:5039 SP:5036
+   5038    0   5037   15   5036    5
+Empty Heap
+ PC:   76 FP: 5039 SP: 5036 HP:   77 TOS:    5  HALT  

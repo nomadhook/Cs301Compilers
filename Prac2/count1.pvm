@@ -1,0 +1,68 @@
+0 	DSP 4		; limit, item, count, i
+2 	LDA 0
+4 	LDC 2000	
+6  	STO			; limit = 2000
+7  	LDA 2 
+9  	LDA 0
+11 	LDV 
+12	ANEW 
+13	STO			; assigns size of 2000 to the heap and returns the start address to count
+14	LDA 3
+16	LDC 0
+18	STO			; i = 0
+19	LDA 3
+21	LDV
+22	LDA 0
+24	LDV
+25	CLT			; i < limit
+26	BZE 48		; jumps out of loop
+28	LDA 2
+30	LDV
+31	LDA 3
+33	LDV
+34	ADD
+35	LDC 0
+37	STO			; count[i] = 0
+38	LDA 3
+40	LDA 3
+42	LDC 1
+44	ADD
+45	STO			; i = i + 1
+46	BRN 19
+48	PRNS "First number? "
+50	LDA 1
+52	INPI		; read("First number? ", item);
+53	LDA 1
+55	LDV
+56	LDC 0
+58	CGE			; item >= 0
+59	BZE 69
+61	LDA 1 
+63 	LDV
+64	LDA 0
+66	LDV
+67	CGE			; item >= limit
+68	BZE 77
+70	PRNS "Incorrect input. Try again. "
+72	LDA 1
+74	INPI		; read("Incorrect input. Try again. ", item);
+75	BRN 53
+77	LDA 1
+79	LDV
+80	LDC 0
+82	CLE			; item <= 0
+83	BZE _
+85	LDA 2
+	LDV
+	LDA 1
+	LDV
+	ADD
+	LDA 2
+	LDV
+	LDA 1
+	LDV
+	ADD
+	LDV
+	LDC 1
+	ADD
+	STO			; count[item] = count[item] + 1;			
