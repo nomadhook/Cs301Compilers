@@ -15,8 +15,61 @@ Task 4.
 	ASM2 uses the more efficient method thus has a lower time.
 	
 Task 5.
-	It completely stops when you give it a negative number, or a number that is the limit or above.
+	It completely stops when you give it a number that is the limit or above.
 	We added a while loop to check for those, and looped within them until a valid input was given.
 	
 Task 6.
-	na
+	na**
+	
+Task 7.
+	        case PVM.div:           // integer division (quotient)
+            tos = Pop(); 
+			if (tos == 0) {ps = divZero; break;} //changed this to catch tos as 0
+			Push(Pop() / tos);
+            break;
+			
+			case PVM.div:           // integer division (quotient)
+            tos = mem[cpu.sp++]; 
+			if (tos == 0) {ps = divZero; break;}
+			mem[cpu.sp] /= tos; //here
+            break;
+			
+            case PVM.mul:           // integer multiplication
+            //tos = Pop(); Push(Pop() * tos); //*
+			int tos1 = Pop(); int tos2 = Pop(); 
+			if (tos1 > maxInt/tos2) //made changes here. Dividing the maxInt by one of the inputs shows what the max of another input can be.
+				{ps = badVal; break;}
+			Push(tos1*tos2); //*
+            break;
+			
+			case PVM.mul:           // integer multiplication
+            //tos = mem[cpu.sp++]; mem[cpu.sp] *= tos; //*
+			tos = mem[cpu.sp++]; 
+			if (tos > maxInt/mem[cpu.sp]) {  //made changes here. Dividing the maxInt by one of the inputs shows what the max of another input can be.
+				ps = badVal; break;
+			}
+			mem[cpu.sp] *= tos; //*
+            break;
+			
+Task 8.
+			case PVM.inpc:
+			adr = Pop();
+            if (InBounds(adr)) {
+              mem[adr] = data.ReadInt();
+              if (data.Error()) ps = badData;
+            }
+            break;
+		    case PVM.prnc:
+			if (tracing) results.Write(padding);
+            results.Write(Pop());
+            if (tracing) results.WriteLine();
+			break;
+			
+			case PVM.inpc:          // character input
+		    mem[mem[cpu.sp++]] = data.ReadInt();
+            break; 
+            case PVM.prnc:          // character output
+//            if (tracing) results.Write(padding);
+            results.Write(mem[cpu.sp++], 0);
+//            if (tracing) results.WriteLine();
+            break;

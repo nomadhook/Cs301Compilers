@@ -86,7 +86,7 @@ namespace Assem {
       islet  =   59,
       inc    =   60,
       dec    =   61,
-
+	  
       nul    =   99;               // leave gap for future
 
 /* sorted 60 - 1
@@ -311,6 +311,8 @@ namespace Assem {
         results.Write(" ????");
       results.Write("  " + mnemonics[cpu.ir], -8);
       switch (cpu.ir) {
+		case PVM.inpc:
+		case PVM.prnc:
         case PVM.brn:
         case PVM.bze:
         case PVM.dsp:
@@ -477,10 +479,16 @@ namespace Assem {
             tos = Pop(); Push(Pop() - tos);
             break;
           case PVM.mul:           // integer multiplication
-            tos = Pop(); Push(Pop() * tos);
+            //tos = Pop(); Push(Pop() * tos); //*
+			int tos1 = Pop(); int tos2 = Pop(); 
+			if (tos1 > maxInt/tos2) //made changes here. Dividing the maxInt by one of the inputs shows what the max of another input can be.
+				{ps = badVal; break;}
+			Push(tos1*tos2); //*
             break;
           case PVM.div:           // integer division (quotient)
-            tos = Pop(); Push(Pop() / tos);
+            tos = Pop(); 
+			if (tos == 0) {ps = divZero; break;} //*changed this to catch tos as 0
+			Push(Pop() / tos);
             break;
           case PVM.rem:           // integer division (remainder)
             tos = Pop(); Push(Pop() % tos);
@@ -562,13 +570,26 @@ namespace Assem {
           case PVM.stl_2:         // pop to local variable 2
           case PVM.stl_3:         // pop to local variable 3
           case PVM.stoc:          // character checked store
-          case PVM.inpc:          // character input
-          case PVM.prnc:          // character output
           case PVM.cap:           // toUpperCase
           case PVM.low:           // toLowerCase
           case PVM.islet:         // isLetter
           case PVM.inc:           // ++
           case PVM.dec:           // --
+		  
+		  // added in opcodes
+		  case PVM.inpc:
+			adr = Pop();
+            if (InBounds(adr)) {
+              mem[adr] = data.ReadInt();
+              if (data.Error()) ps = badData;
+            }
+            break;
+		  case PVM.prnc:
+			if (tracing) results.Write(padding);
+            results.Write(Pop());
+            if (tracing) results.WriteLine();
+			break;
+			
           default:                // unrecognized opcode
             ps = badOp;
             break;

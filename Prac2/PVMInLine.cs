@@ -428,10 +428,17 @@ namespace Assem {
             tos = mem[cpu.sp++]; mem[cpu.sp] -= tos;
             break;
           case PVM.mul:           // integer multiplication
-            tos = mem[cpu.sp++]; mem[cpu.sp] *= tos;
+            //tos = mem[cpu.sp++]; mem[cpu.sp] *= tos; //*
+			tos = mem[cpu.sp++]; 
+			if (tos > maxInt/mem[cpu.sp]) {  //made changes here. Dividing the maxInt by one of the inputs shows what the max of another input can be.
+				ps = badVal; break;
+			}
+			mem[cpu.sp] *= tos; //*
             break;
           case PVM.div:           // integer division (quotient)
-            tos = mem[cpu.sp++]; mem[cpu.sp] /= tos;
+            tos = mem[cpu.sp++]; 
+			if (tos == 0) {ps = divZero; break;} //*changed this to catch tos as 0
+			mem[cpu.sp] /= tos; //here
             break;
           case PVM.rem:           // integer division (remainder)
             tos = mem[cpu.sp++]; mem[cpu.sp] %= tos;
@@ -504,13 +511,21 @@ namespace Assem {
           case PVM.stl_2:         // pop to local variable 2
           case PVM.stl_3:         // pop to local variable 3
           case PVM.stoc:          // character checked store
-          case PVM.inpc:          // character input
-          case PVM.prnc:          // character output
           case PVM.cap:           // toUpperCase
           case PVM.low:           // toLowerCase
           case PVM.islet:         // isLetter
           case PVM.inc:           // ++
           case PVM.dec:           // --
+		  
+		  //added in
+		  case PVM.inpc:          // character input
+		    mem[mem[cpu.sp++]] = data.ReadInt();
+            break; 
+          case PVM.prnc:          // character output
+//            if (tracing) results.Write(padding);
+            results.Write(mem[cpu.sp++], 0);
+//            if (tracing) results.WriteLine();
+            break;
           default:                // unrecognized opcode
             ps = badOp;
             break;
