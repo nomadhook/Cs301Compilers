@@ -9,7 +9,7 @@ Group work from the Cs301 Compilers course
 
 ##Commands:
 ###Proxy:
-* On Lab computers: **git config --global http.proxy http://username:password@wwwproxy.ru.ac.za:3128**
+* On Lab computers: **`git config --global http.proxy http://username:password@wwwproxy.ru.ac.za:3128`**
 
 ###Getting the Repository:
 * Clone Repo: **`git clone https://github.com/nomadhook/Cs301Compilers.git`**
