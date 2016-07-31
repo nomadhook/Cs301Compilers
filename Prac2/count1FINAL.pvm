@@ -1,0 +1,115 @@
+0 	DSP 4		; limit, item, count, i
+2 	LDA 0
+4 	LDC 2000	
+6  	STO			; limit = 2000
+7  	LDA 2 
+9  	LDA 0
+11 	LDV 
+12	ANEW 
+13	STO			; assigns size of 2000 to the heap and returns the start address to count
+14	LDA 3
+16	LDC 0
+18	STO			; i = 0
+19	LDA 3
+21	LDV
+22	LDA 0
+24	LDV
+25	CLT			; i < limit
+26	BZE 49		; jumps out of loop
+28	LDA 2
+30	LDV
+31	LDA 3
+33	LDV
+34	ADD
+35	LDC 0
+37	STO			; count[i] = 0
+38	LDA 3
+40	LDA 3
+42	LDV
+43	LDC 1
+45	ADD
+46	STO			; i = i + 1
+47	BRN 19
+49	PRNS "First number? "
+51	LDA 1
+53	INPI		; read("First number? ", item);
+54	LDA 1 
+56 	LDV
+57	LDA 0
+59	LDV
+60	CGE			; item >= limit
+61	BZE 70
+63	PRNS "That number is to high.  Please input a number smaller than 2000. "
+65	LDA 1
+67	INPI		; read("That number is to high.  Please input a number smaller than 2000. ", item);
+68	BRN 54
+70	LDA 1
+72	LDV
+73	LDC 0
+75	CGT			; item > 0
+76	BZE 120
+78	LDA 2
+80	LDV
+81	LDA 1
+83	LDV
+84	ADD
+85	LDA 2
+87	LDV
+88	LDA 1
+90	LDV
+91	ADD
+92	LDV
+93	LDC 1
+95	ADD
+96	STO			; count[item] = count[item] + 1;
+97	PRNS "Next number (<= 0 stops) "
+99	LDA 1
+101	INPI		; read("Next number (<= 0 stops) ", item);
+102	LDA 1 
+104 LDV
+105	LDA 0
+107	LDV
+108	CGE			; item >= limit
+109	BZE 118
+111	PRNS "That number is to high.  Please input a number smaller than 2000. "
+113	LDA 1
+115	INPI		; read("That number is to high.  Please input a number smaller than 2000. ", item);
+116	BRN 102
+118 BRN 70			
+120 LDA 3
+122	LDC 0
+124	STO			; i = 0
+125	LDA 3
+127	LDV
+128	LDA 0
+130	LDV
+131	CLT			; i < limit
+132	BZE 173		; jumps out of loop	
+134	LDA 2
+136	LDV
+137	LDA 3
+139	LDV
+140	ADD
+141	LDV
+142	LDC 0
+144	CGT			; if(count[i] > 0)
+145	BZE 162
+147	LDA 3
+149	LDV
+150	PRNI		; write(i)
+151	LDA 2
+153	LDV
+154	LDA 3
+156	LDV
+157	ADD
+158	LDV
+159	PRNI		; write(count[i])
+160	PRNS "\n"
+162	LDA 3
+164	LDA 3
+166	LDV
+167	LDC 1
+169	ADD
+170	STO			; i = i + 1
+171	BRN 125	
+173	HALT
