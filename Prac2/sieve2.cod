@@ -1,0 +1,96 @@
+ASSEM
+BEGIN
+  {    0 } DSP      5
+  {    2 } LDC      550
+  {    4 } LDC      1
+  {    6 } ADD     
+  {    7 } ANEW    
+  {    8 } STL     
+  {    9 }         
+  {   10 } LDC      1
+  {   12 } STL     
+  {   13 } LDC      3
+  {   15 }         
+  {   16 } STL     
+  {   17 } LDA      35
+  {   19 } LDC      3
+  {   21 }         
+  {   22 } CLE     
+  {   23 } BZE      123
+  {   25 } LDC      0
+  {   27 } STL     
+  {   28 } LDA      3
+  {   30 } DSP      36
+  {   32 } NOP     
+  {   33 } LDL     
+  {   34 } NOP     
+  {   35 } LDC      550
+  {   37 } CLE     
+  {   38 } BZE      53
+  {   40 } LDL     
+  {   41 }         
+  {   42 } LDL     
+  {   43 } NOP     
+  {   44 } LDXA    
+  {   45 } LDC      1
+  {   47 } STO     
+  {   48 } LDA      1
+  {   50 } INC     
+  {   51 } BRN      33
+  {   53 } LDC      2
+  {   55 } STL     
+  {   56 } NOP     
+  {   57 } LDL     
+  {   58 } NOP     
+  {   59 } LDC      550
+  {   61 } CLE     
+  {   62 } BZE      118
+  {   64 } LDL     
+  {   65 }         
+  {   66 } LDL     
+  {   67 } NOP     
+  {   68 } LDXA    
+  {   69 } LDV     
+  {   70 } BZE      113
+  {   72 } LDL     
+  {   73 } LDA      3
+  {   75 } NOP     
+  {   76 } ADD     
+  {   77 } STL     
+  {   78 } LDA      35
+  {   80 } NOP     
+  {   81 } STL     
+  {   82 } DSP      35
+  {   84 } DSP      3
+  {   86 } LDC_1   
+  {   87 } CLE     
+  {   88 } LDL     
+  {   89 } DSP      3
+  {   91 }         
+  {   92 } CGT     
+  {   93 } AND     
+  {   94 } BZE      113
+  {   96 } LDL     
+  {   97 }         
+  {   98 } LDL     
+  {   99 } DSP      7
+  {  101 } LDC      0
+  {  103 } STO     
+  {  104 } LDL     
+  {  105 } DSP      35
+  {  107 } NOP     
+  {  108 } ADD     
+  {  109 } STL     
+  {  110 } DSP      29
+  {  112 }         
+  {  113 } LDA      1
+  {  115 } INC     
+  {  116 } BRN      57
+  {  118 } LDA      3
+  {  120 } INC     
+  {  121 } BRN      18
+  {  123 } LDL     
+  {  124 } LDA      9
+  {  126 } PRNS     " primes"
+  {  128 } HALT    
+END.

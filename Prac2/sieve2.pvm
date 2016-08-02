@@ -1,5 +1,5 @@
    0   DSP      5
-   2   LDC      4000         ; max number to be tested
+   2   LDC      550         ; max number to be tested
    4   LDC      1
    6   ADD
    7   ANEW
@@ -9,7 +9,7 @@
   14   LDC      0
   16   STL      4
   18   LDL      3
-  20   LDC      100          ; number of iterations
+  20   LDC      2000          ; number of iterations
   22   CLE
   23   BZE      123
   25   LDC      0
@@ -17,7 +17,7 @@
   29   LDC      2
   31   STL      1
   33   LDL      1
-  35   LDC      4000         ; max number to be tested
+  35   LDC      550         ; max number to be tested
   37   CLE
   38   BZE      53
   40   LDL      0
@@ -31,7 +31,7 @@
   53   LDC      2
   55   STL      1
   57   LDL      1
-  59   LDC      4000         ; max number to be tested
+  59   LDC      550         ; max number to be tested
   61   CLE
   62   BZE      118
   64   LDL      0
@@ -46,7 +46,7 @@
   79   LDL      1
   81   STL      2
   83   LDL      2
-  85   LDC      4000         ; max number to be tested
+  85   LDC      550         ; max number to be tested
   87   CLE
   88   LDL      2
   90   LDC      0

@@ -121,6 +121,8 @@ namespace Assem {
             case PVM.bze:
             case PVM.dsp:
             case PVM.lda:
+			case PVM.ldl: //NEW
+			case PVM.stl: //NEW
             case PVM.ldc:
               codeLen = (codeLen + 1) % PVM.memSize;
               if (ch == '\n')                        // no field could be found

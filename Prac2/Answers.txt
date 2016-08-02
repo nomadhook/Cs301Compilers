@@ -73,3 +73,7 @@ Task 8.
             results.Write(mem[cpu.sp++], 0);
 //            if (tracing) results.WriteLine();
             break;
+
+Task 11.
+	ASM1  101 primes 69434018 operations.  Run Time 00:00:01.10
+	ASM2  101 primes 69434018 operations.  Run Time 00:00:00.50

@@ -1,0 +1,98 @@
+0   DSP 4		; limit, ch, count, i
+2   LDA 0
+4   LDC 256	
+6   STO			; limit = 256
+7   LDA 2 
+9   LDA 0
+11  LDV 
+12  ANEW 
+13  STO			; assigns size of 256 to the heap and returns the start address to count
+14  LDA 3
+16  LDC 0
+18  STO			; i = 0
+19  LDA 3
+21  LDV
+22  LDA 0
+24  LDV
+25  CLT			; i < limit
+26  BZE 49		; jumps out of loop
+28  LDA 2
+30  LDV
+31  LDA 3
+33  LDV
+34  ADD
+35  LDC 0
+37  STO			; count[i] = 0
+38  LDA 3
+40  LDA 3
+42  LDV
+43  LDC 1
+45  ADD
+46  STO			; i = i + 1
+47  BRN 19
+49  PRNS "Write characters between 'A' and 'Z' and use '.' to terminate the program.\n"
+51  LDA 1
+53  INPC		; read(ch);
+54  LDA 1 
+56  LDV
+57  NOP
+59  NOP
+60  LDC 46
+62  CNE			; while (ch != '.')
+63  BZE 94
+65  LDA 1
+67  LDA 1
+69  LDV
+70  CAP
+71  STO
+72  LDA 2
+74  LDV
+75  LDA 1
+77  LDV
+78  ADD
+79  LDA 2
+81  LDV
+82  LDA 1
+84  LDV
+85  ADD
+86  LDV
+	INC
+90  STO			; count[ch] = count[ch] + 1;
+91  LDA 1
+93  INPC		; read(ch);
+94  BRN 57		; repeat while loop
+96  PRNS "\n\nResults:\n"
+98  LDA 1
+100 LDC 65
+102 STO			; ch = 'A'
+103 LDA 1
+105 LDV
+106 LDC 90
+108 CLE			; ch <= 'Z'
+109 BZE 145		; jumps out of loop	
+111 LDA 2
+113 LDV
+114 LDA 1
+116 LDV
+117 ADD
+118 LDV
+119 LDC 0
+121 CGT			; if(count[ch] > 0)
+122 BZE 137
+124 LDA 1
+126 LDV
+127 PRNC		; write(ch)
+128 LDA 2
+130 LDV
+131 LDA 1
+133 LDV
+134 ADD
+135 LDV
+136 PRNI		; write(count[ch])
+137 PRNS "\n"
+139 LDA 1
+	LDL 1
+144	INC
+145 STO			; ch = (ch + 1)
+146 BRN 101	
+148 HALT

@@ -1,0 +1,72 @@
+ASSEM
+BEGIN
+  {    0 } DSP      4
+  {    2 } LDC      256
+  {    4 } STL     
+  {    5 }         
+  {    6 } LDL     
+  {    7 }         
+  {    8 } ANEW    
+  {    9 } STL     
+  {   10 } DSP      3
+  {   12 }         
+  {   13 } STL     
+  {   14 } LDC      35
+  {   16 } LDC      35
+  {   18 }         
+  {   19 } CLT     
+  {   20 } BZE      35
+  {   22 } LDL     
+  {   23 } DSP      35
+  {   25 } LDC      15
+  {   27 } LDC      0
+  {   29 } STO     
+  {   30 } LDA      3
+  {   32 } INC     
+  {   33 } BRN      15
+  {   35 } PRNS     "Write characters between \'A\' and \'Z\' and use \'.\' to terminate the program.\n"
+  {   37 } LDA      1
+  {   39 } INPC    
+  {   40 } LDL     
+  {   41 } NOP     
+  {   42 } LDC      46
+  {   44 } CNE     
+  {   45 } BZE      56
+  {   47 } LDL     
+  {   48 } NOP     
+  {   49 } CAP     
+  {   50 } LDL     
+  {   51 } DSP      15
+  {   53 } INC     
+  {   54 } BRN      37
+  {   56 } LDC      90
+  {   58 } STL     
+  {   59 } NOP     
+  {   60 } LDL     
+  {   61 } NOP     
+  {   62 } LDC      65
+  {   64 } CGE     
+  {   65 } BZE      95
+  {   67 } LDL     
+  {   68 } DSP      35
+  {   70 } NOP     
+  {   71 } ADD     
+  {   72 } LDV     
+  {   73 } LDC      0
+  {   75 } CGT     
+  {   76 } BZE      90
+  {   78 } LDL     
+  {   79 } NOP     
+  {   80 } PRNC    
+  {   81 } LDL     
+  {   82 } DSP      35
+  {   84 } NOP     
+  {   85 } ADD     
+  {   86 } LDV     
+  {   87 } PRNI    
+  {   88 } PRNS     "\n"
+  {   90 } LDA      1
+  {   92 } DEC     
+  {   93 } BRN      60
+  {   95 } HALT    
+END.

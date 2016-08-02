@@ -499,24 +499,52 @@ namespace Assem {
           case PVM.lda_1:         // push local address 1
           case PVM.lda_2:         // push local address 2
           case PVM.lda_3:         // push local address 3
+		  
+		  //NEW
           case PVM.ldl:           // push local value
+            mem[--cpu.sp] = mem[cpu.fp - 1 - mem[cpu.pc++]];
+			break;
+			
           case PVM.ldl_0:         // push value of local variable 0
           case PVM.ldl_1:         // push value of local variable 1
           case PVM.ldl_2:         // push value of local variable 2
           case PVM.ldl_3:         // push value of local variable 3
           case PVM.stl:           // store local value
+			mem[cpu.fp - 1 - mem[cpu.pc++]] = mem[cpu.sp++];
+            break;
+			
           case PVM.stlc:          // store local value
           case PVM.stl_0:         // pop to local variable 0
           case PVM.stl_1:         // pop to local variable 1
           case PVM.stl_2:         // pop to local variable 2
           case PVM.stl_3:         // pop to local variable 3
           case PVM.stoc:          // character checked store
-          case PVM.cap:           // toUpperCase
-          case PVM.low:           // toLowerCase
-          case PVM.islet:         // isLetter
-          case PVM.inc:           // ++
-          case PVM.dec:           // --
 		  
+          case PVM.cap:           // toUpperCase NEW
+			tos = mem[cpu.sp];
+			if(tos >= 65 && tos <= 90) mem[cpu.sp] = tos;
+			else if(tos >= 97 && tos <= 122){ tos -= 32; mem[cpu.sp] = tos;}
+			else if(tos >= 256 || tos < 0) ps = badData;
+			else mem[cpu.sp] = tos;
+			break;
+			
+          case PVM.low:           // toLowerCase NEW
+			tos = mem[cpu.sp];
+			if(tos >= 97 && tos <= 122) mem[cpu.sp] = tos;
+			else if(tos >= 65 && tos <= 90){ tos += 32; mem[cpu.sp] = tos;}
+			else if(tos >= 256 || tos < 0) ps = badData;
+			else mem[cpu.sp] = tos;
+			break;
+			
+          case PVM.islet:         // isLetter
+		  
+          case PVM.inc:           // ++ NEW
+			mem[mem[cpu.sp]] = mem[mem[cpu.sp++]]+1;
+			break;
+          case PVM.dec:           // -- NEW
+			mem[mem[cpu.sp]] = mem[mem[cpu.sp++]]-1;
+			break;
+		
 		  //added in
 		  case PVM.inpc:          // character input
 		    mem[mem[cpu.sp++]] = data.ReadChar();

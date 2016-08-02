@@ -559,24 +559,56 @@ namespace Assem {
           case PVM.lda_2:         // push local address 2
           case PVM.lda_3:         // push local address 3
           case PVM.ldl:           // push local value
+			adr = cpu.fp - 1 - Next();
+            if (InBounds(adr)) Push(mem[adr]);
+			break;
+			
           case PVM.ldl_0:         // push value of local variable 0
           case PVM.ldl_1:         // push value of local variable 1
           case PVM.ldl_2:         // push value of local variable 2
           case PVM.ldl_3:         // push value of local variable 3
           case PVM.stl:           // store local value
+			adr = cpu.fp - 1 - Next();
+			if (InBounds(adr)) mem[adr] = Pop();
+			break;
+			
           case PVM.stlc:          // store local value
           case PVM.stl_0:         // pop to local variable 0
           case PVM.stl_1:         // pop to local variable 1
           case PVM.stl_2:         // pop to local variable 2
           case PVM.stl_3:         // pop to local variable 3
           case PVM.stoc:          // character checked store
-          case PVM.cap:           // toUpperCase
-          case PVM.low:           // toLowerCase
-          case PVM.islet:         // isLetter
-          case PVM.inc:           // ++
-          case PVM.dec:           // --
 		  
-		  // added in opcodes
+          case PVM.cap:           // toUpperCase NEW
+			tos = Pop();
+			if(tos >= 65 && tos <= 90) Push(tos);
+			else if(tos >= 97 && tos <= 122){ tos -= 32; Push(tos);}
+			else if(tos >= 256 || tos < 0) ps = badData;
+			else Push(tos);
+			break;
+			
+          case PVM.low:           // toLowerCase NEW
+			tos = Pop(); 
+			if(tos >= 97 && tos <= 122) Push(tos);
+			else if(tos >= 65 && tos <= 90){ tos += 32; Push(tos);}
+			else if(tos >= 256 || tos < 0) ps = badData;
+			else Push(tos);
+			break;
+			
+          case PVM.islet:         // isLetter
+		  //NEW
+          case PVM.inc:           // ++
+			//Push(Pop()++);
+			adr = Pop();
+			if(InBounds(adr)) mem[adr]++;
+			break;
+		  //NEW
+          case PVM.dec:           // --
+			//Push(Pop()--);
+			adr = Pop();
+			if(InBounds(adr)) mem[adr]--;
+			break;
+		  // added in opcodes NEW
 		  case PVM.inpc:
 			adr = Pop();
             if (InBounds(adr)) {
@@ -584,6 +616,7 @@ namespace Assem {
               if (data.Error()) ps = badData;
             }
             break;
+			//NEW
 		  case PVM.prnc:
 			if (tracing) results.Write(padding);
             results.Write(Convert.ToChar(Pop()));

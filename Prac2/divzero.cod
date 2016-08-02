@@ -1,7 +1,7 @@
 ASSEM
 BEGIN
   {    0 } LDC      100
-  {    2 } LDC      0
+  {    2 } LDC      5
   {    4 } DIV     
   {    5 } PRNI    
   {    6 } HALT    

@@ -1,0 +1,58 @@
+0   DSP 4		; limit, ch, count, i
+2   LDC 256
+4 	STL 0
+6	LDL 0
+8	ANEW
+9	STL 2
+11	LDC 0
+13	STL 3	; int i = 0;
+15	LDL 3	; while (i < limit)
+17	LDL 0
+19	CLT
+20	BZE 35
+22	LDL 2
+24	LDL 3
+26	ADD
+27	LDC 0
+29	STO		; count[i] = 0;
+30	LDA 3
+32	INC		; i++;
+33	BRN 15
+35	PRNS "Write characters between \'A\' and \'Z\' and use \'.\' to terminate the program.\n" 
+37	LDA 1	; while (ch != '.')
+39	INPC
+40	LDL 1
+42	LDC 46
+44	CNE
+45	BZE 56
+47	LDL 1
+49	CAP
+50	LDL 2
+52	ADD
+53	INC		; count[upper(ch)]++;		
+54	BRN 37
+56	LDC 90	; 'Z'
+58	STL 1	; ch = 'Z';
+60	LDL 1	; while (ch >= 'A')
+62	LDC 65	; 'A'
+64	CGE
+65	BZE 95
+67	LDL 2	; if (count[ch] > 0)
+69	LDL 1
+71	ADD
+72	LDV
+73	LDC 0
+75	CGT
+76	BZE 90
+78	LDL 1
+80	PRNC
+81	LDL 2
+83	LDL 1
+85	ADD
+86	LDV
+87	PRNI
+88	PRNS "\n"	; '\n'
+90	LDA 1
+92	DEC
+93	BRN 60
+95	HALT
