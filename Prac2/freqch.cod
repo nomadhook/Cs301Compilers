@@ -1,0 +1,99 @@
+ASSEM
+BEGIN
+  {    0 } DSP      4
+  {    2 } LDA      0
+  {    4 } LDC      256
+  {    6 } STO     
+  {    7 } LDA      2
+  {    9 } LDA      0
+  {   11 } LDV     
+  {   12 } ANEW    
+  {   13 } STO     
+  {   14 } LDA      3
+  {   16 } LDC      0
+  {   18 } STO     
+  {   19 } LDA      3
+  {   21 } LDV     
+  {   22 } LDA      0
+  {   24 } LDV     
+  {   25 } CLT     
+  {   26 } BZE      49
+  {   28 } LDA      2
+  {   30 } LDV     
+  {   31 } LDA      3
+  {   33 } LDV     
+  {   34 } ADD     
+  {   35 } LDC      0
+  {   37 } STO     
+  {   38 } LDA      3
+  {   40 } LDA      3
+  {   42 } LDV     
+  {   43 } LDC      1
+  {   45 } ADD     
+  {   46 } STO     
+  {   47 } BRN      19
+  {   49 } PRNS     "Write characters between \'A\' and \'Z\' and use \'.\' to terminate the program.\n"
+  {   51 } LDA      1
+  {   53 } INPC    
+  {   54 } LDA      1
+  {   56 } LDV     
+  {   57 } LDA      1
+  {   59 } LDV     
+  {   60 } LDC      46
+  {   62 } CNE     
+  {   63 } BZE      89
+  {   65 } LDA      2
+  {   67 } LDV     
+  {   68 } LDA      1
+  {   70 } LDV     
+  {   71 } ADD     
+  {   72 } LDA      2
+  {   74 } LDV     
+  {   75 } LDA      1
+  {   77 } LDV     
+  {   78 } ADD     
+  {   79 } LDV     
+  {   80 } LDC      1
+  {   82 } ADD     
+  {   83 } STO     
+  {   84 } LDA      1
+  {   86 } INPC    
+  {   87 } BRN      57
+  {   89 } PRNS     "\n\nResults:\n"
+  {   91 } LDA      1
+  {   93 } LDC      65
+  {   95 } STO     
+  {   96 } LDA      1
+  {   98 } LDV     
+  {   99 } LDC      90
+  {  101 } CLE     
+  {  102 } BZE      143
+  {  104 } LDA      2
+  {  106 } LDV     
+  {  107 } LDA      1
+  {  109 } LDV     
+  {  110 } ADD     
+  {  111 } LDV     
+  {  112 } LDC      0
+  {  114 } CGT     
+  {  115 } BZE      132
+  {  117 } LDA      1
+  {  119 } LDV     
+  {  120 } PRNC    
+  {  121 } LDA      2
+  {  123 } LDV     
+  {  124 } LDA      1
+  {  126 } LDV     
+  {  127 } ADD     
+  {  128 } LDV     
+  {  129 } PRNI    
+  {  130 } PRNS     "\n"
+  {  132 } LDA      1
+  {  134 } LDA      1
+  {  136 } LDV     
+  {  137 } LDC      1
+  {  139 } ADD     
+  {  140 } STO     
+  {  141 } BRN      96
+  {  143 } HALT    
+END.

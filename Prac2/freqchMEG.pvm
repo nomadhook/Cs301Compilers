@@ -1,0 +1,92 @@
+0 	DSP 4		; limit, ch, count, i
+2 	LDA 0
+4 	LDC 256	
+6  	STO			; limit = 256
+7  	LDA 2 
+9  	LDA 0
+11 	LDV 
+12	ANEW 
+13	STO			; assigns size of 256 to the heap and returns the start address to count
+14	LDA 3
+16	LDC 0
+18	STO			; i = 0
+19	LDA 3
+21	LDV
+22	LDA 0
+24	LDV
+25	CLT			; i < limit
+26	BZE 49		; jumps out of loop
+28	LDA 2
+30	LDV
+31	LDA 3
+33	LDV
+34	ADD
+35	LDC 0
+37	STO			; count[i] = 0
+38	LDA 3
+40	LDA 3
+42	LDV
+43	LDC 1
+45	ADD
+46	STO			; i = i + 1
+47	BRN 19
+49	LDA 1
+51	INPC		; read(ch);
+52	LDA 1
+54	LDV
+55	LDC 46
+57	CNE			; while(ch != '.')
+58	BZE 84
+60	LDA 2
+62	LDV
+63	LDA 1
+65	LDV
+66	ADD
+67	LDA 2
+69	LDV
+70	LDA 1
+72	LDV
+73	ADD
+74	LDV
+75	LDC 1
+77	ADD
+78	STO			; count[ch] = count[ch] + 1;
+79	LDA 1
+81	INPC		; read(ch);
+82  BRN 60			
+84  LDA 1
+86	LDC 65
+88	STO			; ch = 'A'
+89	LDA 1
+91	LDV
+92	LDC 90
+94	CLE			; ch <= 'Z'
+95	BZE 136		; jumps out of loop	
+97	LDA 2
+99	LDV
+100	LDA 1
+102	LDV
+103	ADD
+104	LDV
+105	LDC 0
+107	CGT			; if(count[ch] > 0)
+108	BZE 125
+110	LDA 1
+112	LDV
+113	PRNC		; write(ch)
+114	LDA 2
+116	LDV
+117	LDA 1
+119	LDV
+120	ADD
+121	LDV
+122	PRNC		; write(count[ch])
+123	PRNS "\n"
+125	LDA 3
+127	LDA 3
+129	LDV
+130	LDC 1
+132	ADD
+133	STO			; i = i + 1
+134	BRN 89	
+136	HALT

@@ -487,7 +487,7 @@ namespace Assem {
             break;
           case PVM.div:           // integer division (quotient)
             tos = Pop(); 
-			if (tos == 0) {ps = divZero; break;} //*changed this to catch tos as 0
+			if (tos == 0) {Pop(); ps = divZero; break;} //*changed this to catch tos as 0
 			Push(Pop() / tos);
             break;
           case PVM.rem:           // integer division (remainder)
@@ -580,13 +580,13 @@ namespace Assem {
 		  case PVM.inpc:
 			adr = Pop();
             if (InBounds(adr)) {
-              mem[adr] = data.ReadInt();
+              mem[adr] = data.ReadChar();
               if (data.Error()) ps = badData;
             }
             break;
 		  case PVM.prnc:
 			if (tracing) results.Write(padding);
-            results.Write(Pop());
+            results.Write(Convert.ToChar(Pop()));
             if (tracing) results.WriteLine();
 			break;
 			

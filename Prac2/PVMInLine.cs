@@ -519,11 +519,11 @@ namespace Assem {
 		  
 		  //added in
 		  case PVM.inpc:          // character input
-		    mem[mem[cpu.sp++]] = data.ReadInt();
+		    mem[mem[cpu.sp++]] = data.ReadChar();
             break; 
           case PVM.prnc:          // character output
 //            if (tracing) results.Write(padding);
-            results.Write(mem[cpu.sp++], 0);
+            results.Write(Convert.ToChar(mem[cpu.sp++]), 0);
 //            if (tracing) results.WriteLine();
             break;
           default:                // unrecognized opcode
