@@ -1,6 +1,10 @@
+Task 1. N/A
+
+Task 2. N/A
 
 Task 3.
 	a) Short-circuit evaluation is not used. This is determined by the fact that it loads X,Y and Z at the same time, and tests them all before branching, instead of testing them in stages.
+	b) N/A
 	c) Adding branches during critical calculations, such as OR when the 1st boolean is true, will mean that it uses short-circuit boolean operations. 
 	d) Change all the PRNB (Print Bolean) to PRNI (Print Int) works.
 	
@@ -19,61 +23,29 @@ Task 5.
 	We added a while loop to check for those, and looped within them until a valid input was given.
 	
 Task 6.
-	na**
+	N/A
 	
 Task 7.
-	        case PVM.div:           // integer division (quotient)
-            tos = Pop(); 
-			if (tos == 0) {ps = divZero; break;} //changed this to catch tos as 0
-			Push(Pop() / tos);
-            break;
-			
-			case PVM.div:           // integer division (quotient)
-            tos = mem[cpu.sp++]; 
-			if (tos == 0) {ps = divZero; break;}
-			mem[cpu.sp] /= tos; //here
-            break;
-			
-            case PVM.mul:           // integer multiplication
-            //tos = Pop(); Push(Pop() * tos); //*
-			int tos1 = Pop(); int tos2 = Pop(); 
-			if (tos1 > maxInt/tos2) //made changes here. Dividing the maxInt by one of the inputs shows what the max of another input can be.
-				{ps = badVal; break;}
-			Push(tos1*tos2); //*
-            break;
-			
-			case PVM.mul:           // integer multiplication
-            //tos = mem[cpu.sp++]; mem[cpu.sp] *= tos; //*
-			tos = mem[cpu.sp++]; 
-			if (tos > maxInt/mem[cpu.sp]) {  //made changes here. Dividing the maxInt by one of the inputs shows what the max of another input can be.
-				ps = badVal; break;
-			}
-			mem[cpu.sp] *= tos; //*
-            break;
+	N/A
 			
 Task 8.
-			case PVM.inpc:
-			adr = Pop();
-            if (InBounds(adr)) {
-              mem[adr] = data.ReadInt();
-              if (data.Error()) ps = badData;
-            }
-            break;
-		    case PVM.prnc:
-			if (tracing) results.Write(padding);
-            results.Write(Pop());
-            if (tracing) results.WriteLine();
-			break;
-			
-			case PVM.inpc:          // character input
-		    mem[mem[cpu.sp++]] = data.ReadInt();
-            break; 
-            case PVM.prnc:          // character output
-//            if (tracing) results.Write(padding);
-            results.Write(mem[cpu.sp++], 0);
-//            if (tracing) results.WriteLine();
-            break;
+	N/A
+
+Task 9.
+	N/A
+
+Task 10.
+	N/A
 
 Task 11.
+	Using Sieve1.pvm
+	ASM1 550 Primes, Run Time 00:00:14.19
+	ASM2 550 Primes, Run Time 00:00:04.9
+	
+	Using Sieve2.pvm
 	ASM1  101 primes 69434018 operations.  Run Time 00:00:01.10
 	ASM2  101 primes 69434018 operations.  Run Time 00:00:00.50
+	
+	Asm2 is clearly faster than Asm1, since it uses in-line methods over calling the Push/Pop functions. The reason Sieve2.pvm runs so much faster than Sieve1.pvm is that there are less op-codes to do, which results in less machine cycles needing to be done. These are the results we expected. 
+	
+	To make the machine code more efficient, 
