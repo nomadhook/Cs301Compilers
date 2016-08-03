@@ -48,4 +48,5 @@ Task 11.
 	
 	Asm2 is clearly faster than Asm1, since it uses in-line methods over calling the Push/Pop functions. The reason Sieve2.pvm runs so much faster than Sieve1.pvm is that there are less op-codes to do, which results in less machine cycles needing to be done. These are the results we expected. 
 	
-	To make the machine code more efficient, 
+	Many LDA and LDC instructions only specify small values, therefore have specialized opcodes that use only 8 words of code and not 12 - saves space.
+	Has the added advantage that the fetch-execute cycle would probably run faster, since there are fewer extra words to "fetch".
