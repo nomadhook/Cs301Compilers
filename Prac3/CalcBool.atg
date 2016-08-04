@@ -1,0 +1,21 @@
+COMPILER CalcBool  $CN
+/* Simple four function calculator
+   P.D. Terry, Rhodes University, 2016 */
+
+CHARACTERS
+  letter	 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" .
+  digit      = "0123456789" .
+
+TOKENS
+  decNumber  = digit { digit } ["." { digit }] | { digit } "." digit { digit } .
+  var        = letter { letter | digit } .
+
+IGNORE CHR(0) .. CHR(31)
+
+PRODUCTIONS
+  CalcBool   = {var "=" Expression ";"} EOF .
+  Expression = Term { ("||" | "or") Term}  .
+  Term       = Neg {("&&" | "and") Neg }.
+  Neg        = Factor | ("!" | "not") Neg .
+  Factor     = "true" | "false" | var | decNumber | "(" Expression ")" .
+END CalcBool.

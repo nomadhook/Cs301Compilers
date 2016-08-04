@@ -15,7 +15,7 @@
     printable  = ANY - control .
 
   TOKENS
-    identifier = letter { letter | digit | "_" } .
+    identifier = (letter | "_") [{ letter | digit | "_" } (letter | digit) ] .
     number     = digit { digit } .
     stringLit  = '"' { stringCh | backslash printable } '"' .
     charLit    = "'" ( charCh   | backslash printable ) "'" .
@@ -29,19 +29,23 @@
     Block             = "{" { Statement } "}" .
     Statement         =   Block | ";"
                         | ConstDeclarations | VarDeclarations
-                        | Assignment | IfStatement | WhileStatement
+                        | Assignment | IfStatement | WhileStatement | DoWhileStatement | ForStatement
                         | ReturnStatement | HaltStatement
-                        | ReadStatement | WriteStatement .
+                        | ReadStatement | WriteStatement 
+						| "continue" | "break" .
     ConstDeclarations = "const" OneConst { "," OneConst } ";" .
     OneConst          = identifier "=" Constant .
     Constant          =   number | charLit
                         | "true" | "false" | "null" .
     VarDeclarations   = Type OneVar { "," OneVar } ";" .
     OneVar            = identifier [ "=" Expression ] .
-    Assignment        = Designator "=" Expression ";" .
+    Assignment        = Designator { "," Designator } ( "=" | AssignmentOP ) Expression { "," Expression } ";" .
     Designator        = identifier [ "[" Expression "]" ] .
-    IfStatement       = "if" "(" Condition ")" Statement .
-    WhileStatement    = "while" "(" Condition ")" Statement .
+    IfStatement       = "if" "(" Condition ")" Statement [Else] .
+	Else              = "elsif" "(" Condition ")" Statement [Else] | "else" Statement . 
+    DoWhileStatement  = "do" Statement "while" "(" Condition ")" .
+	WhileStatement    = "while" "(" Condition ")" Statement .
+	ForStatement      = "for" (identifier "=" Expression) ("to" | "downto") Expression Statement . 
     ReturnStatement   = "return" ";" .
     HaltStatement     = "halt" ";" .
     ReadStatement     = "read" "(" ReadElement
@@ -60,6 +64,7 @@
     Type              = BasicType [ "[]" ] .
     BasicType         = "int" | "bool" .
     AddOp             = "+" | "-" | "||" .
-    MulOp             = "*" | "/" | "&&" .
+    MulOp             = "*" | "/" | "&&" | "%" .
     RelOp             = "==" | "!=" | "<" | "<=" | ">" | ">=" .
+	AssignmentOP      = "*=" | "/=" | "+=" | "-=" | "&=" | "|=" | "%=" .
   END Parva.

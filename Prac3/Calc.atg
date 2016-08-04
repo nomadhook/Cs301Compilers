@@ -7,7 +7,7 @@ CHARACTERS
   hexdigit   = digit + "ABCDEF" .
 
 TOKENS
-  decNumber  = digit { digit } .
+  decNumber  = digit { digit } ["." { digit }] | { digit } "." digit { digit } .
   hexNumber  = "$" hexdigit { hexdigit } .
 
 IGNORE CHR(0) .. CHR(31)
@@ -16,5 +16,5 @@ PRODUCTIONS
   Calc       = { Expression "=" } EOF .
   Expression = Term { "+" Term  |  "-" Term } .
   Term       = Factor { "*" Factor |  "/" Factor } .
-  Factor     = decNumber | hexNumber .
+  Factor     = decNumber | hexNumber | "(" Expression ")" .
 END Calc.
