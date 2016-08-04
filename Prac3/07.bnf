@@ -1,0 +1,6 @@
+(* 07.BNF - A set of productions with some repeated parts *)
+
+Lecturer  = FirstName Surname .
+FirstName = Qualities "Pat" .
+Surname   = "Terry" .
+Qualities = { "very" "old" "and" } "mighty" "handsome" .

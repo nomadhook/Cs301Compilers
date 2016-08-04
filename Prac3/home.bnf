@@ -1,0 +1,11 @@
+(* HOME.BNF - Fun for all the family *)
+
+Home      = Family { Pets } [ Vehicle ] "house" .
+Pets      = "dog" [ "cat" ] | "cat" .
+Vehicle   = ( "scooter" | "bicycle" ) "fourbyfour" .
+Family    = Parents { Children } .
+Parents   = "Dad" "Mom" | "Mom" "Dad" .
+Parents   = "Dad" | "Mom" .
+Child     =   "Helen" | "Margaret" | "Alice" | "Janet" | "Anne"
+            | "Morag" | "Frances" | "Sally" | "Marianne" | "Cathy"
+            | "Elizabeth" | "Alison" | "Ntombizodwa" | "Ntombizanele" .

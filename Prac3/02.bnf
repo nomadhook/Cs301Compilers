@@ -1,0 +1,5 @@
+(* 02.BNF - A simple set of productions with some alternatives *)
+
+Sibling   = FirstName Surname .
+FirstName = "Pat" | "Chris" | "Peter" .
+Surname   = "Terry" .

@@ -1,0 +1,7 @@
+(* 08.BNF - A set of productions with some optional and repeated parts *)
+
+Lecturer  = FirstName Surname .
+FirstName = [ Qualities ]  "Pat" .
+Surname   = "Terry" [ Degrees ] .
+Qualities = { "very" } "handsome"  [ "and" [ "absolutely" ] "brilliant" ] .
+Degrees   = [ [ "BSc(Hons)" ] "MSc" ] "PhD" .
