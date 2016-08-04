@@ -2,7 +2,7 @@ ASSEM
 BEGIN
   {    0 } DSP      5
   {    2 } LDA      0
-  {    4 } LDC      4000
+  {    4 } LDC      550
   {    6 } LDC      1
   {    8 } ADD     
   {    9 } ANEW    
@@ -26,7 +26,7 @@ BEGIN
   {   38 } STO     
   {   39 } LDA      1
   {   41 } LDV     
-  {   42 } LDC      4000
+  {   42 } LDC      550
   {   44 } CLE     
   {   45 } BZE      68
   {   47 } LDA      0
@@ -48,7 +48,7 @@ BEGIN
   {   72 } STO     
   {   73 } LDA      1
   {   75 } LDV     
-  {   76 } LDC      4000
+  {   76 } LDC      550
   {   78 } CLE     
   {   79 } BZE      154
   {   81 } LDA      0
@@ -70,7 +70,7 @@ BEGIN
   {  105 } STO     
   {  106 } LDA      2
   {  108 } LDV     
-  {  109 } LDC      4000
+  {  109 } LDC      550
   {  111 } CLE     
   {  112 } LDA      2
   {  114 } LDV     

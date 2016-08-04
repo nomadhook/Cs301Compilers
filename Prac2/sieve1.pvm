@@ -1,6 +1,6 @@
    0   DSP      5
    2   LDA      0
-   4   LDC      4000         ; max number to be tested
+   4   LDC      550         ; max number to be tested
    6   LDC      1
    8   ADD
    9   ANEW
@@ -24,7 +24,7 @@
   38   STO
   39   LDA      1
   41   LDV
-  42   LDC      4000         ; max number to be tested
+  42   LDC      550         ; max number to be tested
   44   CLE
   45   BZE      68
   47   LDA      0
@@ -46,7 +46,7 @@
   72   STO
   73   LDA      1
   75   LDV
-  76   LDC      4000         ; max number to be tested
+  76   LDC      550         ; max number to be tested
   78   CLE
   79   BZE      154
   81   LDA      0
@@ -68,7 +68,7 @@
  105   STO
  106   LDA      2
  108   LDV
- 109   LDC      4000         ; max number to be tested
+ 109   LDC      550         ; max number to be tested
  111   CLE
  112   LDA      2
  114   LDV

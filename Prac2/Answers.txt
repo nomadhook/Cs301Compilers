@@ -3,31 +3,38 @@ Task 1. N/A
 Task 2. N/A
 
 Task 3.
-	a) Short-circuit evaluation is not used. This is determined by the fact that it loads X,Y and Z at the same time, and tests them all before branching, instead of testing them in stages.
+	a) Short-circuit evaluation is not used. This is determined by the fact that
+		it loads X,Y and Z at the same time, and tests them all before branching,
+		instead of testing them in stages.
 	b) N/A
-	c) Adding branches during critical calculations, such as OR when the 1st boolean is true, will mean that it uses short-circuit boolean operations. 
-	d) Change all the PRNB (Print Bolean) to PRNI (Print Int) works.
-	
+	c) Adding branches during critical calculations, such as OR when the 1st
+		boolean is true, will mean that it uses short-circuit boolean operations.
+	d) Change all the PRNB (Print Boolean) to PRNI (Print Int), which works.
+
 Task 4.
 	Using 550 Primes, 2000 iterations.
-	197471523 Operations. 
-	ASM1 Run Time 00:00:14.19
-	ASM2 Run Time 00:00:04.9
 	
-	ASM2 is clearly faster than ASM1 for larger iterations (2000 used since it also times user input).
-	Since ASM1 uses auxiliary methods, while ASM2 uses in-line methods, the results are what we expected. 
+	ASM1 Operations: 101676023 Run Time 00:00:01.80
+	
+	ASM2 Operations: 69434018 Run Time 00:00:01.07
+
+	ASM2 is clearly faster than ASM1 for larger iterations (2000 used since it
+	also times user input).
+	Since ASM1 uses auxiliary methods, while ASM2 uses in-line methods, the
+	results are what we expected.
 	ASM2 uses the more efficient method thus has a lower time.
-	
+
 Task 5.
 	It completely stops when you give it a number that is the limit or above.
-	We added a while loop to check for those, and looped within them until a valid input was given.
-	
+	We added a while loop to check for those, and looped within them until a valid
+	input was given.
+
 Task 6.
 	N/A
-	
+
 Task 7.
 	N/A
-			
+
 Task 8.
 	N/A
 
@@ -39,14 +46,22 @@ Task 10.
 
 Task 11.
 	Using Sieve1.pvm
-	ASM1 550 Primes, Run Time 00:00:14.19
-	ASM2 550 Primes, Run Time 00:00:04.9
-	
+	ASM1 101 Primes, Run Time 00:00:01.80
+	ASM2 101 Primes, Run Time 00:00:01.07
+
 	Using Sieve2.pvm
 	ASM1  101 primes 69434018 operations.  Run Time 00:00:01.10
 	ASM2  101 primes 69434018 operations.  Run Time 00:00:00.50
-	
-	Asm2 is clearly faster than Asm1, since it uses in-line methods over calling the Push/Pop functions. The reason Sieve2.pvm runs so much faster than Sieve1.pvm is that there are less op-codes to do, which results in less machine cycles needing to be done. These are the results we expected. 
-	
-	Many LDA and LDC instructions only specify small values, therefore have specialized opcodes that use only 8 words of code and not 12 - saves space.
-	Has the added advantage that the fetch-execute cycle would probably run faster, since there are fewer extra words to "fetch".
+
+	Asm2 is faster than Asm1, since it uses in-line methods over calling the 
+	Push/Pop functions. The reason Sieve2.pvm runs faster than Sieve1.pvm is that
+	there are less op-codes to do, which results in less machine cycles needing 
+	to be done. These are the results we expected.
+
+	Opcodes such as LDA and LDC usually specify small values, and therefore a 
+	possible improvement would be to have specialised opcodes that use only 8 
+	words of code and not 12.  This would be efficient as less space is used up 
+	unnecessarily.  The specialised opcodes can have the form of LDA_0 or LDA_2.  
+	These opcodes have an extra benefit; the fetch-execute cycle would possibly 
+	run faster as there are less extra words to retrieve. Unfortunately, we did 
+	not have enough time to implement these opcodes.
