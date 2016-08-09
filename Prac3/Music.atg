@@ -1,0 +1,23 @@
+COMPILER Music $CN
+
+CHARACTERS
+	letter		= "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" .
+
+TOKENS
+	bandName	= letter {letter} .
+	
+IGNORE  CHR(9) .. CHR(13)
+
+PRODUCTIONS
+	Music		= Competition "interval" {Music} EOF .
+	Competition = "AnnounceCompetition" (STPComp | MSRComp | MedComp) .
+	STPComp		= "SlowIntoQuickMarch:" bandName SlowToQuick {"break" bandName SlowToQuick} .
+	MSRComp		= "MarchStrathspeyAndReel:" bandName MSR {"break" bandName MSR}.
+	MedComp		= "Medley:" bandName Medley {"break" bandName MSR}.
+	SlowToQuick	= "(" "SlowMarch" "QuickMarch" ")" .
+	MSR			= "(" "QuickMarch" "Strathspey" "Reel" ["QuickMarch"] ")" .
+	Medley		= "(" (MedOp | MedStrath) {MedOp | MedStrath} ")" .
+	MedOp		= "QuickMarch" | "Reel" | "SlowMarch" | "Jig" | "Hornpipe" .
+	MedStrath 	= "Strathspey" {"Strathspey"} "Reel" {"Reel"} .
+
+END Music.

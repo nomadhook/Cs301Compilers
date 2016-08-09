@@ -3,77 +3,90 @@ using System;
 using System.IO;
 using System.Text;
 
-namespace Parva {
+namespace EBNFR {
 
 public class Parser {
 	public const int _EOF = 0;
-	public const int _identifier = 1;
-	public const int _number = 2;
-	public const int _stringLit = 3;
-	public const int _charLit = 4;
+	public const int _terminal = 1;
 	// terminals
 	public const int EOF_SYM = 0;
-	public const int identifier_Sym = 1;
-	public const int number_Sym = 2;
-	public const int stringLit_Sym = 3;
-	public const int charLit_Sym = 4;
-	public const int void_Sym = 5;
-	public const int lparen_Sym = 6;
-	public const int rparen_Sym = 7;
-	public const int lbrace_Sym = 8;
-	public const int rbrace_Sym = 9;
-	public const int semicolon_Sym = 10;
-	public const int continue_Sym = 11;
-	public const int break_Sym = 12;
-	public const int const_Sym = 13;
-	public const int comma_Sym = 14;
-	public const int equal_Sym = 15;
-	public const int true_Sym = 16;
-	public const int false_Sym = 17;
-	public const int null_Sym = 18;
-	public const int lbrack_Sym = 19;
-	public const int rbrack_Sym = 20;
-	public const int if_Sym = 21;
-	public const int elsif_Sym = 22;
-	public const int else_Sym = 23;
-	public const int do_Sym = 24;
-	public const int while_Sym = 25;
-	public const int for_Sym = 26;
-	public const int to_Sym = 27;
-	public const int downto_Sym = 28;
-	public const int return_Sym = 29;
-	public const int halt_Sym = 30;
-	public const int read_Sym = 31;
-	public const int write_Sym = 32;
-	public const int plus_Sym = 33;
-	public const int minus_Sym = 34;
-	public const int new_Sym = 35;
-	public const int bang_Sym = 36;
-	public const int lbrackrbrack_Sym = 37;
-	public const int int_Sym = 38;
-	public const int bool_Sym = 39;
-	public const int barbar_Sym = 40;
-	public const int star_Sym = 41;
-	public const int slash_Sym = 42;
-	public const int andand_Sym = 43;
-	public const int percent_Sym = 44;
-	public const int equalequal_Sym = 45;
-	public const int bangequal_Sym = 46;
-	public const int less_Sym = 47;
-	public const int lessequal_Sym = 48;
-	public const int greater_Sym = 49;
-	public const int greaterequal_Sym = 50;
-	public const int starequal_Sym = 51;
-	public const int slashequal_Sym = 52;
-	public const int plusequal_Sym = 53;
-	public const int minusequal_Sym = 54;
-	public const int andequal_Sym = 55;
-	public const int barequal_Sym = 56;
-	public const int percentequal_Sym = 57;
-	public const int NOT_SYM = 58;
+	public const int terminal_Sym = 1;
+	public const int equal_Sym = 2;
+	public const int point_Sym = 3;
+	public const int bar_Sym = 4;
+	public const int lbrack_Sym = 5;
+	public const int rbrack_Sym = 6;
+	public const int lparen_Sym = 7;
+	public const int rparen_Sym = 8;
+	public const int lbrace_Sym = 9;
+	public const int rbrace_Sym = 10;
+	public const int underscore_Sym = 11;
+	public const int d0_Sym = 12;
+	public const int d1_Sym = 13;
+	public const int d2_Sym = 14;
+	public const int d3_Sym = 15;
+	public const int d4_Sym = 16;
+	public const int d5_Sym = 17;
+	public const int d6_Sym = 18;
+	public const int d7_Sym = 19;
+	public const int d8_Sym = 20;
+	public const int d9_Sym = 21;
+	public const int A_Sym = 22;
+	public const int B_Sym = 23;
+	public const int C_Sym = 24;
+	public const int D_Sym = 25;
+	public const int E_Sym = 26;
+	public const int F_Sym = 27;
+	public const int G_Sym = 28;
+	public const int H_Sym = 29;
+	public const int I_Sym = 30;
+	public const int J_Sym = 31;
+	public const int K_Sym = 32;
+	public const int L_Sym = 33;
+	public const int M_Sym = 34;
+	public const int N_Sym = 35;
+	public const int O_Sym = 36;
+	public const int P_Sym = 37;
+	public const int Q_Sym = 38;
+	public const int R_Sym = 39;
+	public const int S_Sym = 40;
+	public const int T_Sym = 41;
+	public const int U_Sym = 42;
+	public const int V_Sym = 43;
+	public const int W_Sym = 44;
+	public const int X_Sym = 45;
+	public const int Y_Sym = 46;
+	public const int Z_Sym = 47;
+	public const int a_Sym = 48;
+	public const int b_Sym = 49;
+	public const int c_Sym = 50;
+	public const int d_Sym = 51;
+	public const int e_Sym = 52;
+	public const int f_Sym = 53;
+	public const int g_Sym = 54;
+	public const int h_Sym = 55;
+	public const int i_Sym = 56;
+	public const int j_Sym = 57;
+	public const int k_Sym = 58;
+	public const int l_Sym = 59;
+	public const int m_Sym = 60;
+	public const int n_Sym = 61;
+	public const int o_Sym = 62;
+	public const int p_Sym = 63;
+	public const int q_Sym = 64;
+	public const int r_Sym = 65;
+	public const int s_Sym = 66;
+	public const int t_Sym = 67;
+	public const int u_Sym = 68;
+	public const int v_Sym = 69;
+	public const int w_Sym = 70;
+	public const int x_Sym = 71;
+	public const int y_Sym = 72;
+	public const int z_Sym = 73;
+	public const int NOT_SYM = 74;
 	// pragmas
 
-	public const int maxT = 58;
+	public const int maxT = 74;
 
 	const bool T = true;
 	const bool x = false;
@@ -157,427 +170,349 @@ public class Parser {
 		}
 	}
 
-	static void Parva() {
-		Expect(void_Sym);
-		Expect(identifier_Sym);
-		Expect(lparen_Sym);
-		Expect(rparen_Sym);
-		Block();
-	}
-
-	static void Block() {
-		Expect(lbrace_Sym);
-		while (StartOf(1)) {
-			Statement();
-		}
-		Expect(rbrace_Sym);
-	}
-
-	static void Statement() {
-		switch (la.kind) {
-		case lbrace_Sym: {
-			Block();
-			break;
-		}
-		case semicolon_Sym: {
+	static void EBNFR() {
+		if (StartOf(1)) {
+			Production();
+			EBNFR();
+		} else if (la.kind == EOF_SYM) {
 			Get();
-			break;
-		}
-		case const_Sym: {
-			ConstDeclarations();
-			break;
-		}
-		case int_Sym: case bool_Sym: {
-			VarDeclarations();
-			break;
-		}
-		case identifier_Sym: {
-			Assignment();
-			break;
-		}
-		case if_Sym: {
-			IfStatement();
-			break;
-		}
-		case while_Sym: {
-			WhileStatement();
-			break;
-		}
-		case do_Sym: {
-			DoWhileStatement();
-			break;
-		}
-		case for_Sym: {
-			ForStatement();
-			break;
-		}
-		case return_Sym: {
-			ReturnStatement();
-			break;
-		}
-		case halt_Sym: {
-			HaltStatement();
-			break;
-		}
-		case read_Sym: {
-			ReadStatement();
-			break;
-		}
-		case write_Sym: {
-			WriteStatement();
-			break;
-		}
-		case continue_Sym: {
-			Get();
-			break;
-		}
-		case break_Sym: {
-			Get();
-			break;
-		}
-		default: SynErr(59); break;
-		}
+		} else SynErr(75);
 	}
 
-	static void ConstDeclarations() {
-		Expect(const_Sym);
-		OneConst();
-		while (la.kind == comma_Sym) {
-			Get();
-			OneConst();
-		}
-		Expect(semicolon_Sym);
-	}
-
-	static void VarDeclarations() {
-		Type();
-		OneVar();
-		while (la.kind == comma_Sym) {
-			Get();
-			OneVar();
-		}
-		Expect(semicolon_Sym);
-	}
-
-	static void Assignment() {
-		Designator();
-		while (la.kind == comma_Sym) {
-			Get();
-			Designator();
-		}
-		if (la.kind == equal_Sym) {
-			Get();
-		} else if (StartOf(2)) {
-			AssignmentOP();
-		} else SynErr(60);
-		Expression();
-		while (la.kind == comma_Sym) {
-			Get();
-			Expression();
-		}
-		Expect(semicolon_Sym);
-	}
-
-	static void IfStatement() {
-		Expect(if_Sym);
-		Expect(lparen_Sym);
-		Condition();
-		Expect(rparen_Sym);
-		Statement();
-		if (la.kind == elsif_Sym || la.kind == else_Sym) {
-			Else();
-		}
-	}
-
-	static void WhileStatement() {
-		Expect(while_Sym);
-		Expect(lparen_Sym);
-		Condition();
-		Expect(rparen_Sym);
-		Statement();
-	}
-
-	static void DoWhileStatement() {
-		Expect(do_Sym);
-		Statement();
-		Expect(while_Sym);
-		Expect(lparen_Sym);
-		Condition();
-		Expect(rparen_Sym);
-	}
-
-	static void ForStatement() {
-		Expect(for_Sym);
-		Expect(identifier_Sym);
+	static void Production() {
+		nonterminal();
 		Expect(equal_Sym);
 		Expression();
-		if (la.kind == to_Sym) {
-			Get();
-		} else if (la.kind == downto_Sym) {
-			Get();
-		} else SynErr(61);
-		Expression();
-		Statement();
+		Expect(point_Sym);
 	}
 
-	static void ReturnStatement() {
-		Expect(return_Sym);
-		Expect(semicolon_Sym);
-	}
-
-	static void HaltStatement() {
-		Expect(halt_Sym);
-		Expect(semicolon_Sym);
-	}
-
-	static void ReadStatement() {
-		Expect(read_Sym);
-		Expect(lparen_Sym);
-		ReadElement();
-		while (la.kind == comma_Sym) {
-			Get();
-			ReadElement();
-		}
-		Expect(rparen_Sym);
-		Expect(semicolon_Sym);
-	}
-
-	static void WriteStatement() {
-		Expect(write_Sym);
-		Expect(lparen_Sym);
-		WriteElement();
-		while (la.kind == comma_Sym) {
-			Get();
-			WriteElement();
-		}
-		Expect(rparen_Sym);
-		Expect(semicolon_Sym);
-	}
-
-	static void OneConst() {
-		Expect(identifier_Sym);
-		Expect(equal_Sym);
-		Constant();
-	}
-
-	static void Constant() {
-		if (la.kind == number_Sym) {
-			Get();
-		} else if (la.kind == charLit_Sym) {
-			Get();
-		} else if (la.kind == true_Sym) {
-			Get();
-		} else if (la.kind == false_Sym) {
-			Get();
-		} else if (la.kind == null_Sym) {
-			Get();
-		} else SynErr(62);
-	}
-
-	static void Type() {
-		BasicType();
-		if (la.kind == lbrackrbrack_Sym) {
-			Get();
-		}
-	}
-
-	static void OneVar() {
-		Expect(identifier_Sym);
-		if (la.kind == equal_Sym) {
-			Get();
-			Expression();
-		}
+	static void nonterminal() {
+		if (StartOf(1)) {
+			letter();
+		} else if (StartOf(1)) {
+			letter();
+			nonterminalR();
+		} else SynErr(76);
 	}
 
 	static void Expression() {
-		AddExp();
-		if (StartOf(3)) {
-			RelOp();
-			AddExp();
-		}
-	}
-
-	static void Designator() {
-		Expect(identifier_Sym);
-		if (la.kind == lbrack_Sym) {
-			Get();
-			Expression();
-			Expect(rbrack_Sym);
-		}
-	}
-
-	static void AssignmentOP() {
-		switch (la.kind) {
-		case starequal_Sym: {
-			Get();
-			break;
-		}
-		case slashequal_Sym: {
-			Get();
-			break;
-		}
-		case plusequal_Sym: {
-			Get();
-			break;
-		}
-		case minusequal_Sym: {
-			Get();
-			break;
-		}
-		case andequal_Sym: {
-			Get();
-			break;
-		}
-		case barequal_Sym: {
-			Get();
-			break;
-		}
-		case percentequal_Sym: {
-			Get();
-			break;
-		}
-		default: SynErr(63); break;
-		}
-	}
-
-	static void Condition() {
-		Expression();
-	}
-
-	static void Else() {
-		if (la.kind == elsif_Sym) {
-			Get();
-			Expect(lparen_Sym);
-			Condition();
-			Expect(rparen_Sym);
-			Statement();
-			if (la.kind == elsif_Sym || la.kind == else_Sym) {
-				Else();
-			}
-		} else if (la.kind == else_Sym) {
-			Get();
-			Statement();
-		} else SynErr(64);
-	}
-
-	static void ReadElement() {
-		if (la.kind == stringLit_Sym) {
-			Get();
-		} else if (la.kind == identifier_Sym) {
-			Designator();
-		} else SynErr(65);
-	}
-
-	static void WriteElement() {
-		if (la.kind == stringLit_Sym) {
-			Get();
-		} else if (StartOf(4)) {
-			Expression();
-		} else SynErr(66);
-	}
-
-	static void AddExp() {
-		if (la.kind == plus_Sym || la.kind == minus_Sym) {
-			if (la.kind == plus_Sym) {
-				Get();
-			} else {
-				Get();
-			}
-		}
-		Term();
-		while (la.kind == plus_Sym || la.kind == minus_Sym || la.kind == barbar_Sym) {
-			AddOp();
+		if (StartOf(2)) {
 			Term();
-		}
-	}
-
-	static void RelOp() {
-		switch (la.kind) {
-		case equalequal_Sym: {
-			Get();
-			break;
-		}
-		case bangequal_Sym: {
-			Get();
-			break;
-		}
-		case less_Sym: {
-			Get();
-			break;
-		}
-		case lessequal_Sym: {
-			Get();
-			break;
-		}
-		case greater_Sym: {
-			Get();
-			break;
-		}
-		case greaterequal_Sym: {
-			Get();
-			break;
-		}
-		default: SynErr(67); break;
-		}
+		} else if (StartOf(2)) {
+			Term();
+			Expect(bar_Sym);
+			Expression();
+		} else SynErr(77);
 	}
 
 	static void Term() {
-		Factor();
-		while (StartOf(5)) {
-			MulOp();
+		if (StartOf(2)) {
 			Factor();
-		}
-	}
-
-	static void AddOp() {
-		if (la.kind == plus_Sym) {
-			Get();
-		} else if (la.kind == minus_Sym) {
-			Get();
-		} else if (la.kind == barbar_Sym) {
-			Get();
-		} else SynErr(68);
+		} else if (StartOf(2)) {
+			Factor();
+			Term();
+		} else SynErr(78);
 	}
 
 	static void Factor() {
-		if (la.kind == identifier_Sym) {
-			Designator();
-		} else if (StartOf(6)) {
-			Constant();
-		} else if (la.kind == new_Sym) {
+		if (StartOf(1)) {
+			nonterminal();
+		} else if (la.kind == terminal_Sym) {
 			Get();
-			BasicType();
-			Expect(lbrack_Sym);
+		} else if (la.kind == lbrack_Sym) {
+			Get();
 			Expression();
 			Expect(rbrack_Sym);
-		} else if (la.kind == bang_Sym) {
-			Get();
-			Factor();
 		} else if (la.kind == lparen_Sym) {
 			Get();
 			Expression();
 			Expect(rparen_Sym);
-		} else SynErr(69);
+		} else if (la.kind == lbrace_Sym) {
+			Get();
+			Expression();
+			Expect(rbrace_Sym);
+		} else SynErr(79);
 	}
 
-	static void MulOp() {
-		if (la.kind == star_Sym) {
+	static void letter() {
+		switch (la.kind) {
+		case A_Sym: {
 			Get();
-		} else if (la.kind == slash_Sym) {
+			break;
+		}
+		case B_Sym: {
 			Get();
-		} else if (la.kind == andand_Sym) {
+			break;
+		}
+		case C_Sym: {
 			Get();
-		} else if (la.kind == percent_Sym) {
+			break;
+		}
+		case D_Sym: {
 			Get();
-		} else SynErr(70);
+			break;
+		}
+		case E_Sym: {
+			Get();
+			break;
+		}
+		case F_Sym: {
+			Get();
+			break;
+		}
+		case G_Sym: {
+			Get();
+			break;
+		}
+		case H_Sym: {
+			Get();
+			break;
+		}
+		case I_Sym: {
+			Get();
+			break;
+		}
+		case J_Sym: {
+			Get();
+			break;
+		}
+		case K_Sym: {
+			Get();
+			break;
+		}
+		case L_Sym: {
+			Get();
+			break;
+		}
+		case M_Sym: {
+			Get();
+			break;
+		}
+		case N_Sym: {
+			Get();
+			break;
+		}
+		case O_Sym: {
+			Get();
+			break;
+		}
+		case P_Sym: {
+			Get();
+			break;
+		}
+		case Q_Sym: {
+			Get();
+			break;
+		}
+		case R_Sym: {
+			Get();
+			break;
+		}
+		case S_Sym: {
+			Get();
+			break;
+		}
+		case T_Sym: {
+			Get();
+			break;
+		}
+		case U_Sym: {
+			Get();
+			break;
+		}
+		case V_Sym: {
+			Get();
+			break;
+		}
+		case W_Sym: {
+			Get();
+			break;
+		}
+		case X_Sym: {
+			Get();
+			break;
+		}
+		case Y_Sym: {
+			Get();
+			break;
+		}
+		case Z_Sym: {
+			Get();
+			break;
+		}
+		case a_Sym: {
+			Get();
+			break;
+		}
+		case b_Sym: {
+			Get();
+			break;
+		}
+		case c_Sym: {
+			Get();
+			break;
+		}
+		case d_Sym: {
+			Get();
+			break;
+		}
+		case e_Sym: {
+			Get();
+			break;
+		}
+		case f_Sym: {
+			Get();
+			break;
+		}
+		case g_Sym: {
+			Get();
+			break;
+		}
+		case h_Sym: {
+			Get();
+			break;
+		}
+		case i_Sym: {
+			Get();
+			break;
+		}
+		case j_Sym: {
+			Get();
+			break;
+		}
+		case k_Sym: {
+			Get();
+			break;
+		}
+		case l_Sym: {
+			Get();
+			break;
+		}
+		case m_Sym: {
+			Get();
+			break;
+		}
+		case n_Sym: {
+			Get();
+			break;
+		}
+		case o_Sym: {
+			Get();
+			break;
+		}
+		case p_Sym: {
+			Get();
+			break;
+		}
+		case q_Sym: {
+			Get();
+			break;
+		}
+		case r_Sym: {
+			Get();
+			break;
+		}
+		case s_Sym: {
+			Get();
+			break;
+		}
+		case t_Sym: {
+			Get();
+			break;
+		}
+		case u_Sym: {
+			Get();
+			break;
+		}
+		case v_Sym: {
+			Get();
+			break;
+		}
+		case w_Sym: {
+			Get();
+			break;
+		}
+		case x_Sym: {
+			Get();
+			break;
+		}
+		case y_Sym: {
+			Get();
+			break;
+		}
+		case z_Sym: {
+			Get();
+			break;
+		}
+		default: SynErr(80); break;
+		}
 	}
 
-	static void BasicType() {
-		if (la.kind == int_Sym) {
+	static void nonterminalR() {
+		if (StartOf(3)) {
+			if (StartOf(1)) {
+				letter();
+			} else if (la.kind == underscore_Sym) {
+				Get();
+			} else {
+				digit();
+			}
+		} else if (StartOf(3)) {
+			if (StartOf(1)) {
+				letter();
+			} else if (la.kind == underscore_Sym) {
+				Get();
+			} else {
+				digit();
+			}
+			nonterminalR();
+		} else SynErr(81);
+	}
+
+	static void digit() {
+		switch (la.kind) {
+		case d0_Sym: {
 			Get();
-		} else if (la.kind == bool_Sym) {
+			break;
+		}
+		case d1_Sym: {
 			Get();
-		} else SynErr(71);
+			break;
+		}
+		case d2_Sym: {
+			Get();
+			break;
+		}
+		case d3_Sym: {
+			Get();
+			break;
+		}
+		case d4_Sym: {
+			Get();
+			break;
+		}
+		case d5_Sym: {
+			Get();
+			break;
+		}
+		case d6_Sym: {
+			Get();
+			break;
+		}
+		case d7_Sym: {
+			Get();
+			break;
+		}
+		case d8_Sym: {
+			Get();
+			break;
+		}
+		case d9_Sym: {
+			Get();
+			break;
+		}
+		default: SynErr(82); break;
+		}
 	}
 
 
@@ -586,19 +521,16 @@ public class Parser {
 		la = new Token();
 		la.val = "";
 		Get();
-		Parva();
+		EBNFR();
 		Expect(EOF_SYM);
 
 	}
 
 	static bool[,] set = {
-		{T,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x},
-		{x,T,x,x, x,x,x,x, T,x,T,T, T,T,x,x, x,x,x,x, x,T,x,x, T,T,T,x, x,T,T,T, T,x,x,x, x,x,T,T, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x},
-		{x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,T, T,T,T,T, T,T,x,x},
-		{x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,T,T,T, T,T,T,x, x,x,x,x, x,x,x,x},
-		{x,T,T,x, T,x,T,x, x,x,x,x, x,x,x,x, T,T,T,x, x,x,x,x, x,x,x,x, x,x,x,x, x,T,T,T, T,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x},
-		{x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,T,T,T, T,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x},
-		{x,x,T,x, T,x,x,x, x,x,x,x, x,x,x,x, T,T,T,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x}
+		{T,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x},
+		{x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,x,x},
+		{x,T,x,x, x,T,x,T, x,T,x,x, x,x,x,x, x,x,x,x, x,x,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,x,x},
+		{x,x,x,x, x,x,x,x, x,x,x,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,x,x}
 
 	};
 
@@ -711,77 +643,88 @@ public class Errors {
 		string s;
 		switch (n) {
 			case 0: s = "EOF expected"; break;
-			case 1: s = "identifier expected"; break;
-			case 2: s = "number expected"; break;
-			case 3: s = "stringLit expected"; break;
-			case 4: s = "charLit expected"; break;
-			case 5: s = "\"void\" expected"; break;
-			case 6: s = "\"(\" expected"; break;
-			case 7: s = "\")\" expected"; break;
-			case 8: s = "\"{\" expected"; break;
-			case 9: s = "\"}\" expected"; break;
-			case 10: s = "\";\" expected"; break;
-			case 11: s = "\"continue\" expected"; break;
-			case 12: s = "\"break\" expected"; break;
-			case 13: s = "\"const\" expected"; break;
-			case 14: s = "\",\" expected"; break;
-			case 15: s = "\"=\" expected"; break;
-			case 16: s = "\"true\" expected"; break;
-			case 17: s = "\"false\" expected"; break;
-			case 18: s = "\"null\" expected"; break;
-			case 19: s = "\"[\" expected"; break;
-			case 20: s = "\"]\" expected"; break;
-			case 21: s = "\"if\" expected"; break;
-			case 22: s = "\"elsif\" expected"; break;
-			case 23: s = "\"else\" expected"; break;
-			case 24: s = "\"do\" expected"; break;
-			case 25: s = "\"while\" expected"; break;
-			case 26: s = "\"for\" expected"; break;
-			case 27: s = "\"to\" expected"; break;
-			case 28: s = "\"downto\" expected"; break;
-			case 29: s = "\"return\" expected"; break;
-			case 30: s = "\"halt\" expected"; break;
-			case 31: s = "\"read\" expected"; break;
-			case 32: s = "\"write\" expected"; break;
-			case 33: s = "\"+\" expected"; break;
-			case 34: s = "\"-\" expected"; break;
-			case 35: s = "\"new\" expected"; break;
-			case 36: s = "\"!\" expected"; break;
-			case 37: s = "\"[]\" expected"; break;
-			case 38: s = "\"int\" expected"; break;
-			case 39: s = "\"bool\" expected"; break;
-			case 40: s = "\"||\" expected"; break;
-			case 41: s = "\"*\" expected"; break;
-			case 42: s = "\"/\" expected"; break;
-			case 43: s = "\"&&\" expected"; break;
-			case 44: s = "\"%\" expected"; break;
-			case 45: s = "\"==\" expected"; break;
-			case 46: s = "\"!=\" expected"; break;
-			case 47: s = "\"<\" expected"; break;
-			case 48: s = "\"<=\" expected"; break;
-			case 49: s = "\">\" expected"; break;
-			case 50: s = "\">=\" expected"; break;
-			case 51: s = "\"*=\" expected"; break;
-			case 52: s = "\"/=\" expected"; break;
-			case 53: s = "\"+=\" expected"; break;
-			case 54: s = "\"-=\" expected"; break;
-			case 55: s = "\"&=\" expected"; break;
-			case 56: s = "\"|=\" expected"; break;
-			case 57: s = "\"%=\" expected"; break;
-			case 58: s = "??? expected"; break;
-			case 59: s = "invalid Statement"; break;
-			case 60: s = "invalid Assignment"; break;
-			case 61: s = "invalid ForStatement"; break;
-			case 62: s = "invalid Constant"; break;
-			case 63: s = "invalid AssignmentOP"; break;
-			case 64: s = "invalid Else"; break;
-			case 65: s = "invalid ReadElement"; break;
-			case 66: s = "invalid WriteElement"; break;
-			case 67: s = "invalid RelOp"; break;
-			case 68: s = "invalid AddOp"; break;
-			case 69: s = "invalid Factor"; break;
-			case 70: s = "invalid MulOp"; break;
-			case 71: s = "invalid BasicType"; break;
+			case 1: s = "terminal expected"; break;
+			case 2: s = "\"=\" expected"; break;
+			case 3: s = "\".\" expected"; break;
+			case 4: s = "\"|\" expected"; break;
+			case 5: s = "\"[\" expected"; break;
+			case 6: s = "\"]\" expected"; break;
+			case 7: s = "\"(\" expected"; break;
+			case 8: s = "\")\" expected"; break;
+			case 9: s = "\"{\" expected"; break;
+			case 10: s = "\"}\" expected"; break;
+			case 11: s = "\"_\" expected"; break;
+			case 12: s = "\"0\" expected"; break;
+			case 13: s = "\"1\" expected"; break;
+			case 14: s = "\"2\" expected"; break;
+			case 15: s = "\"3\" expected"; break;
+			case 16: s = "\"4\" expected"; break;
+			case 17: s = "\"5\" expected"; break;
+			case 18: s = "\"6\" expected"; break;
+			case 19: s = "\"7\" expected"; break;
+			case 20: s = "\"8\" expected"; break;
+			case 21: s = "\"9\" expected"; break;
+			case 22: s = "\"A\" expected"; break;
+			case 23: s = "\"B\" expected"; break;
+			case 24: s = "\"C\" expected"; break;
+			case 25: s = "\"D\" expected"; break;
+			case 26: s = "\"E\" expected"; break;
+			case 27: s = "\"F\" expected"; break;
+			case 28: s = "\"G\" expected"; break;
+			case 29: s = "\"H\" expected"; break;
+			case 30: s = "\"I\" expected"; break;
+			case 31: s = "\"J\" expected"; break;
+			case 32: s = "\"K\" expected"; break;
+			case 33: s = "\"L\" expected"; break;
+			case 34: s = "\"M\" expected"; break;
+			case 35: s = "\"N\" expected"; break;
+			case 36: s = "\"O\" expected"; break;
+			case 37: s = "\"P\" expected"; break;
+			case 38: s = "\"Q\" expected"; break;
+			case 39: s = "\"R\" expected"; break;
+			case 40: s = "\"S\" expected"; break;
+			case 41: s = "\"T\" expected"; break;
+			case 42: s = "\"U\" expected"; break;
+			case 43: s = "\"V\" expected"; break;
+			case 44: s = "\"W\" expected"; break;
+			case 45: s = "\"X\" expected"; break;
+			case 46: s = "\"Y\" expected"; break;
+			case 47: s = "\"Z\" expected"; break;
+			case 48: s = "\"a\" expected"; break;
+			case 49: s = "\"b\" expected"; break;
+			case 50: s = "\"c\" expected"; break;
+			case 51: s = "\"d\" expected"; break;
+			case 52: s = "\"e\" expected"; break;
+			case 53: s = "\"f\" expected"; break;
+			case 54: s = "\"g\" expected"; break;
+			case 55: s = "\"h\" expected"; break;
+			case 56: s = "\"i\" expected"; break;
+			case 57: s = "\"j\" expected"; break;
+			case 58: s = "\"k\" expected"; break;
+			case 59: s = "\"l\" expected"; break;
+			case 60: s = "\"m\" expected"; break;
+			case 61: s = "\"n\" expected"; break;
+			case 62: s = "\"o\" expected"; break;
+			case 63: s = "\"p\" expected"; break;
+			case 64: s = "\"q\" expected"; break;
+			case 65: s = "\"r\" expected"; break;
+			case 66: s = "\"s\" expected"; break;
+			case 67: s = "\"t\" expected"; break;
+			case 68: s = "\"u\" expected"; break;
+			case 69: s = "\"v\" expected"; break;
+			case 70: s = "\"w\" expected"; break;
+			case 71: s = "\"x\" expected"; break;
+			case 72: s = "\"y\" expected"; break;
+			case 73: s = "\"z\" expected"; break;
+			case 74: s = "??? expected"; break;
+			case 75: s = "invalid EBNFR"; break;
+			case 76: s = "invalid nonterminal"; break;
+			case 77: s = "invalid Expression"; break;
+			case 78: s = "invalid Term"; break;
+			case 79: s = "invalid Factor"; break;
+			case 80: s = "invalid letter"; break;
+			case 81: s = "invalid nonterminalR"; break;
+			case 82: s = "invalid digit"; break;
 
 			default: s = "error " + n; break;
 		}

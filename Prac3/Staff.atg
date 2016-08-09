@@ -1,0 +1,19 @@
+COMPILER Staff  $CN
+
+CHARACTERS
+	lletter = "abcdefghijklmnopqrstuvwxyz" .
+	uletter = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" .
+
+TOKENS
+	word    = uletter lletter {lletter} .
+	initial = uletter "." .
+	quali   = "BMus" | "BSc" | "BSc(Hons)" | "MSc" | "PhD" .
+ 
+IGNORE CHR(0) .. CHR(31)
+ 
+PRODUCTIONS
+	Staff 		  = { Sentence "." } EOF .
+	Sentence 	  = Name .
+	Name 		  = (initial | word) {(initial|word)} ["," Qualification] .
+	Qualification = quali {"," quali} .
+END Staff.

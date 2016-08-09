@@ -1,0 +1,10 @@
+AnnounceCompetition SlowIntoQuickMarch: 
+	Lee (SlowMarch QuickMarch) interval
+	
+AnnounceCompetition Medley: 
+	Damon (QuickMarch QuickMarch Strathspey Strathspey Reel Jig) interval
+	
+AnnounceCompetition MarchStrathspeyAndReel: 
+	Marq (QuickMarch Strathspey Reel) break 
+	Kyle (QuickMarch Strathspey Reel) break
+	Megan (QuickMarch Strathspey Reel QuickMarch) interval

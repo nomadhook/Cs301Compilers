@@ -1,9 +1,9 @@
 
-   1   void Main () {
-   2   // (not supposed to do anything useful!)
-   3     int i, _just_kidding;
-   4     bool too______good_______toBeTrue__;
-****          ^ identifier expected
-   5   } // Main
+   1 Goal = { One } .
+****  ^ "=" expected
+   2 One  = Two "plus" Four "." .
+   3 Four = Five { "is" Five } .
+   4 Five = Six { Six } .
+   5 Six =  Two | Three | "(*" Four "*)" | '(' Four ')' .
 
 1 errors detected
