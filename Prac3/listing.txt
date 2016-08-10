@@ -1,8 +1,79 @@
+  LL1 warning in IfStatement: "elsif" is the start & successor of a deletable structure
+  LL1 warning in IfStatement: "else" is the start & successor of a deletable structure
+  LL1 warning in Else: "elsif" is the start & successor of a deletable structure
+  LL1 warning in Else: "else" is the start & successor of a deletable structure
 
-   1 Goal = { One } .
-   2 One  = Two "plus" Four "." .
-   3 Four = Five { "is" Five } .
-   4 Five = Six { Six } .
-   5 Six =  Two | Three | "(*" Four "*)" | '(' Four ')'.
+   1   COMPILER Parva $CN
+   2   /* Parva level 1 grammar  - Coco/R for C# (EBNF)
+   3      P.D. Terry, Rhodes University, 2003
+   4      Grammar only 
+   5 	 Worked on by Marq Botha - 14B7599; Damon Hook - 14H0114; Megan Kingon - 14K0129; Kyle Wallace - 12W4298 */
+   6 
+   7   CHARACTERS
+   8     lf         = CHR(10) .
+   9     backslash  = CHR(92) .
+  10     control    = CHR(0) .. CHR(31) .
+  11     letter     = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  12                  + "abcdefghijklmnopqrstuvwxyz" .
+  13     digit      = "0123456789" .
+  14     stringCh   = ANY - '"' - control - backslash .
+  15     charCh     = ANY - "'" - control - backslash .
+  16     printable  = ANY - control .
+  17 
+  18   TOKENS
+  19     identifier = letter [{ letter | digit | "_" } (letter | digit) ] .
+  20     number     = digit { digit } .
+  21     stringLit  = '"' { stringCh | backslash printable } '"' .
+  22     charLit    = "'" ( charCh   | backslash printable ) "'" .
+  23 
+  24   COMMENTS FROM "//" TO lf
+  25   COMMENTS FROM "/*" TO "*/"
+  26   IGNORE CHR(9) .. CHR(13)
+  27 
+  28   PRODUCTIONS
+  29     Parva             = "void" identifier "(" ")" Block .
+  30     Block             = "{" { Statement } "}" .
+  31     Statement         =   Block | ";"
+  32                         | ConstDeclarations | VarDeclarations
+  33                         | Assignment | IfStatement | WhileStatement | DoWhileStatement | ForStatement
+  34                         | ReturnStatement | HaltStatement
+  35                         | ReadStatement | WriteStatement 
+  36 						| "continue" | "break" .
+  37     ConstDeclarations = "const" OneConst { "," OneConst } ";" .
+  38     OneConst          = identifier "=" Constant .
+  39     Constant          =   number | charLit
+  40                         | "true" | "false" | "null" .
+  41     VarDeclarations   = Type OneVar { "," OneVar } ";" .
+  42     OneVar            = identifier [ "=" Expression ] .
+  43     Assignment        = Designator { "," Designator } ( "=" | AssignmentOP ) Expression { "," Expression } ";" .
+  44     Designator        = identifier [ "[" Expression "]" ] .
+  45     IfStatement       = "if" "(" Condition ")" Statement [Else] .
+  46 	Else              = "elsif" "(" Condition ")" Statement [Else] | "else" Statement . 
+  47     DoWhileStatement  = "do" Statement "while" "(" Condition ")" .
+  48 	WhileStatement    = "while" "(" Condition ")" Statement .
+  49 	ForStatement      = "for" (identifier "=" Expression) ("to" | "downto") Expression Statement . 
+  50     ReturnStatement   = "return" ";" .
+  51     HaltStatement     = "halt" ";" .
+  52     ReadStatement     = "read" "(" ReadElement
+  53                                    { "," ReadElement } ")" ";" .
+  54     ReadElement       = stringLit | Designator .
+  55     WriteStatement    = "write" "(" WriteElement
+  56                                     { "," WriteElement } ")" ";" .
+  57     WriteElement      = stringLit | Expression .
+  58     Condition         = Expression .
+  59     Expression        = AddExp [ RelOp AddExp ] .
+  60     AddExp            = [ "+" | "-" ] Term { AddOp Term } .
+  61     Term              = Factor { MulOp Factor } .
+  62     Factor            =   Designator | Constant
+  63                         | "new" BasicType "[" Expression "]"
+  64                         | "!" Factor | "(" Expression ")" .
+  65     Type              = BasicType [ "[]" ] .
+  66     BasicType         = "int" | "bool" .
+  67     AddOp             = "+" | "-" | "||" .
+  68     MulOp             = "*" | "/" | "&&" | "%" .
+  69     RelOp             = "==" | "!=" | "<" | "<=" | ">" | ">=" .
+  70 	AssignmentOP      = "*=" | "/=" | "+=" | "-=" | "&=" | "|=" | "%=" .
+  71   END Parva.
 
 0 errors detected
+4 warnings detected

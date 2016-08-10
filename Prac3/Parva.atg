@@ -16,7 +16,7 @@
     printable  = ANY - control .
 
   TOKENS
-    identifier = (letter | "_") [{ letter | digit | "_" } (letter | digit) ] .
+    identifier = letter [{ letter | digit | "_" } (letter | digit) ] .
     number     = digit { digit } .
     stringLit  = '"' { stringCh | backslash printable } '"' .
     charLit    = "'" ( charCh   | backslash printable ) "'" .

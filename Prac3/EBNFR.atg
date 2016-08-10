@@ -11,7 +11,7 @@ TOKENS
   letter = l .
   digit  = d .
   
-/*COMMENTS FROM "(*" TO "*)"  NESTED*/
+COMMENTS FROM "/*" TO "*/"  NESTED
 
 IGNORE  CHR(9) .. CHR(13)
 
@@ -31,7 +31,6 @@ PRODUCTIONS
   terminal     	=  ("'" nq1Terminal)| ('"' nq2Terminal ).
   nq1Terminal 	= noQuote ("'" | nq1Terminal) .
   nq2Terminal	= noQuote ('"' | nq2Terminal) .
-  
   noQuote      	= letter | digit | symbol .
   symbol       	= "`" | "~" | "!" | "@" | "#" | "$" | "%" | "^" | "&"
                   | "*" | "(" | ")" | "_" | "+" | "-" | "=" | "[" | "]"
