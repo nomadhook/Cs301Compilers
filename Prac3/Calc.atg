@@ -1,6 +1,7 @@
 COMPILER Calc  $CN
 /* Simple four function calculator
-   P.D. Terry, Rhodes University, 2016 */
+   P.D. Terry, Rhodes University, 2016 
+   Worked on by Marq Botha - 14B7599; Damon Hook - 14H0114; Megan Kingon - 14K0129; Kyle Wallace - 12W4298 */
 
 CHARACTERS
   digit      = "0123456789" .

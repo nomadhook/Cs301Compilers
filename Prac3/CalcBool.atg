@@ -1,6 +1,6 @@
 COMPILER CalcBool  $CN
-/* Simple four function calculator
-   P.D. Terry, Rhodes University, 2016 */
+/* Simple bool calculator
+   Marq Botha - 14B7599; Damon Hook - 14H0114; Megan Kingon - 14K0129; Kyle Wallace - 12W4298 */
 
 CHARACTERS
   letter	 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" .

@@ -3,90 +3,29 @@ using System;
 using System.IO;
 using System.Text;
 
-namespace EBNFR {
+namespace EBNF {
 
 public class Parser {
 	public const int _EOF = 0;
-	public const int _terminal = 1;
+	public const int _nonterminal = 1;
+	public const int _terminal = 2;
 	// terminals
 	public const int EOF_SYM = 0;
-	public const int terminal_Sym = 1;
-	public const int equal_Sym = 2;
-	public const int point_Sym = 3;
-	public const int bar_Sym = 4;
-	public const int lbrack_Sym = 5;
-	public const int rbrack_Sym = 6;
-	public const int lparen_Sym = 7;
-	public const int rparen_Sym = 8;
-	public const int lbrace_Sym = 9;
-	public const int rbrace_Sym = 10;
-	public const int underscore_Sym = 11;
-	public const int d0_Sym = 12;
-	public const int d1_Sym = 13;
-	public const int d2_Sym = 14;
-	public const int d3_Sym = 15;
-	public const int d4_Sym = 16;
-	public const int d5_Sym = 17;
-	public const int d6_Sym = 18;
-	public const int d7_Sym = 19;
-	public const int d8_Sym = 20;
-	public const int d9_Sym = 21;
-	public const int A_Sym = 22;
-	public const int B_Sym = 23;
-	public const int C_Sym = 24;
-	public const int D_Sym = 25;
-	public const int E_Sym = 26;
-	public const int F_Sym = 27;
-	public const int G_Sym = 28;
-	public const int H_Sym = 29;
-	public const int I_Sym = 30;
-	public const int J_Sym = 31;
-	public const int K_Sym = 32;
-	public const int L_Sym = 33;
-	public const int M_Sym = 34;
-	public const int N_Sym = 35;
-	public const int O_Sym = 36;
-	public const int P_Sym = 37;
-	public const int Q_Sym = 38;
-	public const int R_Sym = 39;
-	public const int S_Sym = 40;
-	public const int T_Sym = 41;
-	public const int U_Sym = 42;
-	public const int V_Sym = 43;
-	public const int W_Sym = 44;
-	public const int X_Sym = 45;
-	public const int Y_Sym = 46;
-	public const int Z_Sym = 47;
-	public const int a_Sym = 48;
-	public const int b_Sym = 49;
-	public const int c_Sym = 50;
-	public const int d_Sym = 51;
-	public const int e_Sym = 52;
-	public const int f_Sym = 53;
-	public const int g_Sym = 54;
-	public const int h_Sym = 55;
-	public const int i_Sym = 56;
-	public const int j_Sym = 57;
-	public const int k_Sym = 58;
-	public const int l_Sym = 59;
-	public const int m_Sym = 60;
-	public const int n_Sym = 61;
-	public const int o_Sym = 62;
-	public const int p_Sym = 63;
-	public const int q_Sym = 64;
-	public const int r_Sym = 65;
-	public const int s_Sym = 66;
-	public const int t_Sym = 67;
-	public const int u_Sym = 68;
-	public const int v_Sym = 69;
-	public const int w_Sym = 70;
-	public const int x_Sym = 71;
-	public const int y_Sym = 72;
-	public const int z_Sym = 73;
-	public const int NOT_SYM = 74;
+	public const int nonterminal_Sym = 1;
+	public const int terminal_Sym = 2;
+	public const int equal_Sym = 3;
+	public const int point_Sym = 4;
+	public const int bar_Sym = 5;
+	public const int lbrack_Sym = 6;
+	public const int rbrack_Sym = 7;
+	public const int lparen_Sym = 8;
+	public const int rparen_Sym = 9;
+	public const int lbrace_Sym = 10;
+	public const int rbrace_Sym = 11;
+	public const int NOT_SYM = 12;
 	// pragmas
 
-	public const int maxT = 74;
+	public const int maxT = 12;
 
 	const bool T = true;
 	const bool x = false;
@@ -170,53 +109,38 @@ public class Parser {
 		}
 	}
 
-	static void EBNFR() {
-		if (StartOf(1)) {
+	static void EBNF() {
+		while (la.kind == nonterminal_Sym) {
 			Production();
-			EBNFR();
-		} else if (la.kind == EOF_SYM) {
-			Get();
-		} else SynErr(75);
+		}
+		Expect(EOF_SYM);
 	}
 
 	static void Production() {
-		nonterminal();
+		Expect(nonterminal_Sym);
 		Expect(equal_Sym);
 		Expression();
 		Expect(point_Sym);
 	}
 
-	static void nonterminal() {
-		if (StartOf(1)) {
-			letter();
-		} else if (StartOf(1)) {
-			letter();
-			nonterminalR();
-		} else SynErr(76);
-	}
-
 	static void Expression() {
-		if (StartOf(2)) {
+		Term();
+		while (la.kind == bar_Sym) {
+			Get();
 			Term();
-		} else if (StartOf(2)) {
-			Term();
-			Expect(bar_Sym);
-			Expression();
-		} else SynErr(77);
+		}
 	}
 
 	static void Term() {
-		if (StartOf(2)) {
+		Factor();
+		while (StartOf(1)) {
 			Factor();
-		} else if (StartOf(2)) {
-			Factor();
-			Term();
-		} else SynErr(78);
+		}
 	}
 
 	static void Factor() {
-		if (StartOf(1)) {
-			nonterminal();
+		if (la.kind == nonterminal_Sym) {
+			Get();
 		} else if (la.kind == terminal_Sym) {
 			Get();
 		} else if (la.kind == lbrack_Sym) {
@@ -231,288 +155,7 @@ public class Parser {
 			Get();
 			Expression();
 			Expect(rbrace_Sym);
-		} else SynErr(79);
-	}
-
-	static void letter() {
-		switch (la.kind) {
-		case A_Sym: {
-			Get();
-			break;
-		}
-		case B_Sym: {
-			Get();
-			break;
-		}
-		case C_Sym: {
-			Get();
-			break;
-		}
-		case D_Sym: {
-			Get();
-			break;
-		}
-		case E_Sym: {
-			Get();
-			break;
-		}
-		case F_Sym: {
-			Get();
-			break;
-		}
-		case G_Sym: {
-			Get();
-			break;
-		}
-		case H_Sym: {
-			Get();
-			break;
-		}
-		case I_Sym: {
-			Get();
-			break;
-		}
-		case J_Sym: {
-			Get();
-			break;
-		}
-		case K_Sym: {
-			Get();
-			break;
-		}
-		case L_Sym: {
-			Get();
-			break;
-		}
-		case M_Sym: {
-			Get();
-			break;
-		}
-		case N_Sym: {
-			Get();
-			break;
-		}
-		case O_Sym: {
-			Get();
-			break;
-		}
-		case P_Sym: {
-			Get();
-			break;
-		}
-		case Q_Sym: {
-			Get();
-			break;
-		}
-		case R_Sym: {
-			Get();
-			break;
-		}
-		case S_Sym: {
-			Get();
-			break;
-		}
-		case T_Sym: {
-			Get();
-			break;
-		}
-		case U_Sym: {
-			Get();
-			break;
-		}
-		case V_Sym: {
-			Get();
-			break;
-		}
-		case W_Sym: {
-			Get();
-			break;
-		}
-		case X_Sym: {
-			Get();
-			break;
-		}
-		case Y_Sym: {
-			Get();
-			break;
-		}
-		case Z_Sym: {
-			Get();
-			break;
-		}
-		case a_Sym: {
-			Get();
-			break;
-		}
-		case b_Sym: {
-			Get();
-			break;
-		}
-		case c_Sym: {
-			Get();
-			break;
-		}
-		case d_Sym: {
-			Get();
-			break;
-		}
-		case e_Sym: {
-			Get();
-			break;
-		}
-		case f_Sym: {
-			Get();
-			break;
-		}
-		case g_Sym: {
-			Get();
-			break;
-		}
-		case h_Sym: {
-			Get();
-			break;
-		}
-		case i_Sym: {
-			Get();
-			break;
-		}
-		case j_Sym: {
-			Get();
-			break;
-		}
-		case k_Sym: {
-			Get();
-			break;
-		}
-		case l_Sym: {
-			Get();
-			break;
-		}
-		case m_Sym: {
-			Get();
-			break;
-		}
-		case n_Sym: {
-			Get();
-			break;
-		}
-		case o_Sym: {
-			Get();
-			break;
-		}
-		case p_Sym: {
-			Get();
-			break;
-		}
-		case q_Sym: {
-			Get();
-			break;
-		}
-		case r_Sym: {
-			Get();
-			break;
-		}
-		case s_Sym: {
-			Get();
-			break;
-		}
-		case t_Sym: {
-			Get();
-			break;
-		}
-		case u_Sym: {
-			Get();
-			break;
-		}
-		case v_Sym: {
-			Get();
-			break;
-		}
-		case w_Sym: {
-			Get();
-			break;
-		}
-		case x_Sym: {
-			Get();
-			break;
-		}
-		case y_Sym: {
-			Get();
-			break;
-		}
-		case z_Sym: {
-			Get();
-			break;
-		}
-		default: SynErr(80); break;
-		}
-	}
-
-	static void nonterminalR() {
-		if (StartOf(3)) {
-			if (StartOf(1)) {
-				letter();
-			} else if (la.kind == underscore_Sym) {
-				Get();
-			} else {
-				digit();
-			}
-		} else if (StartOf(3)) {
-			if (StartOf(1)) {
-				letter();
-			} else if (la.kind == underscore_Sym) {
-				Get();
-			} else {
-				digit();
-			}
-			nonterminalR();
-		} else SynErr(81);
-	}
-
-	static void digit() {
-		switch (la.kind) {
-		case d0_Sym: {
-			Get();
-			break;
-		}
-		case d1_Sym: {
-			Get();
-			break;
-		}
-		case d2_Sym: {
-			Get();
-			break;
-		}
-		case d3_Sym: {
-			Get();
-			break;
-		}
-		case d4_Sym: {
-			Get();
-			break;
-		}
-		case d5_Sym: {
-			Get();
-			break;
-		}
-		case d6_Sym: {
-			Get();
-			break;
-		}
-		case d7_Sym: {
-			Get();
-			break;
-		}
-		case d8_Sym: {
-			Get();
-			break;
-		}
-		case d9_Sym: {
-			Get();
-			break;
-		}
-		default: SynErr(82); break;
-		}
+		} else SynErr(13);
 	}
 
 
@@ -521,16 +164,14 @@ public class Parser {
 		la = new Token();
 		la.val = "";
 		Get();
-		EBNFR();
+		EBNF();
 		Expect(EOF_SYM);
 
 	}
 
 	static bool[,] set = {
-		{T,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x},
-		{x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,x,x},
-		{x,T,x,x, x,T,x,T, x,T,x,x, x,x,x,x, x,x,x,x, x,x,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,x,x},
-		{x,x,x,x, x,x,x,x, x,x,x,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,x,x}
+		{T,x,x,x, x,x,x,x, x,x,x,x, x,x},
+		{x,T,T,x, x,x,T,x, T,x,T,x, x,x}
 
 	};
 
@@ -643,88 +284,19 @@ public class Errors {
 		string s;
 		switch (n) {
 			case 0: s = "EOF expected"; break;
-			case 1: s = "terminal expected"; break;
-			case 2: s = "\"=\" expected"; break;
-			case 3: s = "\".\" expected"; break;
-			case 4: s = "\"|\" expected"; break;
-			case 5: s = "\"[\" expected"; break;
-			case 6: s = "\"]\" expected"; break;
-			case 7: s = "\"(\" expected"; break;
-			case 8: s = "\")\" expected"; break;
-			case 9: s = "\"{\" expected"; break;
-			case 10: s = "\"}\" expected"; break;
-			case 11: s = "\"_\" expected"; break;
-			case 12: s = "\"0\" expected"; break;
-			case 13: s = "\"1\" expected"; break;
-			case 14: s = "\"2\" expected"; break;
-			case 15: s = "\"3\" expected"; break;
-			case 16: s = "\"4\" expected"; break;
-			case 17: s = "\"5\" expected"; break;
-			case 18: s = "\"6\" expected"; break;
-			case 19: s = "\"7\" expected"; break;
-			case 20: s = "\"8\" expected"; break;
-			case 21: s = "\"9\" expected"; break;
-			case 22: s = "\"A\" expected"; break;
-			case 23: s = "\"B\" expected"; break;
-			case 24: s = "\"C\" expected"; break;
-			case 25: s = "\"D\" expected"; break;
-			case 26: s = "\"E\" expected"; break;
-			case 27: s = "\"F\" expected"; break;
-			case 28: s = "\"G\" expected"; break;
-			case 29: s = "\"H\" expected"; break;
-			case 30: s = "\"I\" expected"; break;
-			case 31: s = "\"J\" expected"; break;
-			case 32: s = "\"K\" expected"; break;
-			case 33: s = "\"L\" expected"; break;
-			case 34: s = "\"M\" expected"; break;
-			case 35: s = "\"N\" expected"; break;
-			case 36: s = "\"O\" expected"; break;
-			case 37: s = "\"P\" expected"; break;
-			case 38: s = "\"Q\" expected"; break;
-			case 39: s = "\"R\" expected"; break;
-			case 40: s = "\"S\" expected"; break;
-			case 41: s = "\"T\" expected"; break;
-			case 42: s = "\"U\" expected"; break;
-			case 43: s = "\"V\" expected"; break;
-			case 44: s = "\"W\" expected"; break;
-			case 45: s = "\"X\" expected"; break;
-			case 46: s = "\"Y\" expected"; break;
-			case 47: s = "\"Z\" expected"; break;
-			case 48: s = "\"a\" expected"; break;
-			case 49: s = "\"b\" expected"; break;
-			case 50: s = "\"c\" expected"; break;
-			case 51: s = "\"d\" expected"; break;
-			case 52: s = "\"e\" expected"; break;
-			case 53: s = "\"f\" expected"; break;
-			case 54: s = "\"g\" expected"; break;
-			case 55: s = "\"h\" expected"; break;
-			case 56: s = "\"i\" expected"; break;
-			case 57: s = "\"j\" expected"; break;
-			case 58: s = "\"k\" expected"; break;
-			case 59: s = "\"l\" expected"; break;
-			case 60: s = "\"m\" expected"; break;
-			case 61: s = "\"n\" expected"; break;
-			case 62: s = "\"o\" expected"; break;
-			case 63: s = "\"p\" expected"; break;
-			case 64: s = "\"q\" expected"; break;
-			case 65: s = "\"r\" expected"; break;
-			case 66: s = "\"s\" expected"; break;
-			case 67: s = "\"t\" expected"; break;
-			case 68: s = "\"u\" expected"; break;
-			case 69: s = "\"v\" expected"; break;
-			case 70: s = "\"w\" expected"; break;
-			case 71: s = "\"x\" expected"; break;
-			case 72: s = "\"y\" expected"; break;
-			case 73: s = "\"z\" expected"; break;
-			case 74: s = "??? expected"; break;
-			case 75: s = "invalid EBNFR"; break;
-			case 76: s = "invalid nonterminal"; break;
-			case 77: s = "invalid Expression"; break;
-			case 78: s = "invalid Term"; break;
-			case 79: s = "invalid Factor"; break;
-			case 80: s = "invalid letter"; break;
-			case 81: s = "invalid nonterminalR"; break;
-			case 82: s = "invalid digit"; break;
+			case 1: s = "nonterminal expected"; break;
+			case 2: s = "terminal expected"; break;
+			case 3: s = "\"=\" expected"; break;
+			case 4: s = "\".\" expected"; break;
+			case 5: s = "\"|\" expected"; break;
+			case 6: s = "\"[\" expected"; break;
+			case 7: s = "\"]\" expected"; break;
+			case 8: s = "\"(\" expected"; break;
+			case 9: s = "\")\" expected"; break;
+			case 10: s = "\"{\" expected"; break;
+			case 11: s = "\"}\" expected"; break;
+			case 12: s = "??? expected"; break;
+			case 13: s = "invalid Factor"; break;
 
 			default: s = "error " + n; break;
 		}

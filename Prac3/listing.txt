@@ -1,9 +1,8 @@
 
    1 Goal = { One } .
-****  ^ "=" expected
    2 One  = Two "plus" Four "." .
    3 Four = Five { "is" Five } .
    4 Five = Six { Six } .
-   5 Six =  Two | Three | "(*" Four "*)" | '(' Four ')' .
+   5 Six =  Two | Three | "(*" Four "*)" | '(' Four ')'.
 
-1 errors detected
+0 errors detected

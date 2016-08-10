@@ -1,3 +1,6 @@
+/*  Staff members and their qualifications.
+	Marq Botha - 14B7599; Damon Hook - 14H0114; Megan Kingon - 14K0129; Kyle Wallace - 12W4298 */
+
 COMPILER Staff  $CN
 
 CHARACTERS
@@ -12,8 +15,7 @@ TOKENS
 IGNORE CHR(0) .. CHR(31)
  
 PRODUCTIONS
-	Staff 		  = { Sentence "." } EOF .
-	Sentence 	  = Name .
+	Staff 		  = { Name "." } EOF .
 	Name 		  = (initial | word) {(initial|word)} ["," Qualification] .
 	Qualification = quali {"," quali} .
 END Staff.

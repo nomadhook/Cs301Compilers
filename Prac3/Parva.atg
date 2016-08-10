@@ -1,7 +1,8 @@
   COMPILER Parva $CN
   /* Parva level 1 grammar  - Coco/R for C# (EBNF)
      P.D. Terry, Rhodes University, 2003
-     Grammar only */
+     Grammar only 
+	 Worked on by Marq Botha - 14B7599; Damon Hook - 14H0114; Megan Kingon - 14K0129; Kyle Wallace - 12W4298 */
 
   CHARACTERS
     lf         = CHR(10) .
