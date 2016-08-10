@@ -154,20 +154,19 @@ public class Parser {
 
 	static void Expression() {
 		Term();
-		ExpressionR();
-	}
-
-	static void Term() {
-		Factor();
-		TermR();
-	}
-
-	static void ExpressionR() {
 		if (la.kind == bar_Sym) {
 			Get();
 			Expression();
 		} else if (StartOf(1)) {
 		} else SynErr(36);
+	}
+
+	static void Term() {
+		Factor();
+		if (StartOf(2)) {
+			Term();
+		} else if (StartOf(3)) {
+		} else SynErr(37);
 	}
 
 	static void Factor() {
@@ -187,13 +186,6 @@ public class Parser {
 			Get();
 			Expression();
 			Expect(rbrace_Sym);
-		} else SynErr(37);
-	}
-
-	static void TermR() {
-		if (StartOf(2)) {
-			Term();
-		} else if (StartOf(3)) {
 		} else SynErr(38);
 	}
 
@@ -223,12 +215,20 @@ public class Parser {
 
 	static void nq1Terminal() {
 		noQuote();
-		nq1TerminalR();
+		if (la.kind == squote_Sym) {
+			Get();
+		} else if (StartOf(5)) {
+			nq1Terminal();
+		} else SynErr(41);
 	}
 
 	static void nq2Terminal() {
 		noQuote();
-		nq2TerminalR();
+		if (la.kind == dquote_Sym) {
+			Get();
+		} else if (StartOf(5)) {
+			nq2Terminal();
+		} else SynErr(42);
 	}
 
 	static void noQuote() {
@@ -236,89 +236,131 @@ public class Parser {
 			Get();
 		} else if (la.kind == digit_Sym) {
 			Get();
-		} else if (StartOf(5)) {
+		} else if (StartOf(6)) {
 			symbol();
-		} else SynErr(41);
-	}
-
-	static void nq1TerminalR() {
-		if (la.kind == squote_Sym) {
-			Get();
-		} else if (StartOf(6)) {
-			nq1Terminal();
-		} else SynErr(42);
-	}
-
-	static void nq2TerminalR() {
-		if (la.kind == dquote_Sym) {
-			Get();
-		} else if (StartOf(6)) {
-			nq2Terminal();
 		} else SynErr(43);
 	}
 
 	static void symbol() {
-		if (la.kind == accent_Sym) {
+		switch (la.kind) {
+		case accent_Sym: {
 			Get();
-		} else if (la.kind == tilde_Sym) {
+			break;
+		}
+		case tilde_Sym: {
 			Get();
-		} else if (la.kind == bang_Sym) {
+			break;
+		}
+		case bang_Sym: {
 			Get();
-		} else if (la.kind == at_Sym) {
+			break;
+		}
+		case at_Sym: {
 			Get();
-		} else if (la.kind == hash_Sym) {
+			break;
+		}
+		case hash_Sym: {
 			Get();
-		} else if (la.kind == dollar_Sym) {
+			break;
+		}
+		case dollar_Sym: {
 			Get();
-		} else if (la.kind == percent_Sym) {
+			break;
+		}
+		case percent_Sym: {
 			Get();
-		} else if (la.kind == uparrow_Sym) {
+			break;
+		}
+		case uparrow_Sym: {
 			Get();
-		} else if (la.kind == and_Sym) {
+			break;
+		}
+		case and_Sym: {
 			Get();
-		} else if (la.kind == star_Sym) {
+			break;
+		}
+		case star_Sym: {
 			Get();
-		} else if (la.kind == lparen_Sym) {
+			break;
+		}
+		case lparen_Sym: {
 			Get();
-		} else if (la.kind == rparen_Sym) {
+			break;
+		}
+		case rparen_Sym: {
 			Get();
-		} else if (la.kind == underscore_Sym) {
+			break;
+		}
+		case underscore_Sym: {
 			Get();
-		} else if (la.kind == plus_Sym) {
+			break;
+		}
+		case plus_Sym: {
 			Get();
-		} else if (la.kind == minus_Sym) {
+			break;
+		}
+		case minus_Sym: {
 			Get();
-		} else if (la.kind == equal_Sym) {
+			break;
+		}
+		case equal_Sym: {
 			Get();
-		} else if (la.kind == lbrack_Sym) {
+			break;
+		}
+		case lbrack_Sym: {
 			Get();
-		} else if (la.kind == rbrack_Sym) {
+			break;
+		}
+		case rbrack_Sym: {
 			Get();
-		} else if (la.kind == lbrace_Sym) {
+			break;
+		}
+		case lbrace_Sym: {
 			Get();
-		} else if (la.kind == rbrace_Sym) {
+			break;
+		}
+		case rbrace_Sym: {
 			Get();
-		} else if (la.kind == bar_Sym) {
+			break;
+		}
+		case bar_Sym: {
 			Get();
-		} else if (la.kind == colon_Sym) {
+			break;
+		}
+		case colon_Sym: {
 			Get();
-		} else if (la.kind == semicolon_Sym) {
+			break;
+		}
+		case semicolon_Sym: {
 			Get();
-		} else if (la.kind == comma_Sym) {
+			break;
+		}
+		case comma_Sym: {
 			Get();
-		} else if (la.kind == less_Sym) {
+			break;
+		}
+		case less_Sym: {
 			Get();
-		} else if (la.kind == point_Sym) {
+			break;
+		}
+		case point_Sym: {
 			Get();
-		} else if (la.kind == greater_Sym) {
+			break;
+		}
+		case greater_Sym: {
 			Get();
-		} else if (la.kind == slash_Sym) {
+			break;
+		}
+		case slash_Sym: {
 			Get();
-		} else if (la.kind == query_Sym) {
+			break;
+		}
+		case query_Sym: {
 			Get();
-		} else if (la.kind == point_Sym) {
-			Get();
-		} else SynErr(44);
+			break;
+		}
+		default: SynErr(44); break;
+		}
 	}
 
 
@@ -338,8 +380,8 @@ public class Parser {
 		{x,T,x,x, x,x,T,x, T,x,T,x, x,T,T,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x},
 		{x,x,x,x, T,T,x,T, x,T,x,T, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x},
 		{x,T,x,T, T,T,T,T, T,T,T,T, x,T,T,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x},
-		{x,x,x,T, T,T,T,T, T,T,T,T, T,x,x,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,x,x},
-		{x,T,T,T, T,T,T,T, T,T,T,T, T,x,x,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,x,x}
+		{x,T,T,T, T,T,T,T, T,T,T,T, T,x,x,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,x,x},
+		{x,x,x,T, T,T,T,T, T,T,T,T, T,x,x,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,T,T, T,T,x,x}
 
 	};
 
@@ -487,14 +529,14 @@ public class Errors {
 			case 33: s = "\"?\" expected"; break;
 			case 34: s = "??? expected"; break;
 			case 35: s = "invalid EBNFR"; break;
-			case 36: s = "invalid ExpressionR"; break;
-			case 37: s = "invalid Factor"; break;
-			case 38: s = "invalid TermR"; break;
+			case 36: s = "invalid Expression"; break;
+			case 37: s = "invalid Term"; break;
+			case 38: s = "invalid Factor"; break;
 			case 39: s = "invalid terminal"; break;
 			case 40: s = "invalid nonterminalR"; break;
-			case 41: s = "invalid noQuote"; break;
-			case 42: s = "invalid nq1TerminalR"; break;
-			case 43: s = "invalid nq2TerminalR"; break;
+			case 41: s = "invalid nq1Terminal"; break;
+			case 42: s = "invalid nq2Terminal"; break;
+			case 43: s = "invalid noQuote"; break;
 			case 44: s = "invalid symbol"; break;
 
 			default: s = "error " + n; break;

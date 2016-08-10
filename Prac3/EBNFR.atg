@@ -9,8 +9,8 @@ CHARACTERS
 
 TOKENS
   letter = l .
-  digit =  d .
-
+  digit  = d .
+  
 /*COMMENTS FROM "(*" TO "*)"  NESTED*/
 
 IGNORE  CHR(9) .. CHR(13)
@@ -18,27 +18,23 @@ IGNORE  CHR(9) .. CHR(13)
 PRODUCTIONS
    EBNFR      = EOF | Production EBNFR .
    Production = nonterminal "=" Expression "." .
-   Expression = Term ExpressionR  .
-   ExpressionR = ("|" Expression) | .
-   Term       = Factor TermR .
-   TermR	  = Term | .
+   Expression = Term ( "|" Expression | ) .
+   Term       = Factor (Term | ) .
    Factor     =   nonterminal
                 | terminal
                 | "[" Expression "]"
                 | "(" Expression ")"
                 | "{" Expression "}" .
 				 
-  nonterminal	= letter nonterminalR.
-  nonterminalR 	= ((letter | "_" | digit) nonterminalR) |  .
+  nonterminal	= letter nonterminalR .
+  nonterminalR 	= (letter | "_" | digit) nonterminalR |  .
   terminal     	=  ("'" nq1Terminal)| ('"' nq2Terminal ).
-  nq1Terminal 	= noQuote nq1TerminalR .
-  nq1TerminalR	=  "'" | nq1Terminal .
-  nq2Terminal	= noQuote nq2TerminalR .
-  nq2TerminalR  =  '"' | nq2Terminal .
+  nq1Terminal 	= noQuote ("'" | nq1Terminal) .
+  nq2Terminal	= noQuote ('"' | nq2Terminal) .
   
   noQuote      	= letter | digit | symbol .
   symbol       	= "`" | "~" | "!" | "@" | "#" | "$" | "%" | "^" | "&"
                   | "*" | "(" | ")" | "_" | "+" | "-" | "=" | "[" | "]"
                   | "{" | "}" | "|" | ":" | ";" | "," | "<"
-                  | "." | ">" | "/" | "?" | "." .
+                  | "." | ">" | "/" | "?" .
 END EBNFR.
