@@ -1,4 +1,4 @@
-COMPILER EBNFR $CN
+COMPILER EBNFRKyle $CN
 CHARACTERS
   nqkyle = ANY - "'" - '"' .
   nq1 = ANY - "'" .
@@ -14,7 +14,7 @@ COMMENTS FROM "(*" TO "*)"  NESTED
 IGNORE  CHR(9) .. CHR(13)
   
 PRODUCTIONS
-  EBNFR			= Production EBNFR | EOF .
+  EBNFRKyle			= Production EBNFRKyle | EOF .
   Production	= nonterminal "=" Expression "." .
   Expression	= Term | Term "|" Expression .
   Term			= Factor | Factor Term .
@@ -34,4 +34,4 @@ PRODUCTIONS
 				  |"N"|"O"|"P"|"Q"|"R"|"S"|"T"|"U"|"V"|"W"|"X"|"Y"|"Z"
 				  | "a"|"b"|"c"|"d"|"e"|"f"|"g"|"h"|"i"|"j"|"k"|"l"|"m"
 				  |"n"|"o"|"p"|"q"|"r"|"s"|"t"|"u"|"v"|"w"|"x"|"y"|"z" .
-END EBNFR .
+END EBNFRKyle .
