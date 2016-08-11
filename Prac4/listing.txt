@@ -1,0 +1,12 @@
+
+   1 <name>               := <title> <first part> <surname>
+****                      ^ "::=" expected
+   2 <title>              ::= Mr | Miss | Ms | Dr | Prof | eps
+   3 <first part>         ::= <name> | | <first part> <name> | eps
+   4 <surname>            ::= <name>
+   5 <name>               ::= <letter> | <letter> <name>
+   6 <letter>             ::= <first half letter | <second half letter>
+   7 <first half letter > ::= a | b | c | d | e | f | g | h | i | j | k | l | m
+   8 <second half letter> ::= n | o | p | q | r | s | t | u | v | w | x | y | z
+
+1 errors detected

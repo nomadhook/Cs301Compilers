@@ -1,0 +1,19 @@
+COMPILER Parva $CN
+PRODUCTION    
+  Expression  = AndExp { OrOp AndExp } .
+  AndExp      = EqExp { AddOp EqExp } .
+  EqExp       = RelExp [ EqOp RelExp ] .
+  RelExp      = AddExp [ RelOp AddExp ] .
+  AddExp      = MulExp { AddOp MulExp } .
+  MulExp      = Factor { MulOp Factor } .
+  Factor      = Designator | Constant
+                | "new" BasicType "[" Expression "]"
+                | NegOp Factor | "(" Expression ")" .
+  NegOp       = "!" .
+  MulOp       = "*" | "/" | "%" .
+  AddOp       = "+" | "-" .
+  RelOp       = "<" | "<=" | ">" | ">=" .
+  EqOp        = "==" | "!=" .
+  AndOP       = "&&" .
+  OrOp        = "||" .
+END Parva .

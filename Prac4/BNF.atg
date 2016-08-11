@@ -1,0 +1,23 @@
+COMPILER BNF $CN
+
+CHARACTERS
+  letter = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" .
+  digit = "0123456789" .
+  space = CHR(32) .
+  nl = CHR(10) .
+  control = CHR(0)..CHR(31) .
+
+TOKENS
+  terminal = letter { letter } .
+  nonterminal = "<" letter { space | letter } ">" .
+  newLine = nl .
+  
+IGNORE control - nl
+  
+PRODUCTIONS
+  BNF   = { Production } EOF .
+  Production = nonterminal "::=" Expression (newLine | EOF).
+  Expression = Term { "|" Term } .
+  Term =  (Factor { Factor }) | "eps" .
+  Factor = terminal | nonterminal .
+END BNF.
