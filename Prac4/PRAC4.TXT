@@ -1,0 +1,88 @@
+Group Names and student numbers
+
+Questions -  Available as an ASCII file PRAC4.TXT or Word file PRAC4.DOC to edit
+
+
+Task 3 - Let's take a trip to the C
+
+   From a purely syntactical viewpoint, are the C and Pascal  expressions equivalent - can you think of an
+   expression that one grammar would recognize but the other would reject?
+
+Task 4 - Expressions - again
+
+   Is this an ambiguous grammar? If so, why? is it an LL(1) grammar? If not, why not, and can you find a
+   suitable grammar that is LL(1)?
+
+
+Task 5 - Meet the family
+
+   What form does your grammar take when you eliminate the meta-brackets?
+
+
+   Which, if any, productions break the LL(1) rules, and why?
+
+
+   Can you find an equivalent grammar that does obey the LL(1) constraints? If so, give it.  If not, explain why
+   you think it canot be done.
+
+
+Task 6 - Palindromes
+
+   Does grammar 1 describe palindromes?       If not, why not?
+
+
+   Is it an LL(1) grammar?          If not, why not?
+
+
+
+   Does grammar 2 describe palindromes?       If not, why not?
+
+
+   Is it an LL(1) grammar?          If not, why not?
+
+
+
+   Does grammar 3 describe palindromes?       If not, why not?
+
+
+   Is it an LL(1) grammar?          If not, why not?
+
+
+
+   Does grammar 4 describe palindromes?       If not, why not?
+
+
+   Is it an LL(1) grammar?          If not, why not?
+
+
+
+   Can you find a better grammar to describe palindromes?  If so, give it, if not, explain why not.
+
+
+
+Task 7
+
+
+   Are these grammars equivalent?  Is either (or both) ambiguous?  Do either or both conform to the LL(1)
+   conditions?  If not, explain clearly where the rules are broken, and come up with an LL(1) grammar that
+   describes RPN notation, or else explain why it might be necessary to modify the language itself to overcome
+   any problems you have uncovered.
+
+
+
+Task 8
+
+   Which of the following statements are true?  Justify your answers.
+
+     (a) An LL(1) grammar cannot be ambiguous.
+
+
+     (b) A non-LL(1) grammar must be ambiguous.
+
+
+     (c) An ambiguous language cannot be described by an LL(1) grammar.
+
+
+     (d) It is possible to find an LL(1) grammar to describe any non-ambiguous language.
+
+

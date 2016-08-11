@@ -1,0 +1,6 @@
+<sentence>       ::= the <qualified noun> <verb>  | <pronoun> <verb>
+<qualified noun> ::= <adjective> <noun>
+<noun>           ::= man | girl | boy | lecturer
+<pronoun>        ::= he | she
+<verb>           ::= talks | listens | mystifies
+<adjective>      ::= tall | thin | sleepy

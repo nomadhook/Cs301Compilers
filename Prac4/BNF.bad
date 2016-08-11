@@ -1,0 +1,8 @@
+<name>               := <title> <first part> <surname>
+<title>              ::= Mr | Miss | Ms | Dr | Prof | eps
+<first part>         ::= <name> | | <first part> <name> | eps
+<surname>            ::= <name>
+<name>               ::= <letter> | <letter> <name>
+<letter>             ::= <first half letter | <second half letter>
+<first half letter > ::= a | b | c | d | e | f | g | h | i | j | k | l | m
+<second half letter> ::= n | o | p | q | r | s | t | u | v | w | x | y | z
