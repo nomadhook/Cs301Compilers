@@ -4,7 +4,7 @@ using System.IO;
 using System.Collections;
 using System.Text;
 
-namespace BNF {
+namespace Test {
 
 public class Token {
 	public int kind;    // token kind
@@ -63,28 +63,24 @@ public class Scanner {
 	const char EOL = '\n';
 	const int  eofSym = 0;
 	const int charSetSize = 256;
-	const int maxT = 7;
-	const int noSym = 7;
+	const int maxT = 3;
+	const int noSym = 3;
 	// terminals
 	const int EOF_SYM = 0;
-	const int terminal_Sym = 1;
-	const int nonterminal_Sym = 2;
-	const int newLine_Sym = 3;
-	const int coloncolonequal_Sym = 4;
-	const int bar_Sym = 5;
-	const int eps_Sym = 6;
-	const int NOT_SYM = 7;
+	const int a_Sym = 1;
+	const int b_Sym = 2;
+	const int NOT_SYM = 3;
 	// pragmas
 
 	static short[] start = {
-	  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  5,  0,  0,  0,  0,  0,
 	  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 	  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-	  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  6,  0,  2,  0,  0,  0,
-	  0,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
-	  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  0,  0,  0,  0,  0,
-	  0,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
-	  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  0,  9,  0,  0,  0,
+	  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+	  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+	  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+	  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+	  0,  1,  2,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+	  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 	  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 	  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 	  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
@@ -129,12 +125,13 @@ public class Scanner {
 		ignore[' '] = true;  // blanks are always white space
 		ignore[0] = true; ignore[1] = true; ignore[2] = true; ignore[3] = true; 
 		ignore[4] = true; ignore[5] = true; ignore[6] = true; ignore[7] = true; 
-		ignore[8] = true; ignore[9] = true; ignore[11] = true; ignore[12] = true; 
-		ignore[13] = true; ignore[14] = true; ignore[15] = true; ignore[16] = true; 
-		ignore[17] = true; ignore[18] = true; ignore[19] = true; ignore[20] = true; 
-		ignore[21] = true; ignore[22] = true; ignore[23] = true; ignore[24] = true; 
-		ignore[25] = true; ignore[26] = true; ignore[27] = true; ignore[28] = true; 
-		ignore[29] = true; ignore[30] = true; ignore[31] = true; 
+		ignore[8] = true; ignore[9] = true; ignore[10] = true; ignore[11] = true; 
+		ignore[12] = true; ignore[13] = true; ignore[14] = true; ignore[15] = true; 
+		ignore[16] = true; ignore[17] = true; ignore[18] = true; ignore[19] = true; 
+		ignore[20] = true; ignore[21] = true; ignore[22] = true; ignore[23] = true; 
+		ignore[24] = true; ignore[25] = true; ignore[26] = true; ignore[27] = true; 
+		ignore[28] = true; ignore[29] = true; ignore[30] = true; ignore[31] = true; 
+		
 		//--- AW: fill token list
 		tokens = new Token();  // first token is a dummy
 		Token node = tokens;
@@ -163,7 +160,6 @@ public class Scanner {
 
 	static void CheckLiteral() {
 		switch (t.val) {
-			case "eps": t.kind = eps_Sym; break;
 			default: break;
 		}
 	}
@@ -181,33 +177,9 @@ public class Scanner {
 			case -1: { t.kind = eofSym; goto done; } // NextCh already done /* pdt */
 			case 0: { t.kind = noSym; goto done; }   // NextCh already done
 			case 1:
-				if ((ch >= 'A' && ch <= 'Z'
-				  || ch >= 'a' && ch <= 'z')) { buf.Append(ch); NextCh(); goto case 1; }
-				else { t.kind = terminal_Sym; t.val = buf.ToString(); CheckLiteral(); return t; }
+				{ t.kind = a_Sym; goto done; }
 			case 2:
-				if ((ch >= 'A' && ch <= 'Z'
-				  || ch >= 'a' && ch <= 'z')) { buf.Append(ch); NextCh(); goto case 3; }
-				else { t.kind = noSym; goto done; }
-			case 3:
-				if ((ch == ' '
-				  || ch >= 'A' && ch <= 'Z'
-				  || ch >= 'a' && ch <= 'z')) { buf.Append(ch); NextCh(); goto case 3; }
-				else if (ch == '>') { buf.Append(ch); NextCh(); goto case 4; }
-				else { t.kind = noSym; goto done; }
-			case 4:
-				{ t.kind = nonterminal_Sym; goto done; }
-			case 5:
-				{ t.kind = newLine_Sym; goto done; }
-			case 6:
-				if (ch == ':') { buf.Append(ch); NextCh(); goto case 7; }
-				else { t.kind = noSym; goto done; }
-			case 7:
-				if (ch == '=') { buf.Append(ch); NextCh(); goto case 8; }
-				else { t.kind = noSym; goto done; }
-			case 8:
-				{ t.kind = coloncolonequal_Sym; goto done; }
-			case 9:
-				{ t.kind = bar_Sym; goto done; }
+				{ t.kind = b_Sym; goto done; }
 
 		}
 		done:

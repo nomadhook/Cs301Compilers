@@ -3,25 +3,18 @@ using System;
 using System.IO;
 using System.Text;
 
-namespace BNF {
+namespace Test {
 
 public class Parser {
 	public const int _EOF = 0;
-	public const int _terminal = 1;
-	public const int _nonterminal = 2;
-	public const int _newLine = 3;
 	// terminals
 	public const int EOF_SYM = 0;
-	public const int terminal_Sym = 1;
-	public const int nonterminal_Sym = 2;
-	public const int newLine_Sym = 3;
-	public const int coloncolonequal_Sym = 4;
-	public const int bar_Sym = 5;
-	public const int eps_Sym = 6;
-	public const int NOT_SYM = 7;
+	public const int a_Sym = 1;
+	public const int b_Sym = 2;
+	public const int NOT_SYM = 3;
 	// pragmas
 
-	public const int maxT = 7;
+	public const int maxT = 3;
 
 	const bool T = true;
 	const bool x = false;
@@ -105,49 +98,20 @@ public class Parser {
 		}
 	}
 
-	static void BNF() {
-		while (la.kind == nonterminal_Sym) {
-			Production();
-		}
-		Expect(EOF_SYM);
-	}
-
-	static void Production() {
-		Expect(nonterminal_Sym);
-		Expect(coloncolonequal_Sym);
-		Expression();
-		if (la.kind == newLine_Sym) {
+	static void Test() {
+		if (la.kind == a_Sym) {
 			Get();
-		} else if (la.kind == EOF_SYM) {
-			Get();
-		} else SynErr(8);
-	}
-
-	static void Expression() {
-		Term();
-		while (la.kind == bar_Sym) {
-			Get();
-			Term();
-		}
-	}
-
-	static void Term() {
-		if (la.kind == terminal_Sym || la.kind == nonterminal_Sym) {
-			Factor();
-			while (la.kind == terminal_Sym || la.kind == nonterminal_Sym) {
-				Factor();
+			if (la.kind == a_Sym || la.kind == b_Sym) {
+				Test();
 			}
-		} else if (la.kind == eps_Sym) {
+			Expect(a_Sym);
+		} else if (la.kind == b_Sym) {
 			Get();
-		} else SynErr(9);
-	}
-
-	static void Factor() {
-		if (la.kind == terminal_Sym) {
-			Get();
-		} else if (la.kind == nonterminal_Sym) {
-			Get();
-		} else SynErr(10);
+			if (la.kind == a_Sym || la.kind == b_Sym) {
+				Test();
+			}
+			Expect(b_Sym);
+		} else SynErr(4);
 	}
 
 
@@ -156,13 +120,13 @@ public class Parser {
 		la = new Token();
 		la.val = "";
 		Get();
-		BNF();
+		Test();
 		Expect(EOF_SYM);
 
 	}
 
 	static bool[,] set = {
-		{T,x,x,x, x,x,x,x, x}
+		{T,x,x,x, x}
 
 	};
 
@@ -275,16 +239,10 @@ public class Errors {
 		string s;
 		switch (n) {
 			case 0: s = "EOF expected"; break;
-			case 1: s = "terminal expected"; break;
-			case 2: s = "nonterminal expected"; break;
-			case 3: s = "newLine expected"; break;
-			case 4: s = "\"::=\" expected"; break;
-			case 5: s = "\"|\" expected"; break;
-			case 6: s = "\"eps\" expected"; break;
-			case 7: s = "??? expected"; break;
-			case 8: s = "invalid Production"; break;
-			case 9: s = "invalid Term"; break;
-			case 10: s = "invalid Factor"; break;
+			case 1: s = "\"a\" expected"; break;
+			case 2: s = "\"b\" expected"; break;
+			case 3: s = "??? expected"; break;
+			case 4: s = "invalid Test"; break;
 
 			default: s = "error " + n; break;
 		}

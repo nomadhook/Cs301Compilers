@@ -1,0 +1,5 @@
+COMPILER Test $CN
+   IGNORE CHR(0) .. CHR(31)
+   PRODUCTIONS
+     Test = [ "a"  Test  "a" | "b"  Test  "b" | "a" | "b" ] .
+END Test.

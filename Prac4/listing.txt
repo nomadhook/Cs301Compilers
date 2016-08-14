@@ -1,12 +1,14 @@
+  Warning: Test is deletable
+  LL1 warning in Test: "a" is the start & successor of a deletable structure
+  LL1 warning in Test: "b" is the start & successor of a deletable structure
+  LL1 warning in Test: "a" is the start of several alternatives
+  LL1 warning in Test: "b" is the start of several alternatives
 
-   1 <name>               := <title> <first part> <surname>
-****                      ^ "::=" expected
-   2 <title>              ::= Mr | Miss | Ms | Dr | Prof | eps
-   3 <first part>         ::= <name> | | <first part> <name> | eps
-   4 <surname>            ::= <name>
-   5 <name>               ::= <letter> | <letter> <name>
-   6 <letter>             ::= <first half letter | <second half letter>
-   7 <first half letter > ::= a | b | c | d | e | f | g | h | i | j | k | l | m
-   8 <second half letter> ::= n | o | p | q | r | s | t | u | v | w | x | y | z
+   1 COMPILER Test $CN
+   2    IGNORE CHR(0) .. CHR(31)
+   3    PRODUCTIONS
+   4      Test = [ "a"  Test  "a" | "b"  Test  "b" | "a" | "b" ] .
+   5 END Test.
 
-1 errors detected
+0 errors detected
+5 warnings detected

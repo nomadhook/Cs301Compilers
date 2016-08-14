@@ -4,7 +4,7 @@ PRODUCTION
   AndExp      = EqExp { AddOp EqExp } .
   EqExp       = RelExp [ EqOp RelExp ] .
   RelExp      = AddExp [ RelOp AddExp ] .
-  AddExp      = MulExp { AddOp MulExp } .
+  AddExp      = MulExp { AndOp MulExp } .
   MulExp      = Factor { MulOp Factor } .
   Factor      = Designator | Constant
                 | "new" BasicType "[" Expression "]"
