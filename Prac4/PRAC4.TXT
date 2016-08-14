@@ -1,58 +1,90 @@
 Group Names and student numbers
 
-Questions -  Available as an ASCII file PRAC4.TXT or Word file PRAC4.DOC to edit
+Questions -  Available as an ASCII file PRAC4.TXT or Word file PRAC4.DOC to edit
 
 
 Task 3 - Let's take a trip to the C
 
    From a purely syntactical viewpoint, are the C and Pascal  expressions equivalent - can you think of an
    expression that one grammar would recognize but the other would reject?
+   
+- Semantically they would be different, but syntactically they wuold be the same, therefore they are equivalent.
 
 Task 4 - Expressions - again
 
    Is this an ambiguous grammar? If so, why? is it an LL(1) grammar? If not, why not, and can you find a
-   suitable grammar that is LL(1)?
+   suitable grammar that is LL(1)?
+   
+- The grammar is not ambiguous.
 
+- It is non-LL(1).  In factor, the optional Expression is deletable and that means that all following productions become deletable, as Expression is recursive. 
 
+- Expression = Term A .
+  A 		 = ("+"|"-") Term A | eps .
+  Term       = Factor B .
+  B 		 = ("*"|"/") Factor B | eps .
+  Factor	 = Primary C .
+  C 		 = "^" Expression | eps .
+  Primary	 = "a"|"b"|"c" .
+
+- FIRST(A1) = {+} FIRST(A2) = {-} Intersection is empty.
+  FIRST(B1) = {*} FIRST(B2) = {/} Intersection is empty.
+  FIRST(Primary1) = {a} FIRST(Primary2) = {b} FIRST(Primary3) = {c} Intersection is empty.
+  *LOOK AT - NOT COMPLETE*.
+
+- We found a syntactically equivalent grammar that is LL(1) complaint, however we cannot find a grammar that is semantically equivalent. 
+
+- COMPILER Expression
+   IGNORE CHR(0) .. CHR(31)
+   PRODUCTIONS
+     Expression = Term    { ( "+" | "-" ) Term  } .
+     Term       = Factor  { ( "*" | "/" ) Factor } .
+     Factor     = Primary [ "^" Primary ] .
+     Primary    = "a" | "b" | "c" .
+  END Expression.
+  
 Task 5 - Meet the family
 
    What form does your grammar take when you eliminate the meta-brackets?
-
+- The grammar takes on a recursive form.
 
    Which, if any, productions break the LL(1) rules, and why?
-
+- The Child production does not work, as it is never called - making it a non-reachable production.  In order to make it work, where "Children" is called we changed it to Child.
+- Parents is nullable, therefore Family is nullable.
 
    Can you find an equivalent grammar that does obey the LL(1) constraints? If so, give it.  If not, explain why
-   you think it canot be done.
-
+   you think it cannot be done.
+- We cannot find an equivalent grammar, as this grammar intends for things to be deletable.  Finding an equivalent grammar means changing the syntactics... *MARQ PLS LOOK AT THIS WHOLE EXPLANATION*
 
 Task 6 - Palindromes
 
    Does grammar 1 describe palindromes?       If not, why not?
-
+- No it does not pass, as it never terminates.
 
    Is it an LL(1) grammar?          If not, why not?
-
+- It is not an LL(1) grammar as it is not even a grammar.
 
 
    Does grammar 2 describe palindromes?       If not, why not?
-
+- Yes it does.
 
    Is it an LL(1) grammar?          If not, why not?
-
+- It is not an LL(1) grammar as a and b are the start of several alternatives.  
 
 
    Does grammar 3 describe palindromes?       If not, why not?
-
+- Yes it does.
 
    Is it an LL(1) grammar?          If not, why not?
+- It is not an LL(1) grammar as a and b are the start and successor of deletable structures.
 
 
 
    Does grammar 4 describe palindromes?       If not, why not?
-
+- Yes it does.
 
    Is it an LL(1) grammar?          If not, why not?
+- It is not an LL(1) grammar, as the entire grammar is nullable; and it has problems of grammar two and three.
 
 
 
