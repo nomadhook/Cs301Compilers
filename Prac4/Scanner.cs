@@ -63,24 +63,28 @@ public class Scanner {
 	const char EOL = '\n';
 	const int  eofSym = 0;
 	const int charSetSize = 256;
-	const int maxT = 3;
-	const int noSym = 3;
+	const int maxT = 7;
+	const int noSym = 7;
 	// terminals
 	const int EOF_SYM = 0;
-	const int a_Sym = 1;
-	const int b_Sym = 2;
-	const int NOT_SYM = 3;
+	const int number_Sym = 1;
+	const int plus_Sym = 2;
+	const int minus_Sym = 3;
+	const int star_Sym = 4;
+	const int slash_Sym = 5;
+	const int sqrt_Sym = 6;
+	const int NOT_SYM = 7;
 	// pragmas
 
 	static short[] start = {
 	  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 	  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+	  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  4,  2,  0,  3,  0,  5,
+	  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  0,  0,  0,  0,  0,  0,
 	  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 	  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 	  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-	  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-	  0,  1,  2,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-	  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+	  0,  0,  0,  6,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 	  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 	  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 	  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
@@ -177,9 +181,27 @@ public class Scanner {
 			case -1: { t.kind = eofSym; goto done; } // NextCh already done /* pdt */
 			case 0: { t.kind = noSym; goto done; }   // NextCh already done
 			case 1:
-				{ t.kind = a_Sym; goto done; }
+				if ((ch >= '0' && ch <= '9')) { buf.Append(ch); NextCh(); goto case 1; }
+				else { t.kind = number_Sym; goto done; }
 			case 2:
-				{ t.kind = b_Sym; goto done; }
+				{ t.kind = plus_Sym; goto done; }
+			case 3:
+				{ t.kind = minus_Sym; goto done; }
+			case 4:
+				{ t.kind = star_Sym; goto done; }
+			case 5:
+				{ t.kind = slash_Sym; goto done; }
+			case 6:
+				if (ch == 'q') { buf.Append(ch); NextCh(); goto case 7; }
+				else { t.kind = noSym; goto done; }
+			case 7:
+				if (ch == 'r') { buf.Append(ch); NextCh(); goto case 8; }
+				else { t.kind = noSym; goto done; }
+			case 8:
+				if (ch == 't') { buf.Append(ch); NextCh(); goto case 9; }
+				else { t.kind = noSym; goto done; }
+			case 9:
+				{ t.kind = sqrt_Sym; goto done; }
 
 		}
 		done:

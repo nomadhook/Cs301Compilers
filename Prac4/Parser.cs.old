@@ -9,12 +9,27 @@ public class Parser {
 	public const int _EOF = 0;
 	// terminals
 	public const int EOF_SYM = 0;
-	public const int a_Sym = 1;
-	public const int b_Sym = 2;
-	public const int NOT_SYM = 3;
+	public const int house_Sym = 1;
+	public const int dog_Sym = 2;
+	public const int cat_Sym = 3;
+	public const int scooter_Sym = 4;
+	public const int bicycle_Sym = 5;
+	public const int fourbyfour_Sym = 6;
+	public const int Dad_Sym = 7;
+	public const int Mom_Sym = 8;
+	public const int Helen_Sym = 9;
+	public const int Margaret_Sym = 10;
+	public const int Alice_Sym = 11;
+	public const int Robyn_Sym = 12;
+	public const int Cathy_Sym = 13;
+	public const int Janet_Sym = 14;
+	public const int Anne_Sym = 15;
+	public const int Ntombizodwa_Sym = 16;
+	public const int Ntombizanele_Sym = 17;
+	public const int NOT_SYM = 18;
 	// pragmas
 
-	public const int maxT = 3;
+	public const int maxT = 18;
 
 	const bool T = true;
 	const bool x = false;
@@ -99,19 +114,97 @@ public class Parser {
 	}
 
 	static void Test() {
-		if (la.kind == a_Sym) {
+		Family();
+		while (la.kind == dog_Sym || la.kind == cat_Sym) {
+			Pets();
+		}
+		if (la.kind == scooter_Sym || la.kind == bicycle_Sym) {
+			Vehicle();
+		}
+		Expect(house_Sym);
+	}
+
+	static void Family() {
+		Parents();
+		while (StartOf(1)) {
+			Child();
+		}
+	}
+
+	static void Pets() {
+		if (la.kind == dog_Sym) {
 			Get();
-			if (la.kind == a_Sym || la.kind == b_Sym) {
-				Test();
+			if (la.kind == cat_Sym) {
+				Get();
 			}
-			Expect(a_Sym);
-		} else if (la.kind == b_Sym) {
+		} else if (la.kind == cat_Sym) {
 			Get();
-			if (la.kind == a_Sym || la.kind == b_Sym) {
-				Test();
+		} else SynErr(19);
+	}
+
+	static void Vehicle() {
+		if (la.kind == scooter_Sym) {
+			Get();
+		} else if (la.kind == bicycle_Sym) {
+			Get();
+		} else SynErr(20);
+		Expect(fourbyfour_Sym);
+	}
+
+	static void Parents() {
+		if (StartOf(2)) {
+			if (la.kind == Dad_Sym) {
+				Get();
 			}
-			Expect(b_Sym);
-		} else SynErr(4);
+			if (la.kind == Mom_Sym) {
+				Get();
+			}
+		} else if (la.kind == Mom_Sym) {
+			Get();
+			Expect(Dad_Sym);
+		} else SynErr(21);
+	}
+
+	static void Child() {
+		switch (la.kind) {
+		case Helen_Sym: {
+			Get();
+			break;
+		}
+		case Margaret_Sym: {
+			Get();
+			break;
+		}
+		case Alice_Sym: {
+			Get();
+			break;
+		}
+		case Robyn_Sym: {
+			Get();
+			break;
+		}
+		case Cathy_Sym: {
+			Get();
+			break;
+		}
+		case Janet_Sym: {
+			Get();
+			break;
+		}
+		case Anne_Sym: {
+			Get();
+			break;
+		}
+		case Ntombizodwa_Sym: {
+			Get();
+			break;
+		}
+		case Ntombizanele_Sym: {
+			Get();
+			break;
+		}
+		default: SynErr(22); break;
+		}
 	}
 
 
@@ -126,7 +219,9 @@ public class Parser {
 	}
 
 	static bool[,] set = {
-		{T,x,x,x, x}
+		{T,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x, x,x,x,x},
+		{x,x,x,x, x,x,x,x, x,T,T,T, T,T,T,T, T,T,x,x},
+		{x,T,T,T, T,T,x,T, T,T,T,T, T,T,T,T, T,T,x,x}
 
 	};
 
@@ -239,10 +334,28 @@ public class Errors {
 		string s;
 		switch (n) {
 			case 0: s = "EOF expected"; break;
-			case 1: s = "\"a\" expected"; break;
-			case 2: s = "\"b\" expected"; break;
-			case 3: s = "??? expected"; break;
-			case 4: s = "invalid Test"; break;
+			case 1: s = "\"house\" expected"; break;
+			case 2: s = "\"dog\" expected"; break;
+			case 3: s = "\"cat\" expected"; break;
+			case 4: s = "\"scooter\" expected"; break;
+			case 5: s = "\"bicycle\" expected"; break;
+			case 6: s = "\"fourbyfour\" expected"; break;
+			case 7: s = "\"Dad\" expected"; break;
+			case 8: s = "\"Mom\" expected"; break;
+			case 9: s = "\"Helen\" expected"; break;
+			case 10: s = "\"Margaret\" expected"; break;
+			case 11: s = "\"Alice\" expected"; break;
+			case 12: s = "\"Robyn\" expected"; break;
+			case 13: s = "\"Cathy\" expected"; break;
+			case 14: s = "\"Janet\" expected"; break;
+			case 15: s = "\"Anne\" expected"; break;
+			case 16: s = "\"Ntombizodwa\" expected"; break;
+			case 17: s = "\"Ntombizanele\" expected"; break;
+			case 18: s = "??? expected"; break;
+			case 19: s = "invalid Pets"; break;
+			case 20: s = "invalid Vehicle"; break;
+			case 21: s = "invalid Parents"; break;
+			case 22: s = "invalid Child"; break;
 
 			default: s = "error " + n; break;
 		}

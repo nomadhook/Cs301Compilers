@@ -8,87 +8,167 @@ Task 3 - Let's take a trip to the C
    From a purely syntactical viewpoint, are the C and Pascal  expressions equivalent - can you think of an
    expression that one grammar would recognize but the other would reject?
    
-- Semantically they would be different, but syntactically they wuold be the same, therefore they are equivalent.
+	- Semantically they would be different, but syntactically they would be the same, therefore they are equivalent.
 
 Task 4 - Expressions - again
 
    Is this an ambiguous grammar? If so, why? is it an LL(1) grammar? If not, why not, and can you find a
    suitable grammar that is LL(1)?
    
-- The grammar is not ambiguous.
+	- This grammar is ambiguous, this can be proven by the derivation of the two options below for the sentence a - b ^ c - a + b.
+	
+	Option 1:
+	a - b ^ (c - a + b)
+	Term - Term
+	Factor - Term
+	Primary - Term
+	a - Term
+	a - Factor
+	a - Primary ^ Expression
+	a - b ^ Expression
+	a - b ^ Term - Term
+	a - b ^ Term - Term + Term
+	a - b ^ Factor - Term + Term
+	a - b ^ Primary - Term + Term
+	a - b ^ c - Term + Term
+	a - b ^ c - Factor + Term
+	a - b ^ c - Primary + Term
+	a - b ^ c - a + Term
+	a - b ^ c - a + Factor
+	a - b ^ c - a + Primary
+	a - b ^ c - a + b
+	
+	Option 2:
+	a - (b ^ c) - a + b
+	Term - Term
+	Term - Term - Term
+	Term - Term - Term + Term
+	Factor - Term - Term + Term
+	Primary - Term - Term + Term
+	a - Term - Term + Term
+	a - Factor - Term + Term
+	a - Primary ^ Expression - Term + Term
+	a - b ^ Expression - Term + Term
+	a - b ^ Term - Term + Term
+	a - b ^ Factor - Term + Term
+	a - b ^ Primary - Term + Term
+	a - b ^ c - Term + Term
+	a - b ^ c - Factor + Term
+	a - b ^ c - Primary + Term
+	a - b ^ c - a + Term
+	a - b ^ c - a + Factor
+	a - b ^ c - a + Primary
+	a - b ^ c - a + b
 
-- It is non-LL(1).  In factor, the optional Expression is deletable and that means that all following productions become deletable, as Expression is recursive. 
 
-- Expression = Term A .
-  A 		 = ("+"|"-") Term A | eps .
-  Term       = Factor B .
-  B 		 = ("*"|"/") Factor B | eps .
-  Factor	 = Primary C .
-  C 		 = "^" Expression | eps .
-  Primary	 = "a"|"b"|"c" .
+	- It is non-LL(1).  In factor, the optional Expression is deletable and that means that all following productions become deletable, as Expression is recursive. 
 
-- FIRST(A1) = {+} FIRST(A2) = {-} Intersection is empty.
-  FIRST(B1) = {*} FIRST(B2) = {/} Intersection is empty.
-  FIRST(Primary1) = {a} FIRST(Primary2) = {b} FIRST(Primary3) = {c} Intersection is empty.
-  *LOOK AT - NOT COMPLETE*.
+	- Expression = Term A .
+	A 		 = ("+"|"-") Term A | eps .
+	Term       = Factor B .
+	B 		 = ("*"|"/") Factor B | eps .
+	Factor	 = Primary C .
+	C 		 = "^" Expression | eps .
+	Primary	 = "a"|"b"|"c" .
 
-- We found a syntactically equivalent grammar that is LL(1) complaint, however we cannot find a grammar that is semantically equivalent. 
-
-- COMPILER Expression
-   IGNORE CHR(0) .. CHR(31)
-   PRODUCTIONS
-     Expression = Term    { ( "+" | "-" ) Term  } .
-     Term       = Factor  { ( "*" | "/" ) Factor } .
-     Factor     = Primary [ "^" Primary ] .
-     Primary    = "a" | "b" | "c" .
-  END Expression.
+	- FIRST(A1) = {+} FIRST(A2) = {-} Intersection is empty.
+	FIRST(B1) = {*} FIRST(B2) = {/} Intersection is empty.
+	FIRST(Primary1) = {a} FIRST(Primary2) = {b} FIRST(Primary3) = {c} Intersection is empty.
+	*LOOK AT - NOT COMPLETE*.
+	
+	- This option below, to surround the non-terminal Expression in Primary with brackets, forces it be LL(1).
+	This however is not syntactically equivalent. It would work semantically. 
+	- COMPILER Expression
+	IGNORE CHR(0) .. CHR(31)
+	PRODUCTIONS
+		Expression = Term    { ( "+" | "-" ) Term  } .
+		Term       = Factor  { ( "*" | "/" ) Factor } .
+		Factor     = Primary [ "^" "(" Expression ")"] .
+		Primary    = "a" | "b" | "c" .
+	END Expression.
+	
+	- We found a syntactically equivalent grammar that is LL(1) complaint, however we cannot find a grammar that is semantically and syntactically equivalent. 
+	
+	- COMPILER Expression
+	IGNORE CHR(0) .. CHR(31)
+	PRODUCTIONS
+		Expression = Term    { ( "+" | "-" ) Term  } .
+		Term       = Factor  { ( "*" | "/" ) Factor } .
+		Factor     = Primary [ "^" Primary ] .
+		Primary    = "a" | "b" | "c" .
+	END Expression.
+	
+	- We tested the code by using the F pragma, which returned the trace.txt file, which contained the FIRST and FOLLOW sets. 
   
 Task 5 - Meet the family
 
    What form does your grammar take when you eliminate the meta-brackets?
-- The grammar takes on a recursive form.
+	- The grammar takes on a recursive form.
+	
+PRODUCTIONS
+     Test      = Family PetsA Vehicle "house" .
+	 PetsA     = Pets PetsA | .
+     Pets      = "dog" PetsR | "cat" .
+	 PetsR     = "cat" | .
+	 
+     Vehicle   = TwoWheel "fourbyfour" | .
+	 TwoWheel  =  "scooter" | "bicycle" .
+     Family    = Parents ChildrenR .
+	 
+     Parents   = Parent | "Mom" "Dad" .
+	 Parent    = DadP | MomP .
+     DadP      = "Dad" | .
+	 MomP      = "Mom" | .
+	 ChildrenR = Child ChildrenR | .
+     Child     =   "Helen" | "Margaret" | "Alice" | "Robyn" | "Cathy"
+                 | "Janet" | "Anne" | "Ntombizodwa" | "Ntombizanele" .
+END Test.
 
    Which, if any, productions break the LL(1) rules, and why?
-- The Child production does not work, as it is never called - making it a non-reachable production.  In order to make it work, where "Children" is called we changed it to Child.
-- Parents is nullable, therefore Family is nullable.
-
+	- The Child production does not work, as it is never called - making it a non-reachable production.  In order to make it work, where "Children" is called we changed it to Child.
+	- Parents is nullable, therefore Family is nullable.
+	- Rule 2 is broken by  Pets = "dog" [ "cat" ] | "cat" . and Child     =   "Helen" | "Margaret" | "Alice" | "Robyn" | "Cathy"
+      | "Janet" | "Anne" | "Ntombizodwa" | "Ntombizanele" . Pets is ambiguous since "dog" "cat" "cat "can be interpreted either by Pets - Pets = "dog" "cat" - "cat" OR Pets - Pets - Pets = "dog" - "cat" - "cat"
+		Child can be followed by the same child, such as "Helen" "Helen".
    Can you find an equivalent grammar that does obey the LL(1) constraints? If so, give it.  If not, explain why
    you think it cannot be done.
-- We cannot find an equivalent grammar, as this grammar intends for things to be deletable.  Finding an equivalent grammar means changing the syntactics... *MARQ PLS LOOK AT THIS WHOLE EXPLANATION*
+	- We cannot find an equivalent grammar, as this grammar intends for things to be deletable.  Finding an equivalent grammar means changing the syntactics... *MARQ PLS LOOK AT THIS WHOLE EXPLANATION*
 
 Task 6 - Palindromes
 
    Does grammar 1 describe palindromes?       If not, why not?
-- No it does not pass, as it never terminates.
+	- No it does not pass, as it never terminates.
 
    Is it an LL(1) grammar?          If not, why not?
-- It is not an LL(1) grammar as it is not even a grammar.
+	- It is not an LL(1) grammar as it is not even a grammar, since it never terminates.
 
 
    Does grammar 2 describe palindromes?       If not, why not?
-- Yes it does.
+	- Yes it does.
 
    Is it an LL(1) grammar?          If not, why not?
-- It is not an LL(1) grammar as a and b are the start of several alternatives.  
+	- It is not an LL(1) grammar as a and b are the start of several alternatives.  
 
 
    Does grammar 3 describe palindromes?       If not, why not?
-- Yes it does.
+	- Yes it does.
 
    Is it an LL(1) grammar?          If not, why not?
-- It is not an LL(1) grammar as a and b are the start and successor of deletable structures.
+	- It is not an LL(1) grammar as a and b are the start and successor of deletable structures.
 
 
 
    Does grammar 4 describe palindromes?       If not, why not?
-- Yes it does.
+	- Yes it does.
 
    Is it an LL(1) grammar?          If not, why not?
-- It is not an LL(1) grammar, as the entire grammar is nullable; and it has problems of grammar two and three.
+	- It is not an LL(1) grammar, as the entire grammar is nullable; and it has problems of grammar two and three.
 
 
 
    Can you find a better grammar to describe palindromes?  If so, give it, if not, explain why not.
+   -It is impossible to describe all palindromes, since there can always be starts to several alternatives and you can never know if you are in the middle of the palindrome.
+
 
 
 
@@ -99,22 +179,32 @@ Task 7
    conditions?  If not, explain clearly where the rules are broken, and come up with an LL(1) grammar that
    describes RPN notation, or else explain why it might be necessary to modify the language itself to overcome
    any problems you have uncovered.
+   
+	- Grammar 1 is by nature non-deterministic and context-free grammars cannot support non-determinism.
+	- Grammar 2
+	- We would have to modify the language itself, to allow for extra symbols such as brackets to allow for differentiating between binOP and unaryOp, or see ahead if it is a binOp or unaryOp from the terminals used.
 
-
-
+	
 Task 8
 
    Which of the following statements are true?  Justify your answers.
 
      (a) An LL(1) grammar cannot be ambiguous.
-
+			True.  Ambiguous grammars relate to context-sensitive while LL(1) grammars are context-free.
 
      (b) A non-LL(1) grammar must be ambiguous.
-
+			False.  A grammar may be non-ambiguous but still break an LL(1) rule. 
+			
+			Example:
+			A = a[B]a
+			B = ab
+			
+			While this grammar is non-ambiguous, a is the start (rule 1) and successor (rule 2) of several alternatives thus it is non-LL(1).
 
      (c) An ambiguous language cannot be described by an LL(1) grammar.
+			True.  Ambiguous languages relate to context-sensitive while LL(1) grammars are context-free.
 
 
      (d) It is possible to find an LL(1) grammar to describe any non-ambiguous language.
-
+			False.  You can have a non-ambiguous grammar that is still non-deterministic, and LL(1) grammars cannot be non-deterministic.
 

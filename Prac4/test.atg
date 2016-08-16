@@ -1,5 +1,15 @@
-COMPILER Test $CN
-   IGNORE CHR(0) .. CHR(31)
-   PRODUCTIONS
-     Test = [ "a"  Test  "a" | "b"  Test  "b" | "a" | "b" ] .
+COMPILER Test $cnf
+CHARACTERS
+	numbers = "0123456789" .
+
+TOKENS
+	number = numbers {numbers} .
+	
+IGNORE CHR(0) .. CHR(31)
+PRODUCTIONS
+      Test       =     Test Test binOp
+                                 | Test unaryOp
+                                 | number .
+                   binOp     =   "+" | "-" | "*" | "/" .
+                   unaryOp   =   "-" | "sqrt" .
 END Test.

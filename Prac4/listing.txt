@@ -1,14 +1,21 @@
-  Warning: Test is deletable
-  LL1 warning in Test: "a" is the start & successor of a deletable structure
-  LL1 warning in Test: "b" is the start & successor of a deletable structure
-  LL1 warning in Test: "a" is the start of several alternatives
-  LL1 warning in Test: "b" is the start of several alternatives
+  LL1 warning in Test: number is the start of several alternatives
+  LL1 warning in Test: number is the start of several alternatives
 
-   1 COMPILER Test $CN
-   2    IGNORE CHR(0) .. CHR(31)
-   3    PRODUCTIONS
-   4      Test = [ "a"  Test  "a" | "b"  Test  "b" | "a" | "b" ] .
-   5 END Test.
+   1 COMPILER Test $cnf
+   2 CHARACTERS
+   3 	numbers = "0123456789" .
+   4 
+   5 TOKENS
+   6 	number = numbers {numbers} .
+   7 	
+   8 IGNORE CHR(0) .. CHR(31)
+   9 PRODUCTIONS
+  10       Test       =     Test Test binOp
+  11                                  | Test unaryOp
+  12                                  | number .
+  13                    binOp     =   "+" | "-" | "*" | "/" .
+  14                    unaryOp   =   "-" | "sqrt" .
+  15 END Test.
 
 0 errors detected
-5 warnings detected
+2 warnings detected

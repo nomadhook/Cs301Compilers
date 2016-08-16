@@ -7,14 +7,19 @@ namespace Test {
 
 public class Parser {
 	public const int _EOF = 0;
+	public const int _number = 1;
 	// terminals
 	public const int EOF_SYM = 0;
-	public const int a_Sym = 1;
-	public const int b_Sym = 2;
-	public const int NOT_SYM = 3;
+	public const int number_Sym = 1;
+	public const int plus_Sym = 2;
+	public const int minus_Sym = 3;
+	public const int star_Sym = 4;
+	public const int slash_Sym = 5;
+	public const int sqrt_Sym = 6;
+	public const int NOT_SYM = 7;
 	// pragmas
 
-	public const int maxT = 3;
+	public const int maxT = 7;
 
 	const bool T = true;
 	const bool x = false;
@@ -99,21 +104,36 @@ public class Parser {
 	}
 
 	static void Test() {
-		if (la.kind == a_Sym || la.kind == b_Sym) {
-			if (la.kind == a_Sym) {
-				Get();
-				Test();
-				Expect(a_Sym);
-			} else if (la.kind == b_Sym) {
-				Get();
-				Test();
-				Expect(b_Sym);
-			} else if (la.kind == a_Sym) {
-				Get();
-			} else {
-				Get();
-			}
-		}
+		if (la.kind == number_Sym) {
+			Test();
+			Test();
+			binOp();
+		} else if (la.kind == number_Sym) {
+			Test();
+			unaryOp();
+		} else if (la.kind == number_Sym) {
+			Get();
+		} else SynErr(8);
+	}
+
+	static void binOp() {
+		if (la.kind == plus_Sym) {
+			Get();
+		} else if (la.kind == minus_Sym) {
+			Get();
+		} else if (la.kind == star_Sym) {
+			Get();
+		} else if (la.kind == slash_Sym) {
+			Get();
+		} else SynErr(9);
+	}
+
+	static void unaryOp() {
+		if (la.kind == minus_Sym) {
+			Get();
+		} else if (la.kind == sqrt_Sym) {
+			Get();
+		} else SynErr(10);
 	}
 
 
@@ -128,7 +148,7 @@ public class Parser {
 	}
 
 	static bool[,] set = {
-		{T,x,x,x, x}
+		{T,x,x,x, x,x,x,x, x}
 
 	};
 
@@ -241,9 +261,16 @@ public class Errors {
 		string s;
 		switch (n) {
 			case 0: s = "EOF expected"; break;
-			case 1: s = "\"a\" expected"; break;
-			case 2: s = "\"b\" expected"; break;
-			case 3: s = "??? expected"; break;
+			case 1: s = "number expected"; break;
+			case 2: s = "\"+\" expected"; break;
+			case 3: s = "\"-\" expected"; break;
+			case 4: s = "\"*\" expected"; break;
+			case 5: s = "\"/\" expected"; break;
+			case 6: s = "\"sqrt\" expected"; break;
+			case 7: s = "??? expected"; break;
+			case 8: s = "invalid Test"; break;
+			case 9: s = "invalid binOp"; break;
+			case 10: s = "invalid unaryOp"; break;
 
 			default: s = "error " + n; break;
 		}

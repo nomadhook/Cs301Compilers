@@ -1,0 +1,16 @@
+
+First & follow symbols:
+-----------------------
+
+Test
+first:   number 
+follow:  EOF number "+" "-" "*" "/" "sqrt" 
+
+binOp
+first:   "+" "-" "*" "/" 
+follow:  EOF number "+" "-" "*" "/" "sqrt" 
+
+unaryOp
+first:   "-" "sqrt" 
+follow:  EOF number "+" "-" "*" "/" "sqrt" 
+
